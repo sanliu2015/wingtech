@@ -1,0 +1,80 @@
+{
+	"appKey": "checkInService",
+	"viewFileSuffix": "CheckIn",
+	"appName": "员工入住",
+	"attributes": 
+	{
+		"queryRoom": "select a.id,a.roomName,a.buildingName,a.unitName,a.floorName,a.bigNumber,isnull(c.name,'') typeName,isnull(b.inSum,0) inSum 
+from VM_RoomInfo a 
+left join (select COUNT(id) inSum,roomId from Dorm_CheckIn where isnull(checkOutFlag,0)=0 group by roomId) b on a.id=b.roomId 
+left join TS_SysCode c on c.codeKind=304 and a.type=c.code ",
+	"queryEmp": "select a.id,a.name,a.number,isnull(a.gender,'') gender,b.name deptName from HR_Employee a 
+left join HR_Department b on a.deptId=b.id 
+left join TS_SysCode c on c.codeKind=27 and a.gender=c.code 
+left join Dorm_CheckIn d on a.id=d.employeeId and checkOutFlag is null 
+where a.status='1' and d.id is null ",
+	"queryRoomEmp": "select a.id,a.name,a.number,isnull(a.gender,'') gender,b.name deptName,d.inDate,d.roomId orgRoom from HR_Employee a 
+	left join HR_Department b on a.deptId=b.id 
+	left join TS_SysCode c on c.codeKind=27 and a.gender=c.code 
+	inner join Dorm_CheckIn d on a.id=d.employeeId and isnull(checkOutFlag,0)=0  
+	where d.roomId = ?",
+	"findObj": "select a.id,a.inDate,a.employeeId,b.name empName,b.number empNumber,c.roomName,c.buildingName,a.roomId,
+	 a.keyStatus,a.remoterKeep,a.description from Dorm_CheckIn a
+		inner join HR_Employee b on a.employeeId=b.id 
+		inner join VM_RoomInfo c on a.roomId=c.id 
+		where a.id=? ",
+	"batchOutSql":"select b.id employeeId,b.name empName,b.number empNumber,c.name roomName from Dorm_CheckIn a 
+	inner join HR_Employee b on a.employeeId=b.id 
+	inner join Dorm_Room c on a.roomId=c.id where a.id in ?",	
+	"saveBeforeSp":"checkIn_saveBefore(?)",
+	"deleteSp": "checkIn_delete(?)",
+	"undoSp": "checkOut_undo(?)",
+	"exportSql":"select t.roomName,t.roomNumber,t.bigNumber,p.inDate,p.keyStatus,p.remoterKeep,p.description,p.empName,p.empNumber,p.deptName, 
+p.parentDeptName,p.posName,p.copName,p.sendCompanyName,p.gender,p.handleName,
+p.firstRowExcel,isnull(p.inSum,0) inSum, (t.bigNumber-isnull(p.inSum,0)) avaNum 
+from VM_RoomBasicInfo t 
+left join ( 
+select a.id,a.roomId,a.inDate,a.keyStatus,a.remoterKeep,a.description,c.name empName,c.number empNumber,d.name deptName,
+e.name parentDeptName,f.name posName,g.name copName,h.sendCompanyName,i.name gender,j.name handleName,
+x.firstRowExcel,y.inSum 
+from Dorm_CheckIn a 
+	left join HR_Employee c on a.employeeId=c.id 
+	left join HR_Department d on c.deptId=d.id 
+    left join HR_Department e on d.parentId=e.id 
+    left join HR_Position f on c.positionId=f.id 
+	left join HR_Company g on c.orgId=g.id
+	left join HR_Interim h on c.interimId=h.id 
+	left join TS_SysCode i on i.codeKind=27 and c.gender=i.code
+	left join HR_Employee j on a.handleEmpId=j.id
+	left join (select MIN(id) id,COUNT(1) inSum,1 firstRowExcel from Dorm_CheckIn where isnull(checkOutFlag,0)=0 group by roomId) x on a.id=x.id 
+	left join (select COUNT(1) inSum,roomId from Dorm_CheckIn where isnull(checkOutFlag,0)=0 group by roomId) y on a.roomId=y.roomId 
+where isnull(a.checkOutFlag,0)=0 
+) p on t.id=p.roomId where t.buildingId=? 
+order by t.roomNumber,p.id "
+	},
+
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "roomTypeList",
+				"sql": "select code,name from  TS_SysCode  where codeKind=304 "
+			},
+			{
+				"keyName": "genderList",
+				"sql": "select code,name from  TS_SysCode  where codeKind=27 "
+			},
+			{
+				"keyName": "interimList",
+				"sql": "select id,sendCompanyName from  HR_Interim "
+			},
+			{
+				"keyName": "damageReasonList",
+				"sql": "select code,name from  TS_SysCode  where codeKind=306 "
+			}
+		]
+	},
+
+	"formToJsonMethods": "*"
+}

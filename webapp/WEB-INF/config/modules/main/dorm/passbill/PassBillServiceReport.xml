@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="passBillServiceReport" type="object"> 
+    <property name="name">放行条管理</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">passBillService</property>
+	<property name="dataSetId">passBillService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+    	<object class="SourceTableRuleBean" id="passBillServiceTable">
+        <property name="sql"><![CDATA[ 
+        	from Dorm_PassBill a 
+        		inner join HR_Employee b on a.empId=b.id
+        		left join Dorm_Room c on a.roomId=c.id 
+        		left join Dorm_Building d on a.buildId=d.id 
+          ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"     singleSelect="true"  fitColumns="false"   pageSize="20"  toolbar="#passBillServiceToolbar"> 
+					<property name="customProperty" type="map">  
+						<entry key="striped" dataType="boolean">true</entry> 
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="passBillServiceToolbar"> 
+			  <property name="toolbars" type="list">
+				<object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/passBillService/add.do" limitChooseRows="0"> 
+				    <property name="customProperty" type="map">
+						<entry key="limitChooseRows">0</entry>
+						<entry key="dialogOpts">maximized:true</entry> 
+				    </property>
+				</object> 
+				<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"    url="/main/passBillService/edit.do"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+						<property name="customProperty" type="map"> 
+							<entry key="limitChooseRows">1</entry>
+							<entry key="dialogOpts">maximized:true</entry> 
+					 </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"    url="/main/passBillService/json/delete.do"  targetName="ajax"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+					  <property name="customProperty" type="map">  
+					  <entry key="limitChooseRows">2</entry>
+						<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
+			         </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="查看" dataOptions="plain:true,iconCls:'icon-search'"    url="/main/passBillService/edit.do?appUrl=LookupPassBill"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+						<property name="customProperty" type="map"> 
+							<entry key="limitChooseRows">1</entry>
+							<entry key="dialogOpts">maximized:true</entry> 
+					 </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="打印" dataOptions="plain:true,iconCls:'icon-print'"    url="/main/passBillService/edit.do?appUrl=PrintPassBill" targetName="newPage"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+						<property name="customProperty" type="map"> 
+							<entry key="limitChooseRows">1</entry>
+							<entry key="dialogOpts">maximized:true</entry> 
+					 </property>
+				</object>
+              </property>    
+			</object> 
+		</object> 
+        <property name="sourceFields" type="list">
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="number" displayLable="放行条编号" dataType="string" isQueryCondition="1" colWidth="90"/>
+		    <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="name" fieldAliasName="employeeName"  displayLable="姓名" dataType="string" isQueryCondition="1" colWidth="80"/>
+		    <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="number" fieldAliasName="employeeNo"  displayLable="工号" dataType="string" isQueryCondition="1" colWidth="80"/>
+		    <object class="SourceFieldRuleBean" tableAliasName="d" fieldName="name" fieldAliasName="buildName"  displayLable="楼栋" dataType="string" colWidth="90" /> 
+		    <object class="SourceFieldRuleBean" tableAliasName="c" fieldName="name" fieldAliasName="roomName"  displayLable="房间" dataType="string" colWidth="90" /> 
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="reason"  displayLable="离厂原因" dataType="string" colWidth="90" /> 
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="passDate" displayLable="日期"  colWidth="70"  dataType="date" displayColumn="1" queryControlKind="1" />
+            <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" dataType="string"  displayColumn="1"  colWidth="70"  />                                              
+            <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="创建时间" dataType="string" displayColumn="1" colWidth="70"/>
+            <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy" displayLable="创建人" dataType="string" colWidth="60" />
+            <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string"  colWidth="100"  />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0"/>
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

@@ -1,0 +1,26 @@
+{
+	"appKey": "repairerService",
+	"appName": "物品信息",
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "repairTypeList",
+				"sql": "select code value,name text from TS_SysCode where codeKind=130",
+				"isHql": "0"
+			},
+			{
+				"keyName": "buildingIdList",
+				"sql": "select id value,name text from Dorm_building where parentId is null",
+				"isHql": "0"
+			}
+		]
+	},
+	"attributes": 
+	{
+		"deleteSp": "repairer_delete(?,?)"
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "Repairer"
+}

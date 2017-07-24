@@ -1,0 +1,11 @@
+{
+	"appKey": "coupleSetService",
+	"appName": "夫妻关系设置",
+	"attributes": 
+	{
+		"doEffectiveSp": "{call coupleSet_effect(?,?,?)}",
+		"querySql":"select 'update' recordOperateStatus,a.id,a.orgEmpId,a.desEmpId,b.name orgEmpName,b.number orgEmpNumber,c.name desEmpName,c.number desEmpNumber,d.name orgEmpSex,e.name desEmpSex,a.description from Dorm_CoupleSet a left join HR_Employee b on a.orgEmpId=b.id left join HR_Employee c on a.desEmpId=c.id left join TS_SysCode d on d.codeKind=27 and b.gender=d.code left join TS_SysCode e on e.codeKind=27 and c.gender=e.code where a.id in"
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "CoupleSet"
+}

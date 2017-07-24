@@ -1,0 +1,6 @@
+{
+"appKey":"positionService",
+"appName":"职位信息",
+"codeRules":[{"prefix":"PS","dateFormat":"yy","sequenceNoPrefix":"-","sequenceLen":4,"className":"Position"}],
+ "formToJsonMethods":"editPosition"
+}

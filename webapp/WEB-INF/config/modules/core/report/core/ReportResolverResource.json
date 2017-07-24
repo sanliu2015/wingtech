@@ -1,0 +1,17 @@
+{
+"appKey":"reportResolver",
+"appName":"报表管理",
+"configureFile":"/WEB-INF/config/modules/reportConfigure/ReportConfigureFiles.xml",
+"lang":{
+	"from":"从",
+	"to":"至",
+	"chosedAll":"全部",
+	"leftOperateButtons":"操作",
+        "rightOperateButtons":"操作",
+	"queryDatasBtn":"查询",
+	"queryCondiTitle":"查询条件",
+        "backbtn":"关闭",
+	"clearBlankBtn":"清空",
+	"blurQuery":"模糊查询"
+  }
+}

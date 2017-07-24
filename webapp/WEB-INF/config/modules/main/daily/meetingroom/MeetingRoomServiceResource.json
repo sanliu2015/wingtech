@@ -1,0 +1,18 @@
+{
+	"appKey": "meetingRoomService",
+	"appName": "会议室设置",
+	"attributes": 
+	{
+		"deleteSp": "meetingRoom_delete(?)",
+		"querySql": "select c.name as roomName,a.theme,
+  a.conveneDate,a.beginTime,a.endedTime,a.needProjector,
+  a.joinSum,a.description,b.name bookName  
+from Daily_MeetingReserve a 
+	left join HR_Employee b on a.reserveEmpId=b.id  
+    left join Daily_MeetingRoom c on a.meetingRoomId=c.id 
+where a.conveneDate=? and a.meetingRoomId=? and beginTime between ? and ? 
+    "
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "MeetingRoom"
+}

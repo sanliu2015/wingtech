@@ -1,0 +1,6 @@
+{
+	"appKey": "roomSetService",
+	"appName": "物品信息",
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "RoomSet"
+}

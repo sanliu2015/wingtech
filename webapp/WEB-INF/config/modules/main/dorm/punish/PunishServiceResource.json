@@ -1,0 +1,28 @@
+{
+	"appKey": "punishService",
+	"appName": "宿舍惩罚",
+	"attributes": 
+	{
+		"deleteSp": "{call punish_delete(?,?)}",
+		"findObj": "select a.id,a.employeeId,a.amount,a.description,a.occurDate,a.executivePunish,
+		a.reason,b.name empName,b.number empNumber,c.name depName,d.name parentDepName 
+		from Dorm_Punish a
+		inner join HR_Employee b on a.employeeId=b.id 
+		inner join HR_Department c on b.deptId=c.id 
+        left join HR_Department d on c.parentId=d.id 
+		where a.id=? "
+	},
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "executivePunishList",
+				"sql": "select code,name from TS_SysCode where codeKind=108 and code!='3' ",
+				"isHql": "0"
+			}
+		]
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "Punish"
+}

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+           xmlns:context="http://www.springframework.org/schema/context"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+           xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+           xsi:schemaLocation="http://www.springframework.org/schema/beans     
+                               http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                               http://www.springframework.org/schema/context
+                               http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                               http://www.springframework.org/schema/aop
+                               http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                               http://www.springframework.org/schema/tx
+                               http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"> 
+<bean id="importDataTaskConfigService" class="com.ts.core.report.importdata.ImportDataTaskConfig"> 
+       <property name="defaultPath"><value>/core/report/importdata/</value></property>
+	   <property name="configFiles"> 
+			<list> 
+			  <bean  class="com.ts.core.report.importdata.ConfigImportXmlFile">  
+				   <property name="fileName"><value>/core/report/importdata/ImportInventoryClass.xml</value></property>  
+				   <property name="name" value="存货类别"/> 
+			  </bean>
+			  <bean  class="com.ts.core.report.importdata.ConfigImportXmlFile">  
+			     <property name="fileName"><value>/core/report/importdata/ImportComputationGroup.xml</value></property>  
+				 <property name="name" value="计量单位组"/>  
+			  </bean>
+			  <bean  class="com.ts.core.report.importdata.ConfigImportXmlFile">  
+			     <property name="fileName"><value>/core/report/importdata/ImportComputationUnit.xml</value></property>  
+				 <property name="name" value="计量单位"/>  
+			  </bean>
+			  <bean  class="com.ts.core.report.importdata.ConfigImportXmlFile">  
+			     <property name="fileName"><value>/core/report/importdata/ImportWarehouse.xml</value></property>  
+				  <property name="name" value="仓库设置"/>
+			  </bean>
+			  <bean  class="com.ts.core.report.importdata.ConfigImportXmlFile">  
+			     <property name="fileName"><value>/core/report/importdata/ImportCustomerClass.xml</value></property>  
+				 <property name="name" value="客户类别"/> 
+			  </bean> 
+			  <bean  class="com.ts.core.report.importdata.ConfigImportXmlFile">  
+			     <property name="fileName"><value>/core/report/importdata/ImportCustomer.xml</value></property>
+				 <property name="name" value="客户档案"/>
+			  </bean>  
+			  <bean  class="com.ts.core.report.importdata.ConfigImportXmlFile">  
+			     <property name="fileName"><value>/core/report/importdata/ImportInventory.xml</value></property>  
+				  <property name="name" value="存货档案"/> 
+			  </bean>
+			  <bean  class="com.ts.core.report.importdata.ConfigImportXmlFile">  
+			     <property name="fileName"><value>/core/report/importdata/ImportPayment.xml</value></property> 
+				 <property name="name" value="付款方式"/>  
+			  </bean>
+			</list>
+	   </property>
+</bean> 
+<bean id ="sysImportDataJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass">
+			<value>com.ts.core.report.importdata.QuartzImportDataJob</value>
+		</property> 
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="importDataTaskConfig">
+					<ref bean="importDataTaskConfigService"/>
+				</entry> 
+			</map>
+		</property>
+	</bean>
+ <bean id="myJobDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+    <property name="jobDetail" ref="sysImportDataJob" /> 
+    <property name="cronExpression">
+      <!-- 每天早上8点执行任务调度 -->
+      <value>0 20 10 * * ?</value>
+    </property>
+  </bean>
+
+<bean id="myPrintSchedule" class="com.ts.core.system.scheduling.ImportDataJobTask" />
+<bean id="myPrintDetail"
+    class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    <property name="targetObject" ref="myPrintSchedule" />
+    <property name="targetMethod" value="executeInternal" />
+    <property name="concurrent" value="false" />
+  </bean>
+  <bean id="myPrintTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+     <property name="jobDetail" ref="myPrintDetail" /> 
+    <property name="cronExpression">
+      <!-- 每天早上8点执行任务调度 -->
+      <value>0 11 12 * * ?</value>
+    </property>
+  </bean>
+
+ <bean  id="tsScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false"  autowire="no">
+    <property name="triggers">
+      <list>
+         <!-- 所有的调度列表-->
+        <!-- <ref bean="myPrintTrigger" /> -->
+		<!-- <ref bean="myJobDetailTrigger" /> -->
+      </list>
+    </property>
+    	<!-- 通过applicationContextSchedulerContextKey属性配置spring上下文 -->
+    	<property name="applicationContextSchedulerContextKey">
+			<value>applicationContext</value>
+		</property>
+  </bean>
+  
+</beans>

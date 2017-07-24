@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+	<ReportConfigureBean id="scheduleJobServiceReport" type="object"> 
+    	<property name="name">同步数据存储过程</property>
+    	<property name="orderBy">1</property>
+		<property name="appKey">scheduleJobService</property>
+		<property name="dataSetId">scheduleJobService</property>
+    	<property name="sourceDbServiceName">dbService</property>
+    	<property name="sourceTableRules" type="list">
+      		<object class="SourceTableRuleBean" id="scheduleJobServiceTable">
+        		<property name="sql"><![CDATA[ from Sys_scheduleJob as a   ]]></property> 
+				<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+				<object name="datagrid" type="object"  class="ReportDatagrid"  pageSize="15" singleSelect="true"  fitColumns="false"   toolbar="#scheduleJobServiceToolbar"   > 
+					<property name="customProperty" type="map">
+						<entry key="striped" dataType="boolean">true</entry> 
+						<entry key="pageList" dataType="array">15,50,100</entry> 
+			         </property>
+				</object> 
+				<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="scheduleJobServiceToolbar"> 
+					<property name="toolbars" type="list">
+						<object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/scheduleJobService/add.do" limitChooseRows="0"> 
+						<property name="customProperty" type="map">
+							<entry key="dialogOpts">cache:true,height:400,width:600</entry>  
+			       		</property>
+						</object> 
+						<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"    url="/main/scheduleJobService/edit.do"> 
+							<property name="recParamTemplate">id=#{id}</property>
+					 		<property name="customProperty" type="map">
+								<entry key="dialogOpts">cache:true,height:400,width:600</entry>  
+			       			</property>
+						</object>
+						<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"    url="/core/scheduleJobService/json/delete.do"  targetName="ajax"   > 
+					 		<property name="recParamTemplate">id=#{id}</property>
+					  		<property name="customProperty" type="map">  
+								<entry key="promptStatement" >您确认要删除该记录吗？</entry>  
+			         		</property>
+						</object>
+						<object class="ReportToolbar" className="easyui-linkbutton" name="开启" dataOptions="plain:true,iconCls:'icon-redo'"    url="/core/scheduleJobService/json/open.do"  targetName="ajax"   > 
+					 		<property name="recParamTemplate">id=#{id}</property>
+						</object>
+						<object class="ReportToolbar" className="easyui-linkbutton" name="关闭" dataOptions="plain:true,iconCls:'icon-undo'"    url="/core/scheduleJobService/json/stop.do"  targetName="ajax"   > 
+					 		<property name="recParamTemplate">id=#{id}</property>
+						</object>
+						<object class="ReportToolbar" className="easyui-linkbutton" name="立即执行" dataOptions="plain:true,iconCls:'icon-ok'"    url="/core/scheduleJobService/json/doRightNow.do"  targetName="ajax"   > 
+					 		<property name="recParamTemplate">id=#{id}</property>
+						</object>
+						<object class="ReportToolbar" className="easyui-linkbutton" name="最近操作失败日志" dataOptions="plain:true,iconCls:'icon-tip'"    url="/main/scheduleJobService/lookLastLog.do"  > 
+					 		<property name="recParamTemplate">id=#{id}</property>
+					 		<property name="customProperty" type="map">
+								<entry key="dialogOpts">cache:true</entry>  
+			       			</property>
+						</object>
+              		</property>   
+				</object>
+				</object> 
+        		<property name="sourceFields" type="list"> 
+         			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="jobName"   displayLable="任务名称"  isQueryCondition="1"  /> 
+		 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="jobGroup"   displayLable="任务小组"  isQueryCondition="1" /> 
+		 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="sqlObject"   displayLable="sql对象"  isQueryCondition="1" />   
+          			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="cronExpression"   displayLable="cron表达式"  /> 
+          			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="beanClass"   displayLable="java类名"  />   
+          			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="methodName"   displayLable="java方法名"  />     
+          			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="jobStatus"    displayLable="状态" dataType="string"   dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"    queryCondtiOrder="3">
+            			<property name="dataSourceSql">select code,name from TS_SysCode where codekind=200</property>
+          			</object> 
+          			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" dataType="string"    />
+          			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="创建时间" dataType="string"  />
+          			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy" displayLable="创建人" dataType="string"  />   
+		   			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int"   displayColumn="0" />
+        		</property> 
+      		</object>
+    	</property> 
+	</ReportConfigureBean>
+</dbRuleDefines>

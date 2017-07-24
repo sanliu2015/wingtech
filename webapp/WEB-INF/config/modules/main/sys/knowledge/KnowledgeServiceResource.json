@@ -1,0 +1,11 @@
+{
+"appKey":"mainknowledgeService",
+"appName":"知识库发布管理",
+  "sqlScript":{
+      "sqlList":[
+      	{"keyName":"receiverTypeList","sql":"select code,name from  TS_SysCode  where codeKind=26 "},
+		{"keyName":"companyList","sql":"select id,name  as text  from  HR_Company   "}
+      ]
+  } ,
+  "formToJsonMethods":"editBulletin,lookupBulletin"
+}

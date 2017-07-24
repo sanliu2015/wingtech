@@ -1,0 +1,21 @@
+{
+	"appKey": "thingsService",
+	"appName": "物品信息",
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "unitList",
+				"sql": "select code value,name text from TS_SysCode where codeKind=110",
+				"isHql": "0"
+			}
+		]
+	},
+	"attributes": 
+	{
+		"deleteSp": "things_delete(?,?)"
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "Things"
+}

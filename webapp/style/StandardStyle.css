@@ -1,0 +1,139 @@
+/* CSS Document */
+/*±≥æ∞Õº∆¨≤ª÷ÿ∏¥*/
+.background_style{
+background-repeat:no-repeat;
+width:100%;
+border:0;
+height:40px;
+}
+.tableStylenoborder{
+border-collapse:collapse;
+border-spacing:5px;
+background-color:#f6f6f6;
+jerry:expression(cellSpacing="1");
+jerry:expression(cellPadding="1");
+width:100%;
+}
+.tableStyle1{
+border-collapse:collapse;
+border:1px solid;
+border-color:#1b5ba5;
+border-spacing:5px;
+background-color:#f6f6f6;
+jerry:expression(cellSpacing="1");
+jerry:expression(cellPadding="1");
+width:100%;
+}
+.biaoti{
+font-weight:bold;
+font-size:14px;
+text-align:left;
+}
+.tableStyle2{
+border-collapse:collapse;
+border:1px solid;
+border-color:#1b5ba5;
+border-spacing:5px;
+background-color:#f6f6f6;
+jerry:expression(cellSpacing="1");
+jerry:expression(cellPadding="1");
+jerry:expression(border="1");
+width:100%;
+}
+.tdyou{
+border-width:0 1px 0 0;
+border-color:#999999;
+border-style:solid;
+align:center;
+}
+.buttonstyleping {
+	BORDER-BOTTOM: #666b52 1px solid;
+	BORDER-LEFT: #666b52 1px solid;
+	BORDER-RIGHT: #666b52 1px solid;
+	BORDER-TOP: #666b53 1px solid;
+	COLOR: #000000;
+	FONT-SIZE: 9pt;
+	font-family: "ÀŒÃÂ";
+	text-decoration: none;
+	background-color:#FFFFFF;
+}
+.bgwhiteleftxin{
+height:25px;
+}
+.fieldsetstyle{
+font-size:14px; 
+border:solid 1px; 
+border-color:#1b5ba5; 
+font-weight: bold;
+color:#0033CC
+}
+.selectstyle{
+width:132px;
+font-size:12px;
+}
+.bitian{
+color:#ff0000;
+font-size:18px;
+vertical-align:middle;
+font-weight:bold;
+}
+.kongbaidiv{
+height:1px;
+font-size:8px;
+background-color:#ffffff;
+}
+.divstyle{
+height:8px;
+font-size:8px;
+background-color:#ffffff;
+}
+.daohangstyle{
+font-size:20px;
+text-align:left;
+color:#000000;
+font-weight:bold;
+}
+.xiaobgcolor{
+	background-color: #b7cce7;
+	height:25px;
+}
+.xiaobgcenter {
+	background-color: #DBEAF5;
+	text-align: center;
+	vertical-align: middle;
+	height:25px;
+}
+.txtBoxnobordercenter {
+	background-color: #FFFFFF;
+	border: none;
+	font-size: 12px;
+	text-align:center
+}
+.textareastyle{
+	border: solid #7eadd9;
+	border-width:1px;
+	font-size: 12px;
+}
+.tdzuo{
+	border: solid #7eadd9;
+	border-width:0 0 0 1px;
+}
+.txtBoxTR_red{
+	border: solid #7eadd9;
+	border-width:1px;
+	font-size: 12px;
+	height:20px;
+	color:#ff0000;
+}
+.inputUnderLine {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #000000;
+	border-right-color: #000000;
+	border-bottom-color:#000000;
+	border-left-color: #000000;
+	border-bottom-width: 1px;	
+	text-align: left;	
+}

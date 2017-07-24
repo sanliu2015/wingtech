@@ -1,0 +1,68 @@
+{
+	"appKey": "rewardPunishService",
+	"appName": "违规违纪登记",
+	"attributes": 
+	{
+		"deleteSp": "{call rewardPunish_delete(?,?)}",
+		"queryObj": "select a.id,a.employeeId,a.amount,a.description,a.occurDate,a.occurTime,a.reason,
+		executivePunish,b.name empName,b.number empNumber,c.name depName,d.name posName 
+		from Dorm_RewardPunish a
+		inner join HR_Employee b on a.employeeId=b.id 
+		left join HR_Department c on b.deptId=c.id 
+		left join HR_Position d on b.positionId=d.id 
+		where a.id=?",
+		"querySql":"select 'update' recordOperateStatus,a.amount,a.reason,a.id,a.description,a.employeeId,
+b.name empName,b.number empNumber,c.name depName from DORM_RewardPunishDtl a 
+	left join HR_Employee b on a.employeeId=b.id 
+	left join HR_Department c on b.deptId=c.id 
+where a.hdrId=?",
+		"hdrSql":"select a.amount,a.reason,a.description,a.occurDate,a.number,b.number empNumber,g.name executivePunish,
+	b.name empName,c.name depName,d.name parentDepName,e.name labour,f.name company 
+ from Dorm_RewardPunish a 
+	left join HR_Employee b on a.employeeId=b.id 
+    left join HR_Department c on b.deptId=c.id 
+    left join HR_Department d on c.parentId=d.id 
+    left join HR_Interim e on b.interimId=e.id 
+    left join HR_Company f on f.id=b.orgId 
+    left join TS_SysCode g on a.executivePunish=g.code and g.codeKind=108 where a.occurDate like ?",
+    	"dtlSql":"select x.amount,x.reason,a.description,a.occurDate,a.number,b.number empNumber,
+	b.name empName,c.name depName,d.name parentDepName,e.name labour,f.name company 
+ from Dorm_RewardPunishDtl x 
+	inner join Dorm_RewardPunish a on x.hdrId=a.id 
+	left join HR_Employee b on x.employeeId=b.id 
+    left join HR_Department c on b.deptId=c.id 
+    left join HR_Department d on c.parentId=d.id 
+    left join HR_Interim e on b.interimId=e.id 
+    left join HR_Company f on f.id=b.orgId where a.occurDate like ? "
+	},
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "whetherList",
+				"sql": "select code,name from  TS_SysCode where codeKind=4 ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "executivePunishList",
+				"sql": "select code,name from TS_SysCode where codeKind=108 ",
+				"isHql": "0"
+			}
+		]
+	},
+	"codeRules":[{
+		"className":"RewardPunish",
+		"dateFormat":"yyyyMM",
+		"filterCondition":"",
+		"numberName":"number",
+		"prefix":"RP",
+		"selected":false,
+		"sequenceLen":4,
+		"sequenceNoPrefix":"",
+		"submitDataSource":"pc",
+		"suffix":""
+	}],
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "RewardPunish"
+}

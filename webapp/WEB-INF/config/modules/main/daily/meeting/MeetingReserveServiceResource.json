@@ -1,0 +1,35 @@
+{
+	"appKey": "meetingReserveService",
+	"appName": "会议室预定",
+	"attributes": 
+	{
+		"findObj": "select a.id,a.theme,a.meetingRoomId,a.conveneDate,a.beginTime,a.endedTime,a.needProjector,
+		a.joinSum,a.reserveEmpId,b.name reserveEmpName,a.description from Daily_MeetingReserve a 
+		left join HR_Employee b on a.reserveEmpId=b.id 
+		where a.id=? ",
+		"deleteSp": "meetingReserve_delete(?)"
+	},
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "whetherList",
+				"sql": "select code,name from  TS_SysCode where codeKind=4 ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "meetingRoomList",
+				"sql": "select id,name from  Daily_MeetingRoom ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "isLeaderList",
+				"sql": "select code value,name text from  TS_SysCode where codeKind=4 order by code asc",
+				"isHql": "0"
+			}
+		]
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "MeetingReserve"
+}

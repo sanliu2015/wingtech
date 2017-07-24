@@ -1,0 +1,6 @@
+{
+"appKey":"dbManagerService",
+"appName":"数据库维护", 
+"viewFileSuffix":"DbManager",
+ "formToJsonMethods":"*"
+}

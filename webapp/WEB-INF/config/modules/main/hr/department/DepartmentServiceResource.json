@@ -1,0 +1,10 @@
+{
+"appKey":"departmentService",
+"appName":"部门信息",
+  "sqlScript":{
+      "sqlList":[{"keyName":"companyList","sql":"select id,name from  HR_Company   ","isHql":"0"},
+      {"keyName": "divisionKindList", "sql": "select code,name from  TS_SysCode where codeKind='125' ",   "isHql": "0" }
+     ]
+  },
+  "formToJsonMethods":"*"
+}

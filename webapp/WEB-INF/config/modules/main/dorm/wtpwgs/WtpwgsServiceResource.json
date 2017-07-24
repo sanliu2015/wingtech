@@ -1,0 +1,11 @@
+{
+	"appKey": "wtpwgsService",
+	"appName": "水电气费用",
+	"attributes": 
+	{
+		"deleteSp": "{call wtpwgs_delete(?,?)}",
+		"findObj": "select a.*,b.buildingName buildName,b.roomName from Dorm_Wtpwgs a inner join VM_RoomInfo b on a.roomId=b.id where a.id=? "
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "Wtpwgs"
+}

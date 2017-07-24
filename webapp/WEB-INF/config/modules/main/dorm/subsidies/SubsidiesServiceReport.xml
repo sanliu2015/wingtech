@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="subsidiesServiceReport" type="object"> 
+    <property name="name">住房补贴费用</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">subsidiesService</property>
+	<property name="dataSetId">subsidiesService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="subsidiesReportTable">
+        <property name="sql">
+        	<![CDATA[
+        		 from Dorm_Subsidies a 
+        		 	left join HR_Employee b on a.employeeId=b.id 
+        		 	left join HR_Department c on b.deptId=c.id 
+        		 	left join HR_Department d on c.parentId=d.id 
+        		 	left join HR_Position e on a.positionId=e.id
+        	]]>
+        </property> 
+		<object name="uiContainer" type="object" class="ReportUIContainer">
+			<object name="datagrid" type="object" class="ReportDatagrid"  pageSize="50" canCheckbox="1" singleSelect="false" toolbar="#subsidiesServiceToolbar">
+				<property name="customProperty" type="map">
+					<entry key="striped" dataType="boolean">true</entry>
+					<entry key="autoRowHeight" dataType="boolean">false</entry>
+					<entry key="remoteSort" dataType="boolean">false</entry>
+					<entry key="multiSort" dataType="boolean">true</entry>
+					<entry key="ctrlSelect" dataType="boolean">true</entry>
+					<entry key="pageList" dataType="array">50,100,300,500</entry> 
+				</property>
+			</object>
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="subsidiesServiceToolbar"> 
+				<property name="toolbars" type="list"> 
+				    <object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/subsidiesService/add.do" limitChooseRows="0"  >
+						<property name="customProperty" type="map">  
+							<entry key="dialogOpts">height:400,width:800,cache:true</entry>
+				        </property>
+					</object> 
+					<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"  url="/main/subsidiesService/edit.do" limitChooseRows="1" >
+						 <property name="customProperty" type="map"> 
+							<entry key="limitChooseRows" >1</entry>
+							<entry key="dialogOpts">height:400,width:800,cache:true</entry>
+				         </property>
+				         <property name="recParamTemplate">id=#{id}</property>
+					</object> 
+					<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"  url="/main/subsidiesService/json/delete.do" targetName="ajax">
+					    <property name="customProperty" type="map"> 
+						    <entry key="title">删除</entry>
+							<entry key="limitChooseRows">2</entry> 
+							<entry key="promptStatement">您确认要删除该记录吗？</entry> 
+				         </property>
+				        <property name="recParamTemplate">{id:#{id}}</property>
+					</object>
+					<object class="ReportToolbar" className="easyui-linkbutton" name="生效" dataOptions="plain:true,iconCls:'icon-redo'"  url="/main/subsidiesService/json/doEffective.do" targetName="ajax">
+					    <property name="customProperty" type="map"> 
+						    <entry key="title">生效</entry>
+							<entry key="limitChooseRows">2</entry> 
+				         </property>
+				        <property name="recParamTemplate">{id:#{id}}</property>
+					</object>
+					<object class="ReportToolbar" className="easyui-linkbutton" name="导入" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/importExcelService/init.do?appUrl=InitImportExcel&amp;planNumber=subsidies&amp;headNo=2" limitChooseRows="0"  >
+						 <property name="customProperty" type="map">  
+							<entry key="dialogOpts">maximized:true,cache:true</entry>
+				         </property>
+					</object> 
+              	</property>   
+			</object>
+		</object> 
+        <property name="sourceFields" type="list"> 
+        	<object class="SourceFieldRuleBean" tableName="a" fieldName="effective" displayLable="生效" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
+				<property name="dataSourceSql">select code,name from TS_SysCode where codeKind=4</property>
+			</object>
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="subsidies"  displayLable="补贴金额" dataType="double" colWidth="60" isQueryCondition="0" queryControlKind="2"/>  
+            <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="name" fieldAliasName="posName" displayLable="职务" dataType="string" isQueryCondition="1" colWidth="150" /> 
+            <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="interimId" displayLable="劳务派遣" colWidth="100" dataType="int"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"  >  
+            	<property name="dataSourceSql">select id,sendCompanyName from HR_Interim</property>
+            </object>
+            <object class="SourceFieldRuleBean" tableAliasName="d" fieldName="name" fieldAliasName="parentDeptName" displayLable="部门" dataType="string" colWidth="90" />
+		  	<object class="SourceFieldRuleBean" tableAliasName="c" fieldName="name" fieldAliasName="deptName" displayLable="科室" dataType="string" colWidth="90" />
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="name" fieldAliasName="empName"  displayLable="姓名" dataType="string" isQueryCondition="1" colWidth="60" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="number"  displayLable="工号" dataType="string" isQueryCondition="1" colWidth="70" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string" colWidth="100" />  
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" defaultCondtionValue="yesterday" />
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="创建时间" dataType="string" colWidth="70"/>
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy"  displayLable="创建人"  dataType="string" colWidth="60" /> 
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0" />  
+        </property> 
+      </object>
+    </property>
+  </ReportConfigureBean>
+</dbRuleDefines>

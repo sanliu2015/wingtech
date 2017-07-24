@@ -1,0 +1,13 @@
+{
+"appKey":"employeeSerivce",
+"appName":"员工信息",
+  "sqlScript":{
+      "sqlList":[{"keyName":"companyList","sql":"select id,name from  HR_Company   ","isHql":"0"},
+      {"keyName":"degreeList","sql":"select code,name from  TS_SysCode  where codeKind=5 ","isHql":"0"},
+      {"keyName":"employeeKindList","sql":"select code,name from  TS_SysCode  where codeKind=3 ","isHql":"0"},
+      {"keyName":"interimList","sql":"select id ,sendCompanyName from  HR_Interim   ","isHql":"0"},
+      {"keyName":"categoryList","sql":"select code,name from  TS_SysCode  where codeKind=102 ","isHql":"0"}
+      ]
+  },
+  "formToJsonMethods":"editEmployee"
+}

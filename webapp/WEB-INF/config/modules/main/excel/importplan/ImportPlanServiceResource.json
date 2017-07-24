@@ -1,0 +1,17 @@
+{
+	"appKey": "importPlanService",
+	"appName": "导入方案",
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "colTypeList",
+				"sql": "select code value,name text from TS_SysCode where codeKind=303",
+				"isHql": "0"
+			}
+		]
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "ImportPlan"
+}

@@ -1,0 +1,6 @@
+{
+"appKey":"outsidersService",
+"appName":"外来人员信息",
+"viewFileSuffix":"Outsiders",
+  "formToJsonMethods":"*"
+}

@@ -1,0 +1,17 @@
+{
+"appKey":"moduleService",
+"appName":"模块管理",
+ "lang":{
+	"bean.number":"模块编号",
+	"bean.name":"模块名称",
+	"bean.urlName":"url地址",
+	"bean.iconName":"图标路径"
+  },
+  "sqlScript":{ 
+      "sqlList":[{"keyName":"securityLevelList","sql":"select code,name from  TS_SysCode where codeKind=2 ","isHql":"0"},
+                 {"keyName":"yesOrNoList","sql":"select code,name from  TS_SysCode where codeKind=12 ","isHql":"0"},
+		 {"keyName":"statusList","sql":"select code,name from  TS_SysCode where codeKind=20","isHql":"0"}]
+  },
+  "codeRules":[{"prefix":"MU","dateFormat":"yyyyMM","sequenceNoPrefix":"-","sequenceLen":4,"className":"ModuleBean"}],
+  "formToJsonMethods":"editModule,batchEditModule"
+}

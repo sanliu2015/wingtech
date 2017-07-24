@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="bulletinServiceReport" type="object"> 
+    <property name="name">日工作完成情况</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">calendarService</property>
+	<property name="dataSetId">calendarService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="userServiceTable">
+        <property name="sql"><![CDATA[ from DAILY_CalendarLog as a inner join HR_Employee as b on b.id=a.employeeId  
+		        left join HR_Department as c on c.id=a.deptId ]]></property>
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid" reportType="datagrid"    fitColumns="false"   toolbar="#calendarServiceToolbar"> 
+					<property name="customProperty" type="map">  
+						<entry key="striped" dataType="boolean">true</entry>
+						<entry key="autoRowHeight" dataType="boolean">false</entry>
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="calendarServiceToolbar"> 
+			  <property name="toolbars" type="list"> 
+			    <object class="ReportToolbar"  name="添加" id="add" status="1" dataOptions="plain:true,iconCls:'icon-add'" url="/main/calendarService/addMyCalendarLog.do?actionType=1"  >
+				   <property name="customProperty" type="map">
+					<entry key="limitChooseRows">0</entry>
+					<entry key="dialogOpts">height:530,width:600</entry>  
+			       </property>
+				</object>
+				<object class="ReportToolbar"   name="修改"  id="edit"  dataOptions="plain:true,iconCls:'icon-edit'"     url="/main/calendarService/editMyCalendarLog.do?actionType=1"  > 
+					 <property name="recParamTemplate">id=#{id}</property>
+					 <property name="customProperty" type="map"> 
+						<entry key="dialogOpts">height:530,width:600</entry>  
+					   </property>
+				</object> 
+				<object class="ReportToolbar"   name="查看"  id="lookup"  dataOptions="plain:true,iconCls:'icon-edit'"      position="dblClickRow"   > 
+					 <property name="url"><![CDATA[/main/calendarService/editMyCalendarLog.do?appUrl=LookupMyCalendarLog&actionType=1]]></property>
+					 <property name="recParamTemplate">id=#{id}</property>
+					 <property name="customProperty" type="map"> 
+						<entry key="dialogOpts">height:530,width:600</entry>
+					   </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" id="delete"  name="删除" dataOptions="plain:true,iconCls:'icon-remove'"  url="/main/calendarService/json/deleteLog.do" targetName="ajax">
+				    <property name="customProperty" type="map">
+					   
+						<entry key="limitChooseRows" >1</entry> 
+						<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
+			         </property>
+				</object>
+              </property>   
+			</object>
+		</object> 
+		<property name="invokeEventList" type="list"> 
+				<object class="InvokeEventConfigure"  isHql="0" isQuerySql="0" eventType="appendFilterSql">
+					<property name="sql"><![CDATA[  ( a.employeeId=#{LOGIN_USER.employeeId} 
+					                or (',#{LOGIN_USER.positionRoleIds},' like '%,2,%' and  a.deptId in (#{LOGIN_USER.deptIds}) )
+								 or (',#{LOGIN_USER.positionRoleIds},' like '%,3,%'  and  b.orgId in (  
+					  #{LOGIN_USER.companyIds}) )
+					    )
+					]]></property>  
+					<property name="comments">个人、部门、公司角色</property>   
+				</object> 
+			</property> 
+        <property name="sourceFields" type="list">
+          <object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="name" frozenColumn="1" displayLable="时间" dataType="string"  
+   		  displayColumn="1"   ></object>
+		  <object class="SourceFieldRuleBean" tableName="b" fieldName="name"   fieldAliasName="employeeName"   displayLable="姓名" dataType="string"   dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"  sortType="1"  >
+            <property name="dataSourceSql"><![CDATA[select a.name,a.name as textName from HR_Employee as a where isnull(a.isSaler,'0')='1' and ('#{LOGIN_USER.userLevel}'='1' or ( a.id=#{LOGIN_USER.employeeId}  
+			or (',#{LOGIN_USER.positionRoleIds},' like '%,2,%' and  a.deptId in (#{LOGIN_USER.deptIds}))
+			or (',#{LOGIN_USER.positionRoleIds},' like '%,3,%'  and  a.orgId in (  
+					  #{LOGIN_USER.companyIds})) ))]]></property>
+          </object> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="summaryEvent"   displayLable="标题" dataType="string" isQueryCondition="1" displayColumn="1" />  
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="custName"   displayLable="拜访客户" dataType="string" isQueryCondition="1" displayColumn="1" />
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="contactPerson"   displayLable="接洽人" dataType="string"  displayColumn="1" />
+		   <object class="SourceFieldRuleBean" tableName="a" fieldName="contactPhone"   displayLable="电话" dataType="string"  displayColumn="1" />
+         <object class="SourceFieldRuleBean" tableName="a" fieldName="purpose"   displayLable="交谈目的" dataType="string"  displayColumn="1" />
+		 <object class="SourceFieldRuleBean" tableName="a" fieldName="description"   displayLable="结果" dataType="string"  displayColumn="1" />
+		<object class="SourceFieldRuleBean" tableName="a" fieldName="summaryDate" displayLable="日期"  dataType="date"  displayColumn="0" isQueryCondition="1" queryControlKind="1"   sortType="1"/> 
+		<object class="SourceFieldRuleBean" tableName="c" fieldName="name"   fieldAliasName="deptName"  displayLable="部门" dataType="string"  displayColumn="1" /> 
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0"/> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="deptId" fieldAliasName="deptIds" displayLable="部门" dataType="int" displayColumn="0" isQueryCondition="1"  queryControlKind="13" /> 
+        </property> 
+      </object>
+    </property>  
+	<property name="loadAfterScript"><![CDATA[   
+		function loadDeptIdsCombotree( ){
+			$('#deptIds').combotree({
+			 url: tsContextPath +'/core/reportResolver/json/queryCombotree.do?moduleFileName=DepartmentCombotree',
+			 multiple: true,
+			 async:true 
+			});  
+			$('#employeeName').combobox({    
+				 onSelect:function(rec){    
+					reportScript.queryReportResult(null); 
+				 }  
+			 });  
+		}
+		loadDeptIdsCombotree();
+
+		 
+	]]></property>
+  </ReportConfigureBean>
+</dbRuleDefines>

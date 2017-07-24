@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="roomServiceReport" type="object"> 
+    <property name="name">房间信息</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">roomService</property>
+	<property name="dataSetId">roomService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+    	<object class="SourceTableRuleBean" id="roomServiceTable">
+        <property name="sql"><![CDATA[ from VM_RoomInfo a 
+          ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"     singleSelect="true"  fitColumns="false"   pageSize="20"  toolbar="#roomServiceToolbar"> 
+					<property name="customProperty" type="map">  
+						<entry key="striped" dataType="boolean">true</entry> 
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="roomServiceToolbar"> 
+			  
+			</object> 
+		</object> 
+        <property name="sourceFields" type="list">
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="roomName" displayLable="房间" dataType="string" isQueryCondition="1" colWidth="60"/>
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="roomNumber" displayLable="编号" dataType="string" isQueryCondition="1" colWidth="90"/>
+    	    <object class="SourceFieldRuleBean" tableName="a" fieldName="type" displayLable="属性" dataType="string" colWidth="70" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
+				<property name="dataSourceSql">select code,name from TS_SysCode where codeKind=304</property>
+			</object>
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rentStandard" displayLable="房间租金" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="waterFee" displayLable="水费单价" dataType="bigDecimal" colWidth="60" />
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="powerFee" displayLable="电费单价" dataType="bigDecimal" colWidth="60" />
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="gasFee" displayLable="气费单价" dataType="bigDecimal" colWidth="60" />
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="sharedFee" displayLable="水电气&lt;br / &gt;公摊费" dataType="bigDecimal" colWidth="50" />  		    
+			<!-- <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="cleanFee" displayLable="卫生清洗费" dataType="bigDecimal" colWidth="60" /> -->  
+    	   	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="bigNumber"  displayLable="最多可&lt;br / &gt;容纳人数"  dataType="int"  displayColumn="1" colWidth="60"/>       	   
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="buildingName"  displayLable="楼栋" dataType="string" displayColumn="1" isQueryCondition="1" colWidth="60" queryControlKind="3">
+               <property name="dataSourceSql">select name code,name from DORM_Building where kind=0</property>
+            </object> 
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="unitName"  displayLable="单元" dataType="string" displayColumn="1" isQueryCondition="1" colWidth="60"/>
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="floorName"  displayLable="楼层" dataType="string" displayColumn="1" isQueryCondition="1" colWidth="60"/>
+		    <!-- <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="principalName" displayLable="楼层负责人" dataType="string"  colWidth="70"/>  
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="phone" displayLable="联系电话" dataType="string" displayColumn="1" colWidth="100"/> -->
+            <!-- <object class="SourceFieldRuleBean" tableName="a" fieldName="disabled" displayLable="状态" dataType="string" colWidth="50" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
+				<property name="dataSourceSql">select code,name from TS_SysCode where codeKind=305</property>
+			</object> -->
+			<object class="SourceFieldRuleBean" tableName="a" fieldName="corpBear" displayLable="是否公司&lt;br / &gt;承担费用" dataType="string" colWidth="50" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
+				<property name="dataSourceSql">select code,name from TS_SysCode where codeKind=4</property>
+			</object>
+            <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" dataType="string"  displayColumn="1"  colWidth="70"  />                                              
+            <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="创建时间" dataType="string" displayColumn="1" colWidth="70"/>
+            <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy" displayLable="创建人" dataType="string" colWidth="60" />
+            <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string"  colWidth="100"  />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0"/>
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

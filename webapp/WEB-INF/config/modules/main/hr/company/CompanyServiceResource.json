@@ -1,0 +1,8 @@
+{
+"appKey":"companyService",
+"appName":"公司信息",
+  "sqlScript":{
+      "sqlList":[{"keyName":"companyTypeList","sql":"select code,name from  TS_SysCode where codeKind='24' ","isHql":"0"}]
+  },
+  "formToJsonMethods":"editCompany"
+}

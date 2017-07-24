@@ -1,0 +1,48 @@
+{
+	"appKey": "feeTotalService",
+	"appName": "宿舍费用统计",
+	"attributes": 
+	{
+		"queryDept": "select distinct isnull(d.id,0) id,isnull(d.name,'其它') deptName from Dorm_RoomFee a 
+                inner join HR_Employee b on a.employeeId=b.id 
+                left join HR_Department c on b.deptId=c.id 
+                left join HR_Department d on c.parentId=d.id 
+                inner join VM_RoomBasicInfo e on a.roomId=e.id where a.yearMonth=? ",
+          "queryBuid": "select distinct e.buildingId from Dorm_RoomFee a 
+                inner join HR_Employee b on a.employeeId=b.id 
+                left join HR_Department c on b.deptId=c.id 
+                left join HR_Department d on c.parentId=d.id 
+                inner join VM_RoomBasicInfo e on a.roomId=e.id where a.yearMonth=? ",      
+          "queryTotal":"select SUM(a.wtpwgsFee) wtpwgsFee,SUM(a.sharedFee) sharedFee,SUM(a.corpFee) corpFee,SUM(a.rentFee-corpFee) rentFee from Dorm_RoomFee a 
+                inner join HR_Employee b on a.employeeId=b.id 
+                left join HR_Department c on b.deptId=c.id 
+                left join HR_Department d on c.parentId=d.id 
+                inner join VM_RoomBasicInfo e on a.roomId=e.id where a.yearMonth=? 
+                and e.buildingId=? "      
+	},
+
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "roomTypeList",
+				"sql": "select code,name from  TS_SysCode  where codeKind=304 "
+			},
+			{
+				"keyName": "genderList",
+				"sql": "select code,name from  TS_SysCode  where codeKind=27 "
+			},
+			{
+				"keyName": "interimList",
+				"sql": "select id,sendCompanyName from  HR_Interim "
+			},
+			{
+				"keyName": "damageReasonList",
+				"sql": "select code,name from  TS_SysCode  where codeKind=306 "
+			}
+		]
+	},
+
+	"formToJsonMethods": "*"
+}

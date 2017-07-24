@@ -1,0 +1,22 @@
+/* CSS Document */
+.foucsStyle{
+	color: #777;
+	border: 2px solid  #66CC66;
+	border-bottom: #ffdead solid 2px;
+	border-right: #ffdead solid 2px;
+	border-left: #c07300 solid 2px;
+	border-top:  #c07300 solid 2px;
+	height:27px;
+	width:150px; 
+	font-size:16px;
+	background-image:url(input_white.gif);
+}
+.unfocusStyle{
+	color: #000000;
+	border: 2px solid #66CC66;
+	height:27px;
+	width:150px;  
+	font-size:16px;
+	background-image:url(input_white.gif);
+}
+

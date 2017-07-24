@@ -1,0 +1,19 @@
+{
+	"appKey": "assetMaintenanceService",
+	"appName": "资产维护",
+	
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "assetTypeList",
+				"sql": "select code,name from  TS_SysCode where codeKind =150 ",
+				"isHql": "0"
+			}
+		]
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "AssetMaintenance"
+	
+}

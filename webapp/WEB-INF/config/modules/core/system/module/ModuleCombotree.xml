@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="moduleServiceReport" type="object"> 
+    <property name="name">模块树结构</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">moduleComboService</property>
+	<property name="dataSetId">moduleComboService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="moduleServiceTable"  >
+        <property name="sql"><![CDATA[ from TS_Module as a      ]]></property>
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"    reportType="combotree"  />  
+		</object> 
+        <property name="sourceFields" type="list">
+          <object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="name"  fieldAliasName="text" displayLable="模块名称" dataType="string"  displayColumn="1"   queryCondtiOrder="1" scopeType="treeField"></object>
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0" scopeType="idField"/>
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="parentId" displayLable="parentId" dataType="int" displayColumn="0" scopeType="parentId"/> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="itemIndex" displayLable="菜单顺序" dataType="int" displayColumn="0" sortType="0"/> 
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="auditStatus"  fieldAliasName="auditStatusName" displayLable="审核状态" dataType="string" isQueryCondition="1" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"    queryCondtiOrder="3">
+            <property name="dataSourceSql">select code,name from TS_SysCode where codekind=7</property>
+          </object>
+        </property> 
+      </object>
+    </property>
+  </ReportConfigureBean>
+</dbRuleDefines>

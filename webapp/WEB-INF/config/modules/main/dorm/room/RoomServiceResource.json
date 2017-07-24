@@ -1,0 +1,44 @@
+{
+	"appKey": "roomService",
+	"appName": "宿舍信息",
+	"attributes": 
+	{
+		"deleteSp": "room_delete(?)",
+		"openCloseSp": "room_openclose(?,?)",
+		"querySql":"select 'update' recordOperateStatus,a.id,a.thingsId,a.thingsQty,a.description,b.name thingsName,c.name thingsUnit,a.principalId,d.name principalName from DORM_RoomThings a inner join DORM_Things b on a.thingsId=b.id left join TS_SysCode c on c.codeKind='110' and b.unit=c.code left join HR_Employee d on a.principalId=d.id where a.roomId=?"
+	},
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "whetherList",
+				"sql": "select code,name from  TS_SysCode where codeKind=4 ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "disabledList",
+				"sql": "select code,name from  TS_SysCode where codeKind=305 ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "roomList",
+				"sql": "select id,name,parentId from  Dorm_room where description='套房' ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "typeList",
+				"sql": "select code,name from  TS_SysCode where codeKind=304 ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "parentList",
+				"sql": "select id, name, kind,waterFee,powerFee,gasFee,sharedFee,cleanFee, parentId from DORM_Building ",
+				"isHql": "0"
+			}
+		]
+	},
+
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "Room"
+}

@@ -1,0 +1,33 @@
+{
+"appKey":"userService",
+"appName":"用户信息",
+ "lang":{
+	"formTitle":"用户登录",
+	"name":"用户名",
+	"password":"密&nbsp;&nbsp;&nbsp;&nbsp;码",
+	"checkCode":"验证码",
+	"submitButton":"登录",
+        "validate.sameUser":"该用户名(${form.bean.name})已被占用,不能创建！",
+	"validate.modifyPassword":"输入的原始密码不对，不能修改！",
+	"operatePrompt.modifyUserPassword":"修改密码成功！"
+  },
+  "sqlScript":{
+      "includeMethods":"editUser,addUser",
+      "sqlList":[{"keyName":"companyList","sql":"select id,name  as text  from  HR_Company   "},
+                 {"keyName":"positionRoleList","sql":"select id,name as text from  TS_PositionRole"},
+		 {"keyName":"roleList","sql":"select id,name as text from  TS_Role   ","isHql":"0"},
+		 {"keyName":"userLevelList","sql":"select code,name from  TS_SysCode where codeKind=23"}
+      ]
+  } ,
+  "beanSql":[{
+      "key":"UserBean",
+      "includeMethods":"editUser",
+       "sqlList":[{"sql":"select  a.name as employeeName,b.name as departmentName  from HR_Employee as a
+                  inner join HR_Department as b on b.id=a.deptId where a.id=${bean.employeeId}"},
+		  {"multipleName":"true","sql":"select  a.id as employeeIds,a.name as employeeNames  from HR_Employee as a
+                   where a.id in (<?jvar a='${bean.employeeIds}';var b='';if(a!=''){b=a; } else {b='-1';}?>)"},
+		  {"id":"custId","name":"custName","table":"CRM_Customer"}]
+    }
+  ],
+  "formToJsonMethods":"editUser"
+}

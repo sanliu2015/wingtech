@@ -1,0 +1,19 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ts.core.system.syscode.SysCode" table="TS_SysCode">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="native"/>
+		</id>
+		<property name="codeKind" column="codeKind" type="int"/>
+		<property name="code" column="code" length="50" type="string"/>
+		<property name="name" column="name" length="200" type="string"/> 
+		<property name="thirdSysId" column="thirdSysId" type="int"/>
+		<property name="version" column="version" type="int"/>
+		<property name="itemIndex" column="itemIndex" type="int"/>
+		<property name="langKind" column="langKind" length="10" type="string"/> 
+		<property name="description" column="description" length="1000" type="string"/>
+	</class> 
+</hibernate-mapping>

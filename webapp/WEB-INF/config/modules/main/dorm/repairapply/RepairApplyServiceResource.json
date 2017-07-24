@@ -1,0 +1,49 @@
+{
+	"appKey": "repairApplyService",
+	"appName": "维修申请",
+	"attributes": 
+	{
+		"queryObj":"select a.*,b.name employeeName,b.phone empPhone,c.name repairerName from DORM_RepairApply a inner join HR_Employee b on a.employeeId=b.id inner join DORM_Repairer c on a.repairerId=c.id where a.id=? ",
+		"querySql":"select 'update' recordOperateStatus,a.id,a.name,a.description from DORM_RepairApplyDtl a inner join DORM_RepairApply b on a.hdrId=b.id  where a.hdrId=?",
+		"queryDamageSql": "select a.id,a.employeeId,a.amount,a.description,a.occurDate,a.reason,
+		b.name empName,b.number empNumber,'update' recordOperateStatus  
+		from Dorm_Damage a
+		left join HR_Employee b on a.employeeId=b.id 
+		where a.repairApplyId=? "
+	},
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "whetherList",
+				"sql": "select code,name from  TS_SysCode where codeKind=4 ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "repairTypeList",
+				"sql": "select code value,name text from TS_SysCode where codeKind=130",
+				"isHql": "0"
+			},
+			{
+				"keyName": "buildingIdList",
+				"sql": "select id value,name text from Dorm_building where parentId is null",
+				"isHql": "0"
+			}
+		]
+	},
+	"codeRules":[{
+		"className":"RepairApply",
+		"dateFormat":"yyyyMM",
+		"filterCondition":"",
+		"numberName":"number",
+		"prefix":"RA",
+		"selected":false,
+		"sequenceLen":4,
+		"sequenceNoPrefix":"",
+		"submitDataSource":"pc",
+		"suffix":""
+	}],
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "RepairApply"
+}

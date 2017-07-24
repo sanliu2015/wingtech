@@ -1,0 +1,13 @@
+{
+"appKey":"globalsMessageResource",
+ "lang":{
+	"reportResolver.validatePrompt":"不符合操作条件！",
+	"globals.name":"模块名称",
+	"globals.urlName":"url地址",
+	"globals.iconName":"图标路径",
+	"operatePrompt.delete":"删除操作成功！",
+	"operatePrompt.save":"保存操作成功！",
+	"operatePrompt.update":"更新操作成功！",
+	"operatePrompt.defaultOperate":"操作成功！"
+  } 
+}

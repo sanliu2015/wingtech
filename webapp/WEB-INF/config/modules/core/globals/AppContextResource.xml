@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AppConfigures>
+  <!--要引入的类-->
+  <Environment type="object" class="Environment"> 
+    <property name="imports" type="props"> 
+      <prop key="Environment">com.ts.core.api.oxml.mapping.service.Environment</prop>   
+    </property> 
+  </Environment>    
+   <bean id="appContextResource" class="com.ts.core.context.AppContextResource"> 
+		<property name="map">
+		   <entry key="startupEvents" >com.ts.core.loader.LoadDatabaseResource,com.ts.core.loader.LoadDirectoryWatcher,
+		   com.ts.core.loader.LoadGlobalsMessageResource,com.ts.core.loader.LoadReportResourceFiles,com.ts.core.loader.LoadCodeRuleConfigures</entry>
+		   <entry key="refreshCacheEvents" >com.ts.core.loader.LoadDatabaseResource</entry>
+		   <entry key="baseReportTemplates" >/WEB-INF/config/modules/core/report/BaseReportTemplate.xml</entry>
+		   <entry key="modulesPathPrefix" >/WEB-INF/config/modules</entry> 
+		   <entry key="executeSqlScriptService" >executeSqlScriptService</entry>
+		   <entry key="messageResourceResolver" >messageResourceResolver</entry>  
+		   <entry key="messageResourceLoader" >messageResourceLoader</entry>
+           <entry key="messageResourceResolverLoadServices" >messageResourceExecuteSqlScript</entry> 
+		   <entry key="globalsMessageResources" >/WEB-INF/config/modules/core/globals/GlobalsMessageResource.json</entry> 
+		   <entry key="messageResourceWatcher" >messageResourceWatcher</entry>
+		   <entry key="reportFileWatcher" >reportFileWatcher</entry>
+		   <entry key="packPrefix" >com.ts</entry>
+		   <entry key="uploadFilePrefix" >/resource/upload</entry>
+		   <entry key="forwardAlertMsgPage">/core/common/exception/ShowAlertMsg</entry>
+		   <entry key="startResponseWrite">1</entry>
+		   <entry key="startScheduler">0</entry>
+		   <entry key="importClassNames"><![CDATA[
+		   java.util.Arrays,java.util.Map,java.util.ArrayList,java.util.List,java.util.HashMap,com.ts.core.util.DateTimeUtil,
+		   com.ts.core.util.StringUtils,com.ts.core.util.NumberUtils,com.ts.core.util.ReflectUtils,
+		   com.ts.core.context.AppContext,com.ts.core.common.service.IBaseServiceManger,
+		   com.ts.core.common.bean.BaseBean]]></entry>
+		   <entry key="cacheEntitys">Employee,Company,Department,PositionRole,UserBean</entry>
+		   <entry key="methodPrefix">add,edit,lookup,show,print</entry>
+		</property> 
+   </bean>
+</AppConfigures>

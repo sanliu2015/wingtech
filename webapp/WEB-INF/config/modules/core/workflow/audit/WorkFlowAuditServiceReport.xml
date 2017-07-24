@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="employeeeSerivceReport" type="object"> 
+    <property name="name">待办事件</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">workFlowAuditService</property>
+	<property name="dataSetId">workFlowAuditService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="roleServiceTable" parseDatasetService="queryWorkFlowWaitAuditService">
+        <property name="sql"><![CDATA[ from ACT_RU_TASK as a inner join  ACT_RE_MODEL as b on b.ID_=a.PROC_INST_ID_ ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"    singleSelect="true" nowrap="false" pageSize="20"  fitColumns="false"   toolbar="#roleServiceToolbar"> 
+					<property name="customProperty" type="map">
+						<entry key="striped" dataType="boolean">true</entry>
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="roleServiceToolbar">  
+			<property name="toolbars" type="list">  
+				<object class="ReportToolbar" className="''" name="审核"     url="/core/workFlowAuditService/addWorkFlowAudit.do" bindFieldName="title" position="bindField" bindUrlField="url"> 
+				     <property name="customProperty" type="map">
+					  <entry key="dialogOpts">maximized:true</entry>
+			       </property>
+					 <property name="recParamTemplate"><![CDATA[processInstanceId=#{processInstanceId}&businessKey=#{businessKey}&id=#{businessKey}&taskId=#{taskId}&taskRowType=#{taskRowType}]]></property>
+				</object> 
+				<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"    url="/core/workFlowAuditService/json/delete.do"  targetName="ajax"> 
+					  <property name="recParamTemplate"><![CDATA[processInstanceId=#{processInstanceId}&businessKey=#{businessKey}&id=#{businessKey}&taskId=#{taskId}&taskRowType=#{taskRowType}]]></property>
+					  <property name="customProperty" type="map">  
+						<entry key="promptStatement" >您确认要驳回该审核记录吗？</entry> 
+			         </property>
+				</object>  
+				<object class="ReportToolbar" className="easyui-linkbutton" name="彻底删除" dataOptions="plain:true,iconCls:'icon-remove'"    url="/core/workFlowAuditService/json/delete.do?actionType=10"  targetName="ajax"> 
+					  <property name="recParamTemplate"><![CDATA[processInstanceId=#{processInstanceId}&businessKey=#{businessKey}&id=#{businessKey}&taskId=#{taskId}&taskRowType=#{taskRowType}]]></property>
+					  <property name="customProperty" type="map">  
+						<entry key="promptStatement" >您确认要驳回该审核记录吗？</entry> 
+			         </property>
+				</object>  
+				 </property>   
+			</object>
+		</object> 
+        <property name="sourceFields" type="list">  
+		   <object class="SourceFieldRuleBean" tableName="b" fieldName="name_"    fieldAliasName="processName" displayLable="流程名称" dataType="string"  dataSourceKind="1"   queryControlKind="3" isQueryCondition="1"   >
+            <property name="dataSourceSql">select NAME_ as code,NAME_ as name from ACT_RE_MODEL
+			           union all select name as code,name from   TS_SysCode where codekind=33 </property>
+          </object>  
+		  <object class="SourceFieldRuleBean"   fieldName="0" fieldAliasName="title"  isCalculateField="1"  displayLable="标题" dataType="string"  isQueryCondition="1" /> 
+		   <object class="SourceFieldRuleBean"   fieldName="0"  fieldAliasName="assignmentName" displayLable="审核人" dataType="string" colWidth="250"  />
+		   <object class="SourceFieldRuleBean" tableName="a" fieldName="name_"   fieldAliasName="taskName"  displayLable="节点名称" dataType="string"  /> 
+		   <object class="SourceFieldRuleBean" tableName="a" fieldName="CREATE_TIME_"  fieldAliasName="createDate" displayLable="创建日期"  dataType="date"  displayColumn="1" isQueryCondition="1" queryControlKind="1"   sortType="1"/> 
+		    <object class="SourceFieldRuleBean"   fieldName="0"   fieldAliasName="taskNodeType"  isCalculateField="1"  displayLable="操作类型"   /> 
+		   <object class="SourceFieldRuleBean"   fieldName="0"   fieldAliasName="businessKey"  isCalculateField="1"  displayLable="业务主键" dataType="string"  /> 
+		    <object class="SourceFieldRuleBean" tableName="b" fieldName="key_"  fieldAliasName="processDefinitionKey" displayLable="工作流主键" dataType="string" displayColumn="0"/> 
+		   <object class="SourceFieldRuleBean"    fieldName="0"  fieldAliasName="processInstanceId" displayLable="任务实例id" dataType="string" displayColumn="0"/>
+			<object class="SourceFieldRuleBean"    tableName="a"  fieldName="id_"  fieldAliasName="taskId" displayLable="任务id" dataType="string" displayColumn="0"/>
+		   <object class="SourceFieldRuleBean"   fieldName="0"   fieldAliasName="formkey"  isCalculateField="1"  displayLable="formkey" dataType="string" displayColumn="0" /> 
+		   <object class="SourceFieldRuleBean"   fieldName="message"   fieldAliasName="remindMode"  isCalculateField="1"  displayLable="remindMode" dataType="string" displayColumn="0" /> 
+		   <object class="SourceFieldRuleBean"   fieldName="''"  fieldAliasName="url" isCalculateField="1"  displayLable="url" dataType="string" displayColumn="0"/> 
+		    <object class="SourceFieldRuleBean"   fieldName="''"  fieldAliasName="taskRowType" isCalculateField="1"  displayLable="任务记录类型" dataType="string" displayColumn="0"/>
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

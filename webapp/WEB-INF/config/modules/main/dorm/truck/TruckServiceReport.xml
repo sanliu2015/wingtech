@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="truckServiceReport" type="object"> 
+    <property name="name">货车出入登记</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">truckService</property>
+	<property name="dataSetId">truckService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="truckTable">
+        <property name="sql">
+        	<![CDATA[
+        		 from Dorm_Truck a 
+        		 	inner join HR_Employee b on a.employeeId=b.id 
+        		 	left join HR_Department c on b.deptId=c.id 
+        	]]>
+        </property> 
+		<object name="uiContainer" type="object" class="ReportUIContainer">
+			<object name="datagrid" type="object" class="ReportDatagrid"  pageSize="50" canCheckbox="1" singleSelect="false" toolbar="#truckServiceToolbar">
+				<property name="customProperty" type="map">
+					<entry key="striped" dataType="boolean">true</entry>
+					<entry key="autoRowHeight" dataType="boolean">false</entry>
+					<entry key="remoteSort" dataType="boolean">false</entry>
+					<entry key="multiSort" dataType="boolean">true</entry>
+					<entry key="ctrlSelect" dataType="boolean">true</entry>
+					<entry key="pageList" dataType="array">50,100,300,500</entry> 
+				</property>
+			</object>
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="truckServiceToolbar"> 
+				<property name="toolbars" type="list"> 
+				    <object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/truckService/add.do?doorName=1号门" limitChooseRows="0"  >
+						<property name="customProperty" type="map">  
+							<entry key="dialogOpts">maximized:true,cache:true</entry>
+				        </property>
+					</object> 
+					<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"  url="/main/truckService/edit.do" limitChooseRows="1" >
+						 <property name="customProperty" type="map"> 
+							<entry key="limitChooseRows" >1</entry>
+							<entry key="dialogOpts">maximized:true,cache:true</entry>
+				         </property>
+				         <property name="validateExp"><![CDATA[row.auditStatus!='1']]></property>
+						 <property name="validatePrompt">不符合约束条件！</property>
+				         <property name="recParamTemplate">id=#{id}</property>
+					</object> 
+					<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"  url="/main/truckService/json/delete.do" targetName="ajax">
+					    <property name="customProperty" type="map"> 
+						    <entry key="title">删除</entry>
+							<entry key="limitChooseRows">2</entry> 
+							<entry key="promptStatement">您确认要删除该记录吗？</entry> 
+				         </property>
+				        <property name="recParamTemplate">{id:#{id}}</property>
+					</object>
+					<object class="ReportToolbar" className="easyui-linkbutton" name="查看" dataOptions="plain:true,iconCls:'icon-search'"    url="/main/truckService/edit.do?appUrl=LookTruck"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+						<property name="customProperty" type="map"> 
+							<entry key="limitChooseRows">1</entry>
+							<entry key="dialogOpts">maximized:true</entry> 
+					 </property>
+					</object>
+					<object class="ReportToolbar" className="easyui-linkbutton" name="离开" dataOptions="plain:true,iconCls:'icon-redo'"  url="/main/truckService/leave.do?appUrl=LeaveTruck" limitChooseRows="1" >
+						 <property name="customProperty" type="map"> 
+							<entry key="limitChooseRows" >1</entry>
+							<entry key="dialogOpts">maximized:true,cache:true</entry>
+				         </property>
+				         <property name="validateExp"><![CDATA[row.auditStatus!='1']]></property>
+						 <property name="validatePrompt">不符合约束条件！</property>
+				         <property name="recParamTemplate">id=#{id}</property>
+					</object> 
+              	</property>   
+			</object>
+		</object> 
+        <property name="sourceFields" type="list"> 
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="visitDate" displayLable="进入日期" colWidth="70" dataType="date" displayColumn="1" isQueryCondition="1" queryControlKind="1" defaultCondtionValue="month"/>
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="tempCard"  displayLable="临时厂牌" dataType="string" colWidth="80" isQueryCondition="1" />
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="visitTime"  displayLable="进入时间" dataType="string" colWidth="70" />
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="visitor"  displayLable="姓名" dataType="string" colWidth="70" />
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="visitCompany"  displayLable="所在单位" dataType="string" colWidth="90" />
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="visitorPhone"  displayLable="联系电话" dataType="string" colWidth="90" />
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="visitorIdCard"  displayLable="身份证" dataType="string" colWidth="90" />
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="visitorCarNum"  displayLable="车牌号" dataType="string" colWidth="90" />
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="visitReason"  displayLable="类型" dataType="string" colWidth="90" />    
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="sendNo"  displayLable="货运单号" dataType="string" colWidth="90" />  
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="hasGood" displayLable="有无&lt;br / &gt;自带货" dataType="string" colWidth="60" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" > 
+				<property name="dataSourceSql">select code value,name text from TS_SysCode where codeKind=316</property>
+			</object>
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="name" fieldAliasName="empName"  displayLable="相关人" dataType="string" isQueryCondition="1" colWidth="60" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="c" fieldName="name" fieldAliasName="deptName" displayLable="相关人科室" dataType="string" colWidth="90" />
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string" colWidth="100" />  
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy"  displayLable="创建人"  dataType="string" colWidth="60" /> 
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="status" displayLable="状态" dataType="string" colWidth="60" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
+				<property name="dataSourceSql">select code value,name text from TS_SysCode where codeKind=315</property>
+			</object>
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="leaveDate" displayLable="离开日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" />
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="leaveTime" displayLable="离开时间" dataType="string" colWidth="70"/>
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="leaveBy"  displayLable="离开登记人"  dataType="string" colWidth="70" /> 
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="status" fieldAliasName="auditStatus" dataType="string" displayColumn="0"  /> 
+        </property> 
+      </object>
+    </property>
+  </ReportConfigureBean>
+</dbRuleDefines>

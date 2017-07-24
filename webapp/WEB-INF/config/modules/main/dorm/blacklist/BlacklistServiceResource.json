@@ -1,0 +1,6 @@
+{
+	"appKey": "blacklistService",
+	"appName": "住宿黑名单",
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "Blacklist"
+}

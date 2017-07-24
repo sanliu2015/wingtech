@@ -1,0 +1,33 @@
+{
+	"appKey": "buildingService",
+	"appName": "宿舍信息",
+	"attributes": 
+	{
+		"updateSp": "{call building_updateChildren(?,?)}",
+		"deleteSp": "building_delete(?)"
+	},
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "whetherList",
+				"sql": "select code,name from  TS_SysCode where codeKind=4 ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "typeList",
+				"sql": "select code,name from  TS_SysCode where codeKind=300 ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "kindList",
+				"sql": "select code,name from  TS_SysCode where codeKind=103 ",
+				"isHql": "0"
+			}
+		]
+	},
+
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "Building"
+}

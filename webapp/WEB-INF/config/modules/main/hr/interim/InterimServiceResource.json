@@ -1,0 +1,11 @@
+{
+"appKey":"interimService",
+"appName":"劳务派遣",
+"viewFileSuffix":"Interim",
+"codeRules":[{"prefix":"IW","dateFormat":"yyyyMM","sequenceNoPrefix":"-","sequenceLen":4,"className":"Interim"}],
+  "sqlScript":{
+      "sqlList":[{"keyName":"ReductionList","sql":"select code,name from  TS_SysCode  where codeKind=4 "}
+      ]
+  } ,
+  "formToJsonMethods":"*"
+}

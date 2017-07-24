@@ -1,0 +1,6 @@
+{
+	"appKey":"scheduleJobService",
+	"appName":"任务计划",
+	"viewFileSuffix":"ScheduleJob",
+	"formToJsonMethods":"*"
+}

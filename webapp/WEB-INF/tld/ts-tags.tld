@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    <description>A tag library exercising SimpleTag handlers.</description>
+    <tlib-version>1.1</tlib-version>
+
+  <short-name>tstag</short-name>
+  <uri>/tags/tstag</uri>
+  <tag>
+        <name>base</name>
+        <tag-class>com.ts.core.tlb.BaseTag</tag-class>
+        <body-content>empty</body-content>
+        <description>url </description>
+        <attribute>
+            <name>target</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description> d </description>
+        </attribute>
+        <attribute>
+            <name>server</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description> d </description>
+        </attribute>
+        <attribute>
+            <name>ref</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>  </description>
+        </attribute>
+    </tag>
+  <tag>
+    <name>lang</name>
+    <tag-class>com.ts.core.tlb.LangTag</tag-class>
+    <body-content>empty</body-content> 
+    <attribute>
+	<name>name</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+     </attribute> 
+     <description> lang </description>
+  </tag>
+ <tag>
+    <name>forEach</name>
+    <tag-class>com.ts.core.tlb.ForEachTag</tag-class>
+    <body-content>empty</body-content> 
+    <attribute>
+	    <name>name</name>
+	    <required>true</required>
+	    <rtexprvalue>true</rtexprvalue>
+    </attribute> 
+	<attribute>
+	    <name>value</name>
+	    <required>false</required>
+	    <rtexprvalue>true</rtexprvalue>
+    </attribute>
+	<attribute>
+	    <name>keyField</name>
+	    <required>false</required>
+	    <rtexprvalue>true</rtexprvalue>
+    </attribute>
+	<attribute>
+	    <name>valueField</name>
+	    <required>false</required>
+	    <rtexprvalue>true</rtexprvalue>
+    </attribute>
+	<attribute>
+	    <name>value</name>
+	    <required>false</required>
+	    <rtexprvalue>true</rtexprvalue>
+    </attribute> 
+	<attribute>
+	    <name>outValue</name>
+	    <required>false</required>
+	    <rtexprvalue>true</rtexprvalue>
+    </attribute> 
+	<attribute>
+	    <name>insertEmpty</name>
+	    <required>false</required>
+	    <rtexprvalue>true</rtexprvalue>
+    </attribute> 
+	<attribute>
+	    <name>toJson</name>
+	    <required>false</required>
+	    <rtexprvalue>true</rtexprvalue>
+    </attribute> 
+	<attribute>
+	    <name>multiple</name>
+	    <required>false</required>
+	    <rtexprvalue>true</rtexprvalue>
+    </attribute> 
+  </tag> 
+  <tag>
+    <name>report</name>
+    <tag-class>com.ts.core.tlb.ReportTag</tag-class>
+    <body-content>empty</body-content> 
+    <attribute>
+	<name>name</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+     </attribute> 
+     <description> report </description>
+  </tag>
+  <tag>
+    <name>toJSONStr</name>
+    <tag-class>com.ts.core.tlb.ToJSONStringTag</tag-class>
+    <body-content>empty</body-content> 
+    <attribute>
+	<name>name</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+     </attribute> 
+     <description> toJSONString </description>
+  </tag>
+</taglib>

@@ -1,0 +1,311 @@
+
+1.5.1 版 (4|9|11)
+－比较有柔性的 ISO 8601 日期分列（议题 814)
+－ UNIX timestamps 的比较有柔性分列（议题 826)
+－ FullCalendar 现在可建立的从在一台 Mac 上的来源（议题 795)
+－在 FF4 的 FullCalendar QA'd(议题 883)
+－对 jQuery 1.5.2(哪一个支援 IE9) 升级和 jQuery UI 1.8.11
+
+1.5 版 (3|19|11)
+－防水衣为钮扣疏怠职责式样
+－被重做的许多日历 HTML 而且陪伴 CSS
+（解决议题 327 和 395)
+－较多的友善打印（fullcalendar－print.css）
+－ fullcalendar 现在不同地继承 jquery－ui 的主题的风格。
+给钮扣的风格从日历细胞的风格是清楚的。
+（解决议题 299)
+－现在能经过 FullCalendar 选项和事件－物体的特性把事件涂颜色（议题 117)
+这是现在把事件涂颜色的优先方法（不使用 className 和 CSS）
+－ FullCalendar 选项：
+－ eventColor （变化背景和边缘）
+－ eventBackgroundColor
+－ eventBorderColor
+－ eventTextColor
+－事件－物体的选项：
+－颜色（变化背景和边缘）
+－ backgroundColor
+－ borderColor
+－ textColor
+－现在能叙述一个事件来源当做一＊物体＊与一url 财产 （json 喂）或
+一事件财产 （功能或排列）用另外决意的财产
+适用于整个事件来源：
+－颜色（变化背景和边缘）
+－ backgroudColor
+－ borderColor
+－ textColor
+－ className
+－可编辑的
+－ allDayDefault
+－ ignoreTimezone
+－ startParam （为饲养）
+－ endParam （为饲养）
+－任何 JQUERY ＄.ajax 选项
+容易地考虑到变更从开始邮寄而且送另外叁数（议题 386)
+考虑到容易附属的 ajax 操作者如此的当做错误 (议题 754)
+考虑到旋转贮藏在（议题 355)
+－ Google 日历饲养现在不同地被指定：
+－叙述你的饲养网址的简单线
+－叙述一＊物体＊与一url 你的饲养网址的财产。
+你能在这一个物体中包括任何新事件－来源的选项。
+－老年人$.fullCalendar.gcalFeed 方法仍然工作
+－没有较多的 IE7 SSL 跃上型（议题 504)
+－距离cacheParam- 使用 json 事件来源隐藏所选项改为
+－最近的 jquery│jquery－ui
+
+1.4.11 版 (2|22|11)
+－固定的 rerenderEvents 虫（议题 790)
+－有事件的有过失的拖拉的固定的虫从整天在议程视野安插
+－以 jquery 1.5 和 jquery 捆－ui 1.8.9
+
+1.4.10 版 (1|2|11)
+－固定的虫用再涂上胶水事件在 5 天的月对不同的星期视野（议题 740)
+－固定的虫用事件不是黏在一个 removeEvents 呼叫之后（议题 757)
+－固定的虫用 parseInt 的在下面的 parseTime 方法，和其他使用（议题 688)
+
+1.4.9 版 (11|16|10)
+－新运算法则为了垂直地堆积事件（议题 111)
+－再涂上胶水一个事件对一个不同的星期（议题 306)
+－虫：一些事件不以连续的呼叫对 addEventSource 提出（议题 679)
+
+1.4.8 版 (10|16|10)
+－ ignoreTimezone 选项（组到错误的在 ISO 8601 日期处理 UTC 抵销）
+－ bugfixes
+－事件再动人的不被在特定的情况呼叫（议题 417,554)
+－事件再动人的在特定的情况叫做多样的时代（议题 586,616)
+－选择不能够被正确的滑鼠按钮发动（议题 558)
+－议程视野左边不正确地按规定尺寸制作的轴（议题 465)
+－ IE js 错误当日历太狭窄（议题 517)
+－议程视野看起来很奇怪当没有卷轴（议题 235)
+－ ISO 8601 日期的改良分列用 UTC 弥补
+－ $.fullCalendar.version
+－密码的一个内在再因素，为比较容易的将来发展和模组化
+
+1.4.7 版 (7|5|10)
+－在日历之上 " 输液 " 外部的物体
+－ droppable （boolean，转在│之上走开）
+－ dropAccept （过滤日历将会接受哪一个事件）
+－下降（板机）
+－可选择的选项现在能与一个视野选项混杂一起指定
+－ bugfixes
+－拖拉＆恢复事件有错误的时间本文（议题 406)
+－虫翻译用秒、但是没有数小时│数数分钟有 endtime 的事件（议题 477)
+－ gotoDate 日期溢值虫（议题 429)
+－当在议程视野中按下最后专栏的边缘时，错误的日期报告（412)
+－在事件的支持 newlines 命名
+－选择│不选择收回现在途径本地人 js 事件
+
+1.4.6 版 (5|31|10)
+－ " 选择 " 天或 timeslots
+－选项：可选择的， selectHelper 、 unselectAuto， unselectCancel
+－收回：选择，不选择
+－方法：选择，不选择
+－当拖拉一个事件，这强调反映事件的期间
+－密码压缩由 Google 终止编辑者
+－以 jQuery 1.4.2 捆和 jQuery UI 1.8.1
+
+1.4.5 版 (2|21|10)
+－ lazyFetching 能强迫日历在每视野│日期上接来事件的选项改变
+－当转回看时，议程视野的卷桥状态被保护
+－ bugfixes
+－呼叫在被设定 fullcalendar 不初值的上的方法丢错误
+－ IE6|7 烦扰整个的视野变成看不见的地方（议题 320)
+－错误当翻译在 IE 的一个隐藏的日历 （在 jquery ui 定位键中举例来说）（议题 340)
+－被互相连接的疯狂的相关把再涂上胶水记入日历和卷轴
+－当转变视野或按 prev│下一个，日历会 " 眨眼 "(议题 333)
+－移转 （取决于浏览器的开始高度）的液体宽度日历事件 (议题 341)
+－更强健的在下面的运算法则为日历再涂上胶水
+
+1.4.4 版 (2|3|10)
+－所有视野中被事件翻译最佳化的（在 1|10 中的事件提出时间）
+－ gotoDate （)不强迫日历不必要地再提出
+－提出（)方法现在正确地重新调整高度
+
+1.4.3 版 (12|22|09)
+－附加的破坏方法
+－ Google 日历事件页尊敬 currentTimezone
+－贮藏现在藉着 jQuery 的 ajax 处理
+－保护从设定 aspectRatio 至对准零位
+－ bugfixes
+－ parseISO 8601 和 DST 导致特定的事件以前显示日子
+－ IE6 中的钮扣定位问题
+－ ajax 事件来源移走在最近之后被增加，事件仍然显示
+－事件不显示了结束何时是空的线
+－动态地设定日历高度当没有事件被接来，丢错误
+
+1.4.2 版 (12|02|09)
+－ eventAfterRender 板机
+－ getDate 和 getView 方法
+－高度和 contentHeight 选项（明确地设定图素高度）
+－ minTime 和 maxTime 选项（限制在议程视野中显示数小时）
+－获取的人［为所有选项］和安放者［为高度、 contentHeight 和 aspectRatio 唯一的！停留调谐。。］
+－现在提出方法重新调整日历的大小
+－ bugfixes
+－使用 iframes 的 lightbox 手写体（相似的 fancybox）
+－日子－－星期 classNames 是远的当 firstDay＝1
+－在议程事件右边上的被保证的空间（即使当堆积）
+－用空间接受 ISO 8601 日期（而非’T’)
+
+1.4.1 版 (10|31|09)
+－能用新’周末’选项排除周末
+－ gcal 喂’currentTimezone’选项
+－ bugfixes
+－年│月│日期选项有时不正确地设定（取决于现在的日期）
+－白昼的储蓄议题导致议程视野早上 1 点开始（为英国夏季时间使用者）
+－ gcal.js 密码的清除
+
+1.4 版 (10|19|09)
+－ agendaWeek 和 agendaDay 视野
+－对于议程的被增加的一些选项看：
+－ allDaySlot
+－ allDayText
+－ firstHour
+－ slotMinutes
+－ defaultEventMinutes
+－ axisFormat
+－被修正的一些现有的选项│板机与议程视野合作：
+－ dragOpacity 和 timeFormat 现在能接受一个 " 视野混杂 "(一项新观念）
+－ dayClick 现在有一个 allDay 叁数
+－ eventDrop 现在有一个一个 allDay 叁数
+（这将会影响使用 revertFunc 的人们，调整叁数目录）
+－附加的’prevYear’和’nextYear’为钮扣在首领中
+－主题使用者的较小的变化， ui－州－盘旋不是应用对活跃的│不活动的钮扣
+－在文件中的附加变更事件－颜色的例子
+－比较好的假设值为右边－到－左边的有主题的钮扣圣像
+
+1.3.2 版 (10|13|09)
+－ Bugfixes （请升级从 1.3.1!)
+－压扁了潜在的无限循环当 addMonths 和 addDays
+与病人一起呼叫日期
+－ $.fullCalendar.parseDate （)现在正确地剖析 IETF 格式
+－当转变视野，这 " 今天 " ，钮扣黏住不活动的，修理
+－ gotoDate 现在能接受一个日期争论
+－文件现在在网站上为 1.3.1 和 1.3.2 方面的改变
+
+1.3.1 版 (9|30|09)
+－重要的 Bugfixes （请升级从 1.3!)
+－当现在的日期在月很迟，长的个月，和 prev│下个钮扣
+在月被按－视野，一些月会是跳越│重复的
+－在特定的时区中，夏令时间会引起特定的天
+在月是 misnumbered－视野
+－当从月转换为 basicWeek│basicDay 视野时，方法方面的微妙改变星期间隔被选择
+－附加的’allDayDefault’选项
+－附加的’changeView’而且 " 提出 " 方法
+
+1.3 版 (9|21|09)
+－不同的 " 看 ":月│basicWeek│ basicDay
+－更有柔性的’首领’系统为钮扣
+－可他们的藉着 jQuery UI 主题
+－再相当大的事件（需要 jQuery UI 再相当大的网络设备）
+－再范围＆重写 CSS，可提高的假设值神情
+－较干净的 css 和翻译技术为右边－到－左边
+－被重做的选项和美国石油协会支援多视野│是与 jQuery 一致 UI
+－整个 codebase 的再因素
+－坏掉的进入不同的 JS ＆ CSS 之内申请，装配了 w│建立手写体
+－新测试随员为新特征，使用放火者－精简的
+－被再因素的文件
+－选项
+＋日期
+＋ defaultView
+＋ aspectRatio
+＋ disableResizing
+＋ monthNames（使用改为＄.fullCalendar.monthNames）
+＋ monthNamesShort （使用改为＄.fullCalendar.monthAbbrevs）
+＋ dayNames（使用改为＄.fullCalendar.dayNames）
+＋ dayNamesShort （使用改为＄.fullCalendar.dayAbbrevs）
+＋主题
+＋ buttonText
+＋ buttonIcons
+x draggable－> 可编辑的│disableDragging
+x fixedWeeks－> weekMode
+x abbrevDayHeadings －> columnFormat
+x 扣住│名称－> 首领
+x eventDragOpacity－> dragOpacity
+x eventRevertDuration －> dragRevertDuration
+x weekStart－> firstDay
+x rightToLeft－> isRTL
+x 播放时间（使用’allDay’ CalEvent 特性改为）
+－被引起的行动
+＋ eventResizeStart
+＋ eventResizeStop
+＋ eventResize
+x monthDisplay －> viewDisplay
+x 再大小－> windowResize
+’eventDrop’如果 ajax 减少出，被改变的 params ，能恢复
+－ CalEvent 特性
+x 播放时间－> allDay
+x draggable －> 可编辑的
+’结束’是现在包含当在内的 allDay＝真实的
+’url’现在生产一真正的＜一＞标签，比较本国的按│定位键行为
+－方法：
+＋ renderEvent
+x prevMonth－> prev
+x nextMonth－> 下一个
+x prevYear│nextYear －> moveDate
+x 生气蓬勃－>rerenderEvents│ refetchEvents
+x removeEvent－> removeEvents
+x getEventsByID－> clientEvents
+－水电等公共设施：
+’formatDate’格式线完全地改变（被 jQuery UI datepicker 激发＋ datejs）
+’formatDates’增加支援日期－范围
+－ Google 日历选项：
+x draggable －> 可编辑的
+－ Bugfixes
+－ gcal 延长接来 25个结果最大，现在取得所有的
+
+1.2.1 版 (6|29|09)
+－ bugfixes
+－为事件允许并且改正有病的结束日期
+－不将一个错误丢进 IE 当翻译的时候当显示：没有人
+－修理了 " 载入 " 收回当用了 w│多样的 addEventSource 呼叫
+－ gcal className 现在可能是排列
+
+1.2 版 (5|31|09)
+－被扩大的美国石油协会
+－ 'className’ CalEvent 属性
+－ '来源’ CalEvent 属性
+－动态地拿│增加│距离│更新现在的月的事件
+－现场进步：变化月│日子名字本文
+－比较好的日期格式（$.fullCalendar.formatDate）
+－多 " 事件来源 " 允许
+－动态地增加│距离事件来源
+－选项为 prevYear 和 nextYear 钮扣
+－文件已经被重做（包括 Google 日历文件的附加）
+－数字的 parseDate 的被改变的行为串起
+（现在伴侣动物间当做 unix timestamp ，不是小姐乘）
+－ bugfixes
+－ rightToLeft 月开始虫
+－离开－被－一错误用月格式指令
+－早先的个月保留的事件当很快地按 prev│下一个
+－ Google 日历美国石油协会改变操作 w│多样的事件来源
+－罐子也提供’className’和’draggable’选项
+－日期 utilties 移动从＄到＄.fullCalendar
+－在原始码中的较多的文件
+－ fullcalendar.js 的被使变小的版本
+－测试诉讼（可得的从 svn）
+－顶端钮扣现在使用＜钮扣＞ w│一内部的＜礅距＞为较好的 css cusomization
+－如此 CSS 已经改变。如果从早先的版本升级，
+升级你的 FULLCALENDAR 。CSS 文件！！！
+
+1.1 版 (5|10|09)
+－增加下列的选项：
+－ weekStart
+－ rightToLeft
+－ titleFormat
+－ timeFormat
+－ cacheParam
+－再大小
+－固定的翻译疯狂的
+－歌剧 9.25(事件安置和窗户再涂上胶水）
+－ IE6(窗户再涂上胶水）
+－被窗户再涂上胶水最佳化的为所有浏览器
+－事件在当日被开始时间分类的现在（藉着 timespan 首先除了）
+－正确的 z－索引当拖拉
+－拖拉为 IE6 包含在溢值 DIV
+－被修正的 fullcalendar.css
+－为右边－到－左边支持
+－因为变数开始－－星期
+－因为 IE6 再涂上胶水烦扰
+－因为 THEAD 和 TBODY （在 1.0 年，刚刚用了 TBODY，在 1.1 年更改结构)
+－如果从 FULLCALENDAR 1.0 升级, 你一定升级 FULLCALENDAR．CSS
+！！！！！！！！！！！
+

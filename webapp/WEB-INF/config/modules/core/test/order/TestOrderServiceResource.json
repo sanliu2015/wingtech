@@ -1,0 +1,14 @@
+{
+"appKey":"testOrderService",
+ "lang":{
+	"bean.number":"模块编号",
+	"bean.name":"模块名称",
+	"bean.urlName":"url地址",
+	"bean.iconName":"图标路径"
+  },
+  "sqlScript":{
+      "includeMethods":"addTestOrder",
+      "sqlList":[{"keyName":"orderKindList","sql":"select code,name from  TS_SysCode where codeKind='3' ","isHql":"0"}]
+  },
+  "codeRules":[{"prefix":"Test","dateFormat":"yyyyMM","sequenceNoPrefix":"-","sequenceLen":4}]
+}

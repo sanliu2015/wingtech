@@ -1,0 +1,40 @@
+{
+	"appKey": "roomFeeService",
+	"appName": "房间费用信息",
+	"attributes": 
+	{
+		"generateCheckInSp": "roomFee_generateCheckIn(?)",
+		"generateRoomFeeSp": "roomFee_generateRoomFee(?)",
+		"deleteRoomFeeSp": "roomFee_deleteRoomFee(?)",
+		"exportSql":"select b.roomName,b.typeName roomType,b.buildingName,b.buildingType, 
+	c.name empName,c.number empNumber,d.name deptName,e.name parentDeptName,f.name posName,g.name copName,
+	h.sendCompanyName,a.inDate,a.outDate,a.beginDate,a.endedDate,a.inDays,a.rentFee,a.corpFee,a.wtpwgsFee,a.sharedFee,
+	a.firstRowFlag,a.totalSum,a.rentStandard,x.lastGasNum,x.thisGasNum,x.gasPrice,x.gasFee,x.lastPowerNum,x.thisPowerNum,
+	x.powerPrice,x.powerFee,x.lastWaterNum,x.thisWaterNum,x.waterPrice,x.waterFee,x.wtpwgsFee wtpwgsSum
+    from Dorm_RoomFee a 
+	inner join VM_RoomBasicInfo b on a.roomId=b.id 
+	inner join Dorm_Wtpwgs x on a.roomId=x.roomId and a.yearMonth=x.yearMonth 
+	left join HR_Employee c on a.employeeId=c.id 
+	left join HR_Department d on c.deptId=d.id 
+    left join HR_Department e on d.parentId=e.id 
+    left join HR_Position f on c.positionId=f.id 
+	left join HR_Company g on c.orgId=g.id
+	left join HR_Interim h on c.interimId=h.id 
+where a.yearMonth=? 
+		",
+		"orderBySql":" order by b.buildingId asc,a.roomId asc,a.id asc "
+	},
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "buildingList",
+				"sql": "select id, name from DORM_Building where kind='0' ",
+				"isHql": "0"
+			}
+		]
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "RoomFee"
+}

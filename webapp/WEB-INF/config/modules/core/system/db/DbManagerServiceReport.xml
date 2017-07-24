@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="omOrderPlanReport" type="object"> 
+    <property name="name">数据库维护</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">dbManagerService</property>
+	<property name="dataSetId">dbManagerService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="dbService">
+        <property name="sql">
+        	<![CDATA[
+        		 from  TS_SysCode as a where a.codeKind=101
+        	]]>
+        </property>  
+		<property name="invokeEventList" type="list"> 
+			 <object class="InvokeEventConfigure"  isHql="0" isQuerySql="0" id="01" configName="初始化ERP中MRP处理状态" dbServiceName="dbServicegz" eventType="executeTargetRecordAfter" priorityExecuteSqls="1">
+				<property name="sqls" type="array">
+					<value><![CDATA[ if (not exists (SELECT name  FROM  sysobjects WHERE (xtype = 'U') and name='TS_SEOrderEntry')) begin
+				CREATE TABLE  [TS_SEOrderEntry] (
+					syncId int  NOT NULL  PRIMARY KEY,	 
+					tsHandleFlag tinyint NULL,
+					taskDtlId int NULL
+				)
+				insert into TS_SEOrderEntry(syncId,tsHandleFlag,taskDtlId) select FDetailID,0,0 from   SEOrderEntry
+				end  ]]></value>  
+				 </property> 	
+				<property name="sql"><![CDATA[ if ( (SELECT count(*)  FROM   TS_SEOrderEntry )<=0) begin 
+				insert into  TS_SEOrderEntry(syncId,tsHandleFlag) select FDetailID,0 from  SEOrderEntry
+				 end ]]></property>  
+				<property name="comments">初始化营销账套订单的MRP处理状态表</property>    
+			</object>   
+			<object class="InvokeEventConfigure"  id="03" isHql="0" isQuerySql="0" configName="创建统计单个物料的库存数存储过程" sqlFile="sp_mrp_mtlInvQty.sql" priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if object_ID('[sp_mrp_mtlInvQty]') is not null
+								Drop Procedure sp_mrp_mtlInvQty ]]></value>  
+				 </property>
+				<property name="comments">创建统计单个物料的库存数</property>    
+			</object> 
+			<object class="InvokeEventConfigure"  id="04" isHql="0" isQuerySql="0"  configName="创建单个物料的库存详情存储过程" sqlFile="sp_mrp_queryMtlInvDetail.sql" priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if object_ID('[sp_mrp_queryMtlInvDetail]') is not null
+								Drop Procedure sp_mrp_queryMtlInvDetail ]]></value>  
+				 </property>
+				<property name="comments">创建单个物料的库存详情</property>    
+			</object> 
+			<object class="InvokeEventConfigure"  id="05" isHql="0" isQuerySql="0" configName="创建单个物料的占用数存储过程" sqlFile="sp_mrp_mtlUsedQty.sql" priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if object_ID('[sp_mrp_mtlUsedQty]') is not null
+								Drop Procedure sp_mrp_mtlUsedQty ]]></value>  
+				 </property>
+				<property name="comments">创建单个物料的占用数</property>    
+			</object>
+			<object class="InvokeEventConfigure"  id="06" isHql="0" isQuerySql="0" configName="创建单个物料的统计各种数量储存过程" sqlFile="sp_mrp_totalMtlQty.sql" priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if object_ID('[sp_mrp_totalMtlQty]') is not null
+								Drop Procedure sp_mrp_totalMtlQty ]]></value>  
+				 </property>
+				<property name="comments">创建单个物料的统计各种数量储存过程</property>    
+			</object>
+			<object class="InvokeEventConfigure"  id="07" isHql="0" isQuerySql="0"  configName="创建查询erp订单的视图"  sqlFile="v_mrp_queryErpOrder.sql" priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if (object_id('v_mrp_queryErpOrder', 'V') is not null)
+                                 drop view v_mrp_queryErpOrder ]]></value>  
+				 </property>
+				<property name="comments">创建查询erp订单的视图</property>    
+			</object>
+			<object class="InvokeEventConfigure"  id="08" isHql="0" isQuerySql="0" configName="创建生产加工厂视图"  sqlFile="v_mrp_wipfactory.sql" priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if (object_id('v_mrp_wipfactory', 'V') is not null)
+                                 drop view v_mrp_wipfactory ]]></value>  
+				 </property>
+				<property name="comments">创建生产加工厂视图</property>    
+			</object>
+			<object class="InvokeEventConfigure"  id="09" isHql="0" isQuerySql="0" configName="创建生产车间视图"  sqlFile="v_mrp_Workshop.sql" priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if (object_id('v_mrp_Workshop', 'V') is not null)
+                                 drop view v_mrp_Workshop ]]></value>  
+				 </property>
+				<property name="comments">创建生产车间视图</property>    
+			</object>
+			<object class="InvokeEventConfigure"  id="10" isHql="0" isQuerySql="0"  configName="创建花都账套的生成任务单存储过程"   sqlFile="sp_generateHDErpTask.sql" dbServiceName="dbServicehd"  priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if object_ID('[AUTOBO_PROC_MutilAddICMOAndPPBOM]') is not null
+								Drop Procedure AUTOBO_PROC_MutilAddICMOAndPPBOM ]]></value>  
+				 </property>
+				<property name="comments">创建花都账套的生成任务单存储过程</property>    
+			</object>
+			<object class="InvokeEventConfigure"  id="11" isHql="0" isQuerySql="0"  configName="创建河南账套的生成任务单存储过程"  sqlFile="sp_generateHNErpTask.sql" dbServiceName="dbServicehn"   priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if object_ID('[AUTOBO_PROC_MutilAddICMOAndPPBOM]') is not null
+								Drop Procedure AUTOBO_PROC_MutilAddICMOAndPPBOM ]]></value>  
+				 </property>
+				<property name="comments">创建河南账套的生成任务单存储过程</property>    
+			</object>
+			<object class="InvokeEventConfigure"  id="12" isHql="0" isQuerySql="0" configName="创建花都账套的生成任务单子存储过程" sqlFile="sp_generateHDErpSubTask.sql" dbServiceName="dbServicehd"   priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if object_ID('[AUTOBO_AddICMOAndPPBOM]') is not null
+								Drop Procedure AUTOBO_AddICMOAndPPBOM ]]></value>  
+				 </property>
+				<property name="comments">创建花都账套的生成任务单子存储过程</property>    
+			</object>
+			<object class="InvokeEventConfigure"  id="13" isHql="0" isQuerySql="0" configName="创建河南账套的生成任务单子存储过程"  sqlFile="sp_generateHNErpSubTask.sql" dbServiceName="dbServicehn"   priorityExecuteSqls="1" >  
+				<property name="sqls" type="array">
+					<value><![CDATA[ if object_ID('[AUTOBO_AddICMOAndPPBOM]') is not null
+								Drop Procedure AUTOBO_AddICMOAndPPBOM ]]></value>  
+				 </property>
+				<property name="comments">创建河南账套的生成任务单子存储过程</property>    
+			</object>
+		</property>   
+        <property name="sourceFields" type="list"> 
+		    <object class="SourceFieldRuleBean" tableName="a" fieldName="name"  frozenColumn="1"  displayLable="在线下单账套" dataType="string"   displayColumn="1" />
+			<object class="SourceFieldRuleBean" tableName="a" fieldName="code"     displayLable="编号" dataType="string" isQueryCondition="1" displayColumn="1" />
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

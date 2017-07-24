@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="bulletinServiceReport" type="object"> 
+    <property name="name">新闻公告</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">bulletinService</property>
+	<property name="dataSetId">bulletinService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="userServiceTable">
+        <property name="sql"><![CDATA[ from SYS_Bulletin as a left join SYS_BulletinTopic as b on b.id=a.bulletinTopicId 
+		       ]]></property>
+		<property name="invokeEventList" type="list">
+	      <object eventType="appendFilterSql" type="object"  class="InvokeEventConfigure" >
+		     <property name="implClassName">com.ts.main.sys.bulletin.FilterRemindBulletinSql</property>
+		  </object>  
+       </property>
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid" reportType="datagrid"  pageSize="20"   canCheckbox="1" singleSelect="true" fitColumns="false"   toolbar="#userServiceToolbar"> 
+					<property name="customProperty" type="map">  
+						<entry key="striped" dataType="boolean">true</entry>
+						<entry key="selectOnCheck" dataType="boolean">false</entry>
+						<entry key="checkOnSelect" dataType="boolean">false</entry>
+						<entry key="autoRowHeight" dataType="boolean">false</entry>
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="userServiceToolbar"> 
+			  <property name="toolbars" type="list"> 
+				<object class="ReportToolbar"   name="查看"  id="lookup" position="dblClickRow"   dataOptions="plain:true,iconCls:'icon-tip'"  url="/main/showBulletinService/updateBulletinView.do"    > 
+					<property name="recParamTemplate">id=#{id}</property>
+					<property name="customProperty" type="map"> 
+						<entry key="dialogOpts">maximized:true</entry>
+					   </property>
+				</object> 
+				<object class="ReportToolbar"   name="设为已读"  id="lookup"     dataOptions="plain:true,iconCls:'icon-tip'"  url="/main/showBulletinService/json/updateRecordsViewStatus.do"  limitChooseRows="2"  targetName="ajax" > 
+					<property name="recParamTemplate">#{id}</property>
+					<property name="customProperty" type="map"> 
+						<entry key="dialogOpts">maximized:true</entry>
+					   </property>
+				</object> 
+              </property>   
+			</object>
+		</object> 
+        <property name="sourceFields" type="list">
+          <object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="name" frozenColumn="1" displayLable="标题" dataType="string" isQueryCondition="1"
+   		  displayColumn="1"   queryCondtiOrder="1"></object> 
+		  <object class="SourceFieldRuleBean" tableName="b" fieldName="name" fieldAliasName="topicName" displayLable="栏目名称" dataType="string"  displayColumn="1" /> 
+		  <object class="SourceFieldRuleBean" tableName="b" fieldAliasName="readStatus" displayLable="查阅状态" dataType="string" isQueryCondition="1" displayColumn="1"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"  isCalculateField="1">
+			 <property name="fieldName"><![CDATA[isnull((select  count(c.id) as rec  from SYS_BulletinViewer as c 
+  where c.bulletinId=a.id and c.viewerId=${appReqeustContext.userId}  group by c.bulletinId),0) ]]></property>
+             <property name="dataSourceSql">select code,name from TS_SysCode where codekind=109</property>
+		  </object>
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="receiverType"    displayLable="接收者类型" dataType="string"   dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"    >
+            <property name="dataSourceSql">select code,name from TS_SysCode where codekind=26</property>
+          </object>
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="topicKind"    displayLable="信息类型" dataType="string"  isQueryCondition="1" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"    >
+            <property name="dataSourceSql">select code,name from TS_SysCode where codekind=25</property>
+          </object>
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="status"    displayLable="状态" dataType="string"   dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"    queryCondtiOrder="3">
+            <property name="dataSourceSql">select code,name from TS_SysCode where codekind=20</property>
+          </object> 
+		<object class="SourceFieldRuleBean" tableName="a" fieldName="createDate" displayLable="创建日期" dataType="string"  displayColumn="1"   sortType="1" />
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="createdBy" displayLable="创建人" dataType="string"  />
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0"/> 
+        </property> 
+      </object>
+    </property>  
+  </ReportConfigureBean>
+</dbRuleDefines>

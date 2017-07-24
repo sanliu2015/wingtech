@@ -1,0 +1,49 @@
+{
+	"appKey": "passBillService",
+	"appName": "放行条管理",
+	"attributes": 
+	{
+		"queryObj":"select a.*,b.name empName,b.number empNumber,c.name roomName,d.name buildName,d.number buildNumber from DORM_PassBill a inner join HR_Employee b on a.empId=b.id left join Dorm_Room c on a.roomId=c.id left join Dorm_Building d on a.buildId=d.id where a.id=? ",
+		"querySql":"select 'update' recordOperateStatus,a.id,a.name,a.quantity,a.description from DORM_PassBillDtl a where a.hdrId=?"
+	},
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "statusList",
+				"sql": "select name code,name from  TS_SysCode where codeKind=311",
+				"isHql": "0"
+			},
+			{
+				"keyName": "reasonList",
+				"sql": "select name code,name from TS_SysCode where codeKind=312",
+				"isHql": "0"
+			},
+			{
+				"keyName": "numList",
+				"sql": "select name id,name text from TS_SysCode where codeKind=313",
+				"isHql": "0"
+			},
+			{
+				"keyName": "nameList",
+				"sql": "select name value,name text from TS_SysCode where codeKind=314",
+				"isHql": "0"
+			}
+		]
+	},
+	"codeRules":[{
+		"className":"PassBill",
+		"dateFormat":"yyyyMM",
+		"filterCondition":"",
+		"numberName":"number",
+		"prefix":"PB",
+		"selected":false,
+		"sequenceLen":4,
+		"sequenceNoPrefix":"",
+		"submitDataSource":"pc",
+		"suffix":""
+	}],
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "PassBill"
+}

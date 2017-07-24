@@ -1,0 +1,154 @@
+DIV.tableContainer {
+	MARGIN: 0px auto;
+	overflow-y:hidden;
+	OVERFLOW: expression("auto");
+	HEIGHT: 295px;
+	width:870px;
+}
+DIV.tableContainer TABLE{
+	WIDTH: 99%;
+	vertical-align:top;
+	border-color: #93bae7;
+}
+
+DIV.tableContainer  TABLE > TBODY {
+	OVERFLOW: auto;
+	HEIGHT: 250px;
+	overflow-x:hidden;
+}
+
+DIV.tableContainer THEAD  TR {
+	position:expression("relative");
+    TOP: expression(offsetParent.scrollTop - document.documentElement.scrollTop);
+	border-top:1px solid;
+	border-color: #93bae7;
+	z-index:expression(this.parentNode.childNodes.length - this.rowIndex);
+}
+
+DIV.tableContainer THEAD TD {
+	position:relative;
+	background: url(../images/ion_7.gif);
+	background-repeat: repeat;
+}
+
+DIV.tableContainer TFOOT  TR {
+	position:expression("relative");
+    TOP: expression(offsetParent.scrollTop - document.documentElement.scrollTop);
+}
+DIV.tableContainer TFOOT  TD {
+	position:relative;
+}
+
+DIV.tableContainer  TR {
+	position: relative;
+	border-bottom: 1px solid;
+	border-color: #93bae7;
+}
+DIV.tableContainer  TD {
+	white-space:nowrap;
+	border-right: 1px solid;
+	border-bottom: 1px solid;
+	border-color: #93bae7;
+}
+DIV.tableContainer  TD.tdTop {
+	border-top: 1px solid;
+}
+.fixedHeaderCol 
+{
+	position:relative; 
+	left:expression(this.parentElement.offsetParent.scrollLeft);
+	z-index:10;
+}; 
+.fixedHeaderColTop
+{
+	border-top:1px solid;
+	position:relative;
+	left:expression(this.parentElement.offsetParent.scrollLeft);
+	z-index:10;
+}; 
+img.unsort {
+	vertical-align: middle;
+	background:url(../images/sortImg/kong.gif);
+}
+img.sort {
+	vertical-align: middle;
+	background:url(../images/sortImg/next.gif);
+}
+img.reverse {
+	vertical-align: middle;
+	background:url(../images/sortImg/ldj.gif);
+}
+.column-separator {
+	position: absolute;
+	top: 0px;
+	left: 10px;
+	font: menu;
+	height: 1em;
+	width: 1px;
+	overflow: hidden;
+	background: blue;
+	padding: 3px 0px;
+}
+.resizeDivClass{text-align:right;width:1px;margin:1px 0 1px 0;float:right;cursor:e-resize;}
+.moveHeaderDiv {
+	position: absolute;
+	display:block;
+	top: 0px;
+	padding: 2px;
+	height: 1em;
+	text-align:center;
+	overflow:hidden;
+	filter: Alpha(Opacity=80);
+	-moz-opacity: 0.8;
+	-moz-user-select: none;
+}
+.moveSperateHeaderDiv {
+	position: absolute;
+	font: menu;
+	width: 2px;
+	overflow: hidden;
+	background:#6591c4;
+	padding: 0px 0px;
+	
+}
+.moveHeaderTable {
+	background: url(../images/ion_7.gif);
+	background-repeat: repeat;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	border:1px solid;
+	border-color: #93bae7;
+}
+.moveHeaderTable TR {
+	background:#DBEAF5;
+	white-space:nowrap;
+}
+.moveHeaderTable TR TD {
+	margin:0px;
+	padding:0px;
+}
+
+.moveRowDiv {
+	position: absolute;
+	display:block;
+	top: 0px;
+	padding: 1px;
+	height: 1em;
+	text-align:center;
+	overflow:hidden;
+	filter: Alpha(Opacity=50);
+	-moz-opacity: 0.8;
+	-moz-user-select: none;
+	border: 1px solid;
+	border-color:#1B5BA5;
+	background: url(../images/ion_3.gif);
+}
+.moveSeparateRowDiv {
+	position: absolute;
+	font: menu;
+	height: 2px;
+	overflow: hidden;
+	background:#5f8ec3;
+	padding: 0px 0px;
+}

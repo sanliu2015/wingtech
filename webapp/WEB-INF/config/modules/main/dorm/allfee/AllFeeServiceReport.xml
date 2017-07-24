@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="allFeeServiceReport" type="object"> 
+    <property name="name">所有费用信息</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">allFeeService</property>
+	<property name="dataSetId">allFeeService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+    	<object class="SourceTableRuleBean" id="allFeeServiceTable">
+        <property name="sql"><![CDATA[ 
+        	from Dorm_AllFee a 
+        		inner join HR_Employee b on a.employeeId=b.id 
+        		left join HR_Department c on b.deptId=c.id 
+        		left join HR_Department d on c.parentId=d.id 
+          ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"     singleSelect="true"  fitColumns="false"   pageSize="20"  toolbar="#allFeeServiceToolbar"> 
+					<property name="customProperty" type="map">  
+						<entry key="striped" dataType="boolean">true</entry> 
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="allFeeServiceToolbar"> 
+			  <property name="toolbars" type="list">
+				<object class="ReportToolbar" className="easyui-linkbutton" name="所有费用汇总" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/allFeeService/generateAllFee.do?appUrl=generateAllFee" limitChooseRows="0"> 
+				    <property name="customProperty" type="map">
+						<entry key="limitChooseRows">0</entry>
+						<entry key="dialogOpts">height:200,width:400</entry> 
+				    </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"  url="/main/allFeeService/generateAllFee.do?appUrl=deleteAllFee" limitChooseRows="0"> 
+				    <property name="customProperty" type="map">
+						<entry key="limitChooseRows">0</entry>
+						<entry key="dialogOpts">height:200,width:400</entry> 
+				    </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="导出报表" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/allFeeService/exportExcelInit.do?appUrl=exportExcelInit" limitChooseRows="0"> 
+				    <property name="customProperty" type="map">
+						<entry key="limitChooseRows">0</entry>
+						<entry key="dialogOpts">height:300,width:600</entry> 
+				    </property>
+				</object> 
+              </property>    
+			</object> 
+		</object> 
+        <property name="sourceFields" type="list">
+        	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="yearMonth"  displayLable="月份" dataType="string" displayColumn="1" isQueryCondition="1" colWidth="60"/>
+        	<object class="SourceFieldRuleBean" tableAliasName="b" fieldName="interimId" displayLable="劳务派遣" colWidth="100" dataType="int"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"  >  
+            	<property name="dataSourceSql">select id,sendCompanyName from HR_Interim</property>
+            </object>
+            <object class="SourceFieldRuleBean" tableAliasName="d" fieldName="name" fieldAliasName="parentDeptName" displayLable="部门" dataType="string" colWidth="90" />
+		  	<object class="SourceFieldRuleBean" tableAliasName="c" fieldName="name" fieldAliasName="deptName" displayLable="科室" dataType="string" colWidth="90" />
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="name" fieldAliasName="empName"  displayLable="姓名" dataType="string" isQueryCondition="1" colWidth="60" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="number"  displayLable="工号" dataType="string" isQueryCondition="1" colWidth="70" />  
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rewardFee" displayLable="奖励合计" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="punishFee" displayLable="惩罚合计" dataType="bigDecimal"  colWidth="60"/>
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="damageFee" displayLable="遗失损坏&lt;br / &gt;合计" dataType="bigDecimal"  colWidth="60"/> 
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="wtpwgsFee" displayLable="水电气费" dataType="bigDecimal"  colWidth="60"/>
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="sharedFee" displayLable="公摊费" dataType="bigDecimal"  colWidth="60"/>  		     		    
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rentFee" displayLable="房租费用" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="corpFee" displayLable="公司补贴" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="subsidies" displayLable="职位&lt;br / &gt;住房补贴" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="paidRoomFee" displayLable="实际&lt;br / &gt;承担房费" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0"/>
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="employeeeSerivceReport" type="object"> 
+    <property name="name">项目设置</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">sysCodeService</property>
+	<property name="dataSetId">sysCodeService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="roleServiceTable">
+        <property name="sql"><![CDATA[ from TS_SysCode as a  where codeKind=109 ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"    singleSelect="true"   fitColumns="false"   toolbar="#roleServiceToolbar"> 
+					<property name="customProperty" type="map">
+						<entry key="striped" dataType="boolean">true</entry>
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="roleServiceToolbar"> 
+			  <property name="toolbars" type="list">
+				<object class="ReportToolbar" className="easyui-linkbutton" name="添加" dataOptions="plain:true,iconCls:'icon-add'"  url="/core/sysCodeService/add.do" limitChooseRows="0">
+					<property name="customProperty" type="map">
+					   <entry key="dialogOpts">height:400,width:600</entry>  
+			       </property>
+				</object> 
+				<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"    url="/core/sysCodeService/edit.do"> 
+				     <property name="customProperty" type="map">
+					   <entry key="dialogOpts">height:400,width:600</entry>  
+			       </property>
+					 <property name="recParamTemplate">id=#{id}</property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"    url="/core/sysCodeService/json/delete.do"  targetName="ajax"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+					  <property name="customProperty" type="map">  
+						<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
+			         </property>
+				</object>
+              </property>   
+			</object>
+		</object> 
+        <property name="sourceFields" type="list">  
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="code" displayLable="编号" dataType="string"   />  
+		   <object class="SourceFieldRuleBean" tableName="a"  fieldName="name"  displayLable="名称" dataType="string" isQueryCondition="1"/> 
+		 <object class="SourceFieldRuleBean" tableName="a" fieldName="itemIndex"   displayLable="顺序" dataType="int"  />   
+		 <object class="SourceFieldRuleBean" tableName="a" fieldName="status"    displayLable="状态" dataType="string" isQueryCondition="1" dataSourceKind="1"  valueIsFromDataSource="1" queryControlKind="3"   >
+            <property name="dataSourceSql">select code,name from TS_SysCode where codekind=20</property>
+          </object>
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="description"   displayLable="备注"  />  
+		   <object class="SourceFieldRuleBean" tableName="a"   fieldName="id" displayLable="id" dataType="int" displayColumn="0"/>
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

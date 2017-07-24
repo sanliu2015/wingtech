@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+           xmlns:context="http://www.springframework.org/schema/context"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+           xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+           xsi:schemaLocation="http://www.springframework.org/schema/beans     
+                               http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                               http://www.springframework.org/schema/context
+                               http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                               http://www.springframework.org/schema/aop
+                               http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                               http://www.springframework.org/schema/tx
+                               http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+<!-- Hibernate4 -->
+<!-- shiyongproperties文件保存jdbs以及hibernate的相关变量，在具体配置处使用属性zhi值，必须在Spring配置文件的最前面加载，放在src目录 -->
+
+<!-- 获取数据源的几种方式DriverManagerDataSource、dbcp、c3p0，后两种支持连接池 -->
+<!-- class="org.apache.tomcat.dbcp.dbcp.BasicDataSource" 有连接池作用 -->
+<!-- class="org.springframework.jdbc.datasource.DriverManagerDataSource"无连接池作用 -->
+<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+         <property name="driverClassName" value="${jdbc.driverClassName}" /> 
+         <property name="url" value="${jdbc.url}" /> 
+         <property name="username" value="${jdbc.user}" /> 
+         <property name="password" value="${jdbc.pass}" /> 
+     </bean> 
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName"> 
+		   <value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:sqlserver://localhost:1433;DatabaseName=tomkysoftdb</value>
+        </property>
+        <property name="username">
+            <value>sa</value>
+        </property>
+        <property name="password">
+            <value>tgp</value>
+        </property>
+		<property name="maxActive">
+			<value>100</value>
+		</property>	
+		<property name="maxIdle">
+				<value>100</value>
+		</property>	
+        <property name="maxWait">
+			<value>300000</value>
+		</property>	  
+</bean> -->
+	<bean id="parentDataSource"  
+        class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">  
+        <property name="driverClassName"    value="net.sourceforge.jtds.jdbc.Driver" />  
+        <property name="url" value="jdbc:jtds:sqlserver://localhost:1433/tsdb" />  
+        <property name="username" value="sa" />  
+        <property name="password" value="tgp" />  
+    </bean>  	
+	<!-- 数据源 -->  
+    <bean id="adminDataSource" parent="parentDataSource">   
+	    <property name="url" value="jdbc:jtds:sqlserver://localhost:1433/tsdb" />  
+        <property name="username" value="sa" />  
+        <property name="password" value="tgp" />  
+    </bean>  
+  
+    <!-- 数据源 -->  
+    <bean id="userDataSource" parent="parentDataSource"> 
+	    <property name="url" value="jdbc:jtds:sqlserver://localhost:1433/jcfdb" />  
+        <property name="username" value="sa" />  
+        <property name="password" value="tgp" />  
+    </bean> 
+<!-- 编写spring 配置文件的配置多数源映射关系 -->  
+    <bean id="dataSource" class="test.spring.DynamicDataSource">  
+        <property name="targetDataSources">  
+            <map key-type="java.lang.String">  
+                <entry key="Admin" value-ref="adminDataSource"></entry>  
+                <entry key="User" value-ref="userDataSource"></entry>  
+            </map>  
+        </property>  
+        <property name="defaultTargetDataSource" ref="adminDataSource">  
+        </property>  
+    </bean>  
+  
+    
+<!-- c3p0 有连接池作用，使用properties文件下的属性值，也可以直接填
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <property name="driverClass" value="${jdbc.driverClassName}" />
+    <property name="jdbcUrl" value="${jdbc.url}" />
+    <property name="user" value="${jdbc.user}" />
+    <property name="password" value="${jdbc.pass}" />
+    <property name="minPoolSize" value="2" />
+    <property name="maxPoolSize" value="50" />
+    <property name="initialPoolSize" value="10" />
+    <property name="maxIdleTime" value="60" />
+    <property name="acquireIncrement" value="2" />
+</bean>-->
+
+<!-- 配置sessionFactory，统一管理一个数据库的连接 -->
+<bean id="sessionFactory"
+    class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+	<property name="packagesToScan" value="com.ts.**.bean"/>
+     <!-- <property name="mappingDirectoryLocations">
+		<list> 
+             <value>classpath:../config/hibernate/com</value> 
+		</list>
+    </property>-->
+	<property name="configLocation" value="classpath:/test/resources/hibernate.cfg.xml"/>
+     <!--<property name="hibernateProperties">
+      <props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop> 
+                <prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>  
+				
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop> 
+				<prop key="hibernate.hbm2ddl.auto">update</prop> 
+				<prop key="hibernate.current_session_context_class">thread</prop>
+				<prop key="hibernate.generate_statistics">true</prop>  
+		        <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+				<prop key="hibernate.cache.provider_configuration_file_resource_path">/WEB-INF/config/hibernate/ehcache.xml</prop>
+		
+      </props>
+    </property>-->
+	   <!--<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+		<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
+		<prop key="hibernate.query.factory_class">org.hibernate.hql.ast.ASTQueryTranslatorFactory</prop>-->
+</bean>
+
+<!-- 配置Hibernate事务管理器 -->
+<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionFactory" />
+</bean>
+<tx:advice id="txAdvice" transaction-manager="txManager">  
+	<tx:attributes>  
+		<tx:method name="save*" propagation="REQUIRED" />   
+		<tx:method name="create*" propagation="REQUIRED" />  
+		<tx:method name="insert*" propagation="REQUIRED" />  
+		<tx:method name="update*" propagation="REQUIRED" />  
+		<tx:method name="convert*" propagation="REQUIRED" />  
+		<tx:method name="merge*" propagation="REQUIRED" />  
+		<tx:method name="delete*" propagation="REQUIRED" />  
+		<tx:method name="remove*" propagation="REQUIRED" />  
+		<tx:method name="put*" propagation="REQUIRED" />  
+		<tx:method name="do*" propagation="REQUIRED" />  
+		<tx:method name="execute*" propagation="REQUIRED" />  
+		<!--hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到 -->  
+		<tx:method name="get*" propagation="REQUIRED" read-only="true" />  
+		<tx:method name="add*" propagation="REQUIRED" read-only="true"/>  
+		<tx:method name="edit*" propagation="REQUIRED" read-only="true"/> 
+        <tx:method name="lookup*" propagation="REQUIRED" read-only="true"/>  
+		<tx:method name="view*" propagation="REQUIRED" read-only="true"/>
+		<tx:method name="count*" propagation="REQUIRED" read-only="true" />  
+		<tx:method name="find*" propagation="REQUIRED" read-only="true" />  
+		<tx:method name="list*" propagation="REQUIRED" read-only="true" />  
+		<tx:method name="query*" propagation="REQUIRED" read-only="true" />  
+		<tx:method name="*" read-only="true" />  
+	</tx:attributes>  
+</tx:advice>   
+<aop:config expose-proxy="true">  
+	<!-- 只对业务逻辑层实施事务 -->  
+	<aop:pointcut id="txImplPointcut"   expression="execution(* com.ts..impl.*Service.*(..))" />  
+	<aop:pointcut id="txSerivcePointcut"   expression="execution(* com.ts..service.*Service.*(..))" />  
+	<aop:advisor advice-ref="txAdvice" pointcut-ref="txImplPointcut" />  
+	<aop:advisor advice-ref="txAdvice" pointcut-ref="txSerivcePointcut" />  
+</aop:config> 
+<!-- 配置事务异常封装 -->
+<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate" 
+   p:sessionFactory-ref="sessionFactory"/>
+ <bean id="jdbcTemplate"   class="org.springframework.jdbc.core.JdbcTemplate"  p:dataSource-ref="dataSource"/>
+ <bean id="namedParamJdbcTemplate"  class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+ </bean>
+ <bean id="hibernateService"     class="com.ts.core.db.service.HibernateServiceImpl"  />   
+ <bean id="jdbcService"     class="com.ts.core.db.service.JdbcServiceImpl"  />  
+</beans>

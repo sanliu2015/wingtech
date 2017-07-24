@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <Environment type="object" class="Environment">
+    <property name="imports" type="props">
+      <prop key="Environment">com.ts.core.api.oxml.mapping.service.Environment</prop>
+      <prop key="ReportConfigureBean">com.ts.core.report.bean.ReportConfigureBean</prop>
+      <prop key="SourceTableRuleBean">com.ts.core.report.bean.SourceTableRuleBean</prop>
+      <prop key="TargetTableRuleBean">com.ts.core.report.bean.TargetTableRuleBean</prop>
+      <prop key="SourceFieldRuleBean">com.ts.core.report.bean.SourceFieldRuleBean</prop>
+      <prop key="TargetFieldRuleBean">com.ts.core.report.bean.TargetFieldRuleBean</prop>
+      <prop key="SourceFieldDtlBean">com.ts.core.report.bean.SourceFieldDtlBean</prop>
+      <prop key="InvokeEventConfigure">com.ts.core.report.bean.InvokeEventConfigure</prop>
+	  <prop key="ReportUIContainer">com.ts.core.report.bean.ReportUIContainer</prop>
+	  <prop key="ReportDatagrid">com.ts.core.report.bean.ReportDatagrid</prop>
+	  <prop key="ReportToolbar">com.ts.core.report.bean.ReportToolbar</prop>
+	  <prop key="ToolbarContainer">com.ts.core.report.bean.ToolbarContainer</prop>
+	  <prop key="ReportTable">com.ts.core.report.bean.ReportTable</prop>
+	  <prop key="ReportPagination">com.ts.core.report.bean.ReportPagination</prop>
+	  <prop key="ReportDictionary">com.ts.core.report.bean.ReportDictionary</prop>
+	  <prop key="ReportCssTables">com.ts.core.report.bean.ReportCssTables</prop>
+	  <prop key="WorkFlowConfigure">com.ts.core.report.bean.WorkFlowConfigure</prop>
+    </property>
+  </Environment>
+  <ReportConfigureBean id="taskRemindRule" type="object">
+    <property name="importDataSource">db</property>
+    <property name="name">基础报表模板配置</property>
+    <property name="comments">基础报表模板配置</property> 
+	<property name="dataSetId">baseReportTemplate</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="needTransactioManage">0</property>  
+	<object name="dictionary" type="object"  class="ReportDictionary"  > 
+		<property name="customProperty" type="map"> 
+			<entry key="queryDatasBtn" > 查询</entry>  
+			<entry key="backbtn"  >关闭</entry>  
+			<entry key="blurQuery" >模糊查询</entry> 
+			<entry key="operateButtonWidth" >80</entry>
+	   </property>
+    </object> 
+	<object name="cssTables" type="object"  class="ReportCssTables"  > 
+	   <property name="tdLabelCss">titleLabel</property>
+      <property name="tdInputCss"></property>
+	   <property name="conditionCss" type="map"> 
+			<entry key="border" > 0</entry>  
+			<entry key="cellspacing"  >1</entry>  
+			<entry key="cellpadding" >1</entry>   
+			<entry key="id" >reportQueryConditionTable</entry>
+			<entry key="class" ></entry>
+			<entry key="width" >100%</entry>
+			<!--<entry key="style" >padding: 1px 1px;</entry>-->
+	   </property>
+		<property name="webcomponentCss" type="map"> 
+			<entry key="TextComponent">{"class":"easyui-textbox","style":"width:120px"}</entry>  
+			<entry key="SelectComponent">{"class":"easyui-combobox","style":"width:120px"}</entry> 
+			<entry key="SelectComponents">{"class":"easyui-combobox","style":"width:90px"}</entry> 
+			<entry key="numberbox" > {"class":"easyui-numberbox","style":"width:100px"}</entry> 
+			<entry key="selectNumberbox" > {"class":"easyui-numberbox","style":"width:60px"}</entry> 
+			<entry key="DateComponent" > {"class":"easyui-my97","style":"width:80px"}</entry> 
+	   </property>
+	</object> 
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="baseReportTemplate">
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"  loadMsg="正在处理数据，请稍候！"  nowrap="true" rownumbers="true" singleSelect="true" fitColumns="false" pagination="true"   pageSize="20"> 
+				<property name="customProperty" type="map"> 
+					<entry key="iconCls" ><value>icon-edit</value></entry>  
+					<entry key="pageList" dataType="Array[int]">10,20,30,80,-1</entry>
+			   </property>  
+			</object>  
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="taskRemindRuleToolbar"> 
+			  <property name="toolbars" type="list">
+				<object class="ReportToolbar" className="easyui-linkbutton"   onClick="reportScript.methInvokeEvent(this);"></object> 
+              </property>   
+			</object>
+			<object name="table" type="object"  class="ReportTable"   width="100%" ></object> 
+			<object name="pagination" type="object"  class="ReportPagination"  > 
+				<property name="dataOptions"  > <![CDATA[{buttons:[{
+					iconCls:'icon-excel',
+					text:'导出',
+					html:'<span>eee</span>',
+					handler:function(){
+						reportScript.exportQueryResult(null);
+					}}]}]]></property>
+				<property name="customProperty" type="map"> 
+					<entry key="displayMsg" >当前显示从 [{from}] 到 [{to}] 共[{total}]条记录</entry>  
+					<entry key="beforePageText">第</entry>  
+					<entry key="afterPageText" >页，共计{pages}页</entry>   
+			   </property> 
+			</object> 
+		</object>  
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

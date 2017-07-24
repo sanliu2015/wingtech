@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="departmentServiceReport" type="object"> 
+    <property name="name">部门树结构</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">departmentService</property>
+	<property name="dataSetId">departmentService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="employeeeSerivceTable">
+        <property name="sql"><![CDATA[ from HR_Department as a  ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"    reportType="combotree"  /> 
+		</object> 
+        <property name="sourceFields" type="list"> 
+         <object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="name" fieldAliasName="text"  displayLable="部门名称" dataType="string" isQueryCondition="1"  displayColumn="1"   queryCondtiOrder="1" scopeType="treeField"></object> 
+		 <object class="SourceFieldRuleBean" tableAliasName="a"   fieldName="orgId" displayLable="orgId" dataType="int"   displayColumn="0" sortType="0" />
+		  <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="itemIndex" displayLable="顺序" dataType="int" sortType="0"  />
+		  <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="parentId" displayLable="parentId" dataType="int" displayColumn="0" scopeType="parentId"/>  
+		   <object class="SourceFieldRuleBean" tableAliasName="a"   fieldName="id" displayLable="id" dataType="int" scopeType="idField" displayColumn="0"  />
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

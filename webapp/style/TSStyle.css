@@ -1,0 +1,104 @@
+label{ font-weight:bold}
+.titleLabel{ font-weight:bold}
+.baseForm-table tr{height:35px;}
+.tablestyle{
+	border: 1px solid #9CB6B6;	
+	border-collapse:collapse;
+	width: 1105px;
+}
+.tablestyle th{
+	background:#E4E4E4;
+	color: #797268; 
+	height: 30px;
+	text-align: center;
+}
+.tablestyle td{
+	padding: 6px 6px 6px 6px;
+   
+}
+.tablestyle tr.haveborder td{
+	border: 1px solid #9CB6B6; 
+	padding: 1px 1px 1px 1px;			   
+}
+.tablestyle td.title { 
+	background:#6FC; 
+	color: #797268;
+	font-size: 12px;
+	text-align: center;
+	font-weight: bold;
+}
+.tablestyle td.alt { 
+	background:#F0F0F0; 
+	color: #797268;
+	font-size: 12px;
+	text-align: center;
+	font-weight: bold;
+}
+.tablestyle td.head { 
+	color: #797268;
+	font-size: 15px;
+	text-align: center;
+	font-weight: bold;
+}
+.tablestyle .footstyle { 
+	background: #F5FAFA; 
+	color: #797268; 
+	text-align: center;
+}
+.tablestyle tr td input[type="text"].text{
+	border:1px solid gray;
+	background: rgba(245, 245, 245, 0.39);
+	border-radius: 7px;
+	height: 20px;
+}
+.linkContainer{
+	 
+}
+.linkContainer a:visited {
+	color: #092978;
+	font-family: "Arial", "Helvetica", "sans-serif"; 
+	text-decoration: none;
+}
+.linkContainer a:hover {
+	color: #ff0000;
+	border: #C2DAFE;
+	font-family: "Arial", "Helvetica", "sans-serif"; 
+	text-decoration: none;
+
+}
+.linkContainer a:link {
+	color: #092978;
+	font-family: "Arial", "Helvetica", "sans-serif"; 
+	text-decoration: none;
+}
+.inputUnderLine {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #000000;
+	border-right-color: #000000;
+	border-bottom-color:#000000;
+	border-left-color: #000000;
+	border-bottom-width: 1px;	
+	text-align: left;	
+}
+.badge {
+display: inline-block;
+min-width: 10px;
+padding: 3px 7px;
+font-size: 12px;
+font-weight: bold;
+line-height: 1;
+color: #ffffff;
+text-align: center;
+white-space: nowrap;
+vertical-align: baseline;
+background-color:red;
+border-radius: 10px;
+}
+
+.billTable{ border: 2px #000 solid ;border-collapse: collapse; }
+.billTable td{ border:1px   #000 solid; height:30px}
+.paymentSpan{width:180px;display:inline-block;  }
+ .billThinBorderTable{ border: 1px #000 solid ;border-collapse: collapse; }

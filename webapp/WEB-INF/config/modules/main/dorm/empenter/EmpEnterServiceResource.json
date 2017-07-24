@@ -1,0 +1,6 @@
+{
+	"appKey": "empEnterService",
+	"appName": "员工入厂登记",
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "EmpEnter"
+}

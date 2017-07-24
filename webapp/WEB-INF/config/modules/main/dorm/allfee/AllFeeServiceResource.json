@@ -1,0 +1,22 @@
+{
+	"appKey": "allFeeService",
+	"appName": "所有费用汇总",
+	"attributes": 
+	{
+		"generateAllFeeSp": "allFee_generateAllFee(?)",
+		"deleteAllFeeSp": "allFee_deleteAllFee(?)",
+		"exportSql":"select a.id,c.name,c.number,d.name depName,e.name parentDepName,f.name jobName,g.name orgName,h.name labourCorName,
+a.wtpwgsFee,a.sharedFee,a.paidRoomFee,a.damageFee,a.rewardFee,a.punishFee,a.wtpwgsFee+a.sharedFee+a.paidRoomFee+a.damageFee-a.rewardFee totalFee
+ from Dorm_AllFee a 
+	inner join HR_Employee c on a.employeeId=c.id 
+	left join HR_Department d on c.deptId=d.id 
+    left join HR_Department e on d.parentId=e.id 
+    left join HR_Position f on c.positionId=f.id 
+	left join HR_Company g on c.orgId=g.id
+	left join HR_Interim h on c.interimId=h.id 
+where a.yearMonth=? 
+order by d.id,h.id,a.id "
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "AllFee"
+}

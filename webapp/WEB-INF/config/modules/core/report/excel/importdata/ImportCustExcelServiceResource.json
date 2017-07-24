@@ -1,0 +1,13 @@
+{
+"appKey":"customerService",
+  "sqlScript":{
+      "sqlList":[
+      				{"keyName":"deptList","sql":"select id,name from HR_Department  ","isHql":"0"}, 
+				{"keyName":"creditLevels","sql":"select code,name from TS_SysCode where codeKind='18' ","isHql":"0"},
+      				{"keyName":"currencys","sql":"select id,name from FM_CurrencySet ","isHql":"0"},
+      				{"keyName":"areaList","sql":"select id,name from CRM_AreaSet ","isHql":"0"},
+				{"keyName":"paymentList","sql":"select id,name from  FM_PaymentType ","isHql":"0"},
+      				{"keyName":"types","sql":"select id,name from CRM_CustType ","isHql":"0"}
+      			]
+  		} 
+}

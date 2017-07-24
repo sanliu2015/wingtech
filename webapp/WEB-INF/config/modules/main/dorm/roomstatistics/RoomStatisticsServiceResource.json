@@ -1,0 +1,23 @@
+{
+	"appKey": "roomStatisticsService",
+	"appName": "房间入住信息",
+	"viewFileSuffix":"RoomStatistics",
+	"sqlScript": {
+		"sqlList": [{
+			"keyName": "companyList",
+			"sql": "select id,name from  HR_Company   ",
+			"isHql": "0"
+		},
+		{
+			"keyName": "whetherList",
+			"sql": "select code,name from  TS_SysCode where codeKind='4' ",
+			"isHql": "0"
+		},
+		{
+			"keyName": "buildingKindList",
+			"sql": "select code,name from  TS_SysCode where codeKind='103' ",
+			"isHql": "0"
+		}]
+	},
+	"formToJsonMethods": "*"
+}

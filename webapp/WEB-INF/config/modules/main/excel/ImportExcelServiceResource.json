@@ -1,0 +1,6 @@
+{
+	"appKey": "importExcelService",
+	"appName": "导入excel",
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "ImportExcel"
+}

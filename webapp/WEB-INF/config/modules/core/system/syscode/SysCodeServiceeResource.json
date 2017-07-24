@@ -1,0 +1,12 @@
+{
+"appKey":"sysCodeService",
+"appName":"代码设置",
+"viewFileSuffix":"SysCode", 
+ "lang":{ 
+        "validate.joinUser":"该角色(${form.bean.name})已被用户引用,不能删除！"
+  },
+  "sqlScript":{
+      "sqlList":[{"keyName":"roleKindList","sql":"select code,name from  TS_SysCode where codeKind='21' ","isHql":"0"}]
+  } , 
+  "formToJsonMethods":"*"
+}

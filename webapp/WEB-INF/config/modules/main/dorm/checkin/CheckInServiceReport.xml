@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="checkInServiceReport" type="object"> 
+    <property name="name">入住信息</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">checkInService</property>
+	<property name="dataSetId">checkInService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="checkInReportTable">
+        <property name="sql">
+        	<![CDATA[
+        		 from Dorm_CheckIn a 
+        		 	inner join HR_Employee b on a.employeeId=b.id 
+        		 	left join HR_Department c on b.deptId=c.id 
+        		 	left join HR_Department d on c.parentId=d.id 
+        		 	left join VM_RoomInfo e on a.roomId=e.id
+        		 	where isnull(a.checkOutFlag,0)=0
+        	]]>
+        </property> 
+		<object name="uiContainer" type="object" class="ReportUIContainer">
+			<object name="datagrid" type="object" class="ReportDatagrid"  pageSize="50" canCheckbox="1" singleSelect="false" toolbar="#checkInServiceToolbar">
+				<property name="customProperty" type="map">
+					<entry key="striped" dataType="boolean">true</entry>
+					<entry key="autoRowHeight" dataType="boolean">false</entry>
+					<entry key="remoteSort" dataType="boolean">false</entry>
+					<entry key="multiSort" dataType="boolean">true</entry>
+					<entry key="ctrlSelect" dataType="boolean">true</entry>
+					<entry key="pageList" dataType="array">50,100,300,500</entry> 
+				</property>
+			</object>
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="checkInServiceToolbar"> 
+				<property name="toolbars" type="list"> 
+				    <object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/checkInService/add.do" limitChooseRows="0"  >
+						<property name="customProperty" type="map">  
+							<entry key="dialogOpts">maximized:true,cache:true</entry>
+				        </property>
+					</object> 
+					<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"  url="/main/checkInService/edit.do" limitChooseRows="1" >
+						 <property name="customProperty" type="map"> 
+							<entry key="limitChooseRows" >1</entry>
+							<entry key="dialogOpts">maximized:true,cache:true</entry>
+				         </property>
+				         <property name="validateExp"><![CDATA[row.auditStatusId!='0']]></property>
+						 <property name="validatePrompt">不符合修改约束条件！</property>
+				         <property name="recParamTemplate">id=#{id}</property>
+					</object> 
+					<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"  url="/main/checkInService/json/delete.do" targetName="ajax">
+					    <property name="customProperty" type="map"> 
+						    <entry key="title">删除</entry>
+							<entry key="limitChooseRows">2</entry> 
+							<entry key="promptStatement">您确认要删除该记录吗？</entry> 
+				         </property>
+				        <property name="recParamTemplate">{id:#{id}}</property>
+					</object>
+					<object class="ReportToolbar" className="easyui-linkbutton" name="退住" dataOptions="plain:true,iconCls:'icon-undo'"  url="/main/checkInService/out.do?appUrl=AddCheckOut" limitChooseRows="1" >
+					    <property name="customProperty" type="map"> 
+							<entry key="dialogOpts">height:400,width:800</entry>
+				         </property>
+				        <property name="recParamTemplate">id=#{id}</property>
+					</object>
+					<object class="ReportToolbar" className="easyui-linkbutton" name="批量退住" dataOptions="plain:true,iconCls:'icon-more'"  url="/main/checkInService/outBatch.do?appUrl=AddCheckOutBatch" limitChooseRows="2" >
+					    <property name="customProperty" type="map"> 
+							<entry key="dialogOpts">maximized:true</entry>
+				         </property>
+				        <property name="recParamTemplate">id=#{id}</property>
+					</object>
+					<object class="ReportToolbar" className="easyui-linkbutton" name="导入" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/checkInService/importExcel.do?appUrl=CheckCheckIn&amp;planNumber=checkinCheck&amp;headNo=2" limitChooseRows="0"  >
+						 <property name="customProperty" type="map">  
+							<entry key="dialogOpts">maximized:true,cache:true</entry>
+				         </property>
+					</object> 
+					<object class="ReportToolbar" className="easyui-linkbutton" name="导出报表" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/checkInService/stream/exportExcel.do" limitChooseRows="0" targetName="frame"> 
+					    <property name="customProperty" type="map">
+							<entry key="limitChooseRows">0</entry>
+							<entry key="dialogOpts">height:300,width:600</entry> 
+					    </property>
+					</object>
+              	</property>   
+			</object>
+		</object> 
+        <property name="sourceFields" type="list"> 
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="inDate" displayLable="入住日期" colWidth="70" dataType="date"  queryCondtiOrder="7" isQueryCondition="1"  displayColumn="1" queryControlKind="1"  />
+	        <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="roomName" displayLable="房间" dataType="string" queryCondtiOrder="1" isQueryCondition="1" colWidth="60"/>
+	        <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="roomNumber" displayLable="房间编号" dataType="string" isQueryCondition="1" colWidth="60"/>
+	        <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="buildingName"  displayLable="楼栋" dataType="string" queryCondtiOrder="2" displayColumn="1" isQueryCondition="1" colWidth="60"/>
+		    <!-- <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="unitName"  displayLable="单元" dataType="string" queryCondtiOrder="3" displayColumn="1" isQueryCondition="1" colWidth="60"/> -->
+		    <!-- <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="floorName"  displayLable="楼层" dataType="string" queryCondtiOrder="4" displayColumn="1" isQueryCondition="1" colWidth="60"/> -->
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="name" fieldAliasName="empName"  displayLable="姓名" dataType="string" queryCondtiOrder="5" isQueryCondition="1" colWidth="60" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="number"  displayLable="工号" dataType="string" queryCondtiOrder="6" isQueryCondition="1" colWidth="70" />  
+	        <object class="SourceFieldRuleBean" tableName="b" fieldName="gender"   displayLable="性别" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"    >
+            	<property name="dataSourceSql">select code,name from TS_SysCode where codekind=27</property>
+            </object>
+		  	<object class="SourceFieldRuleBean" tableAliasName="c" fieldName="name" fieldAliasName="deptName" displayLable="科室" dataType="string" colWidth="90" />
+		    <object class="SourceFieldRuleBean" tableAliasName="d" fieldName="name" fieldAliasName="parentDeptName" displayLable="部门" dataType="string" colWidth="90" />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="keyStatus" displayLable="进门户钥匙" dataType="string" colWidth="70" />  
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="remoterKeep" displayLable="空调遥控器" dataType="string" colWidth="70" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string" colWidth="100" />  
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" />
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="创建时间" dataType="string" colWidth="70"/>
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy"  displayLable="创建人"  dataType="string" colWidth="60" /> 
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0" />
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="employeeId" dataType="int" displayColumn="0" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="roomId" dataType="int" displayColumn="0" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="buildingId" fieldAliasName="buildingId" dataType="int" displayColumn="0" />    
+        </property> 
+      </object>
+    </property>
+  </ReportConfigureBean>
+</dbRuleDefines>

@@ -1,0 +1,19 @@
+{
+"appKey":"dbManagerService",
+"appName":"要初始化的操作", 
+"viewFileSuffix":"DbManager",
+ "codeRules":[{"number":"01","name":"初始化营销账套的订单MRP处理状态表"},
+ {"number":"03","name":"创建统计物料库存存储过程","tableName":"sp_mrp_mtlInvQty.sql"},
+ {"number":"04","name":"创建物料库存详情存储过程","tableName":"sp_mrp_queryMtlInvDetail.sql"},
+ {"number":"05","name":"创建物料占用数存储过程","tableName":"sp_mrp_mtlUsedQty.sql"},
+ {"number":"06","name":"创建单个物料的统计各种数量储存过程","tableName":"sp_mrp_totalMtlQty.sql"},
+ {"number":"07","name":"创建查询未处理发货计划的订单视图","tableName":"v_mrp_queryErpOrder.sql"},
+ {"number":"08","name":"创建生产加工厂视图","tableName":"v_mrp_wipfactory.sql"},
+ {"number":"09","name":"创建生产车间视图","tableName":"v_mrp_Workshop.sql"},
+ {"number":"10","name":"创建花都账套的生成任务单存储过程","tableName":"sp_generateHDErpTask.sql"},
+ {"number":"11","name":"创建河南账套的生成任务单存储过程","tableName":"sp_generateHNErpTask.sql"},
+ {"number":"12","name":"创建花都账套的生成任务单子存储过程","tableName":"sp_generateHDErpSubTask.sql"},
+ {"number":"13","name":"创建河南账套的生成任务单子存储过程","tableName":"sp_generateHNErpSubTask.sql"},
+ ],
+ "formToJsonMethods":"*"
+}

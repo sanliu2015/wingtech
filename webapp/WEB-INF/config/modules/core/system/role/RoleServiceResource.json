@@ -1,0 +1,12 @@
+{
+"appKey":"roleService",
+"appName":"角色信息",
+ "lang":{ 
+        "validate.joinUser":"该角色(${form.bean.name})已被用户引用,不能删除！"
+  },
+  "sqlScript":{
+      "sqlList":[{"keyName":"roleKindList","sql":"select code,name from  TS_SysCode where codeKind='21' ","isHql":"0"}]
+  } ,
+  "codeRules":[{"prefix":"R","dateFormat":"yyyyMM","sequenceNoPrefix":"-","sequenceLen":4,"className":"Role"}],
+  "formToJsonMethods":"editRole"
+}

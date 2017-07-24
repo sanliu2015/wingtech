@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="GBk"?>
+<templates>
+  <template  id="downSelectTree" controlKind="downSelectTree" class="ReportJsCodeTemplate">
+    <property name="jsFileList"  > 
+		<list>
+				<value>/pages/js/Tree.js</value> 
+		</list>
+	 </property> 
+	<property name="commonVariables" type="props"> 
+				<prop key="treeViewControlName">#{fieldAliasName}Treeview</prop>
+				<prop key="treeViewDiv">#{fieldAliasName}TreeviewDiv</prop> 
+				<prop key="ajaxDbTreeView">#{fieldAliasName}AjaxDbTreeView</prop>
+	 </property> 
+	 <property name="jsFileHeadCodeList" > 
+		<list>
+				<value>var #{ajaxDbTreeView}=new AjaxDbTreeView();</value>
+		</list>
+	</property> 
+	<property name="jsFunctionList" type="list"> 
+			<object class="ReportJsCodeFunction" id="createDownSelectTreeView"  > 
+				<property name="code">
+					 <![CDATA[
+						function create#{FieldAliasName}TreeView(){
+							window.#{treeViewControlName}=new TreeView();  
+							#{treeViewControlName}.Name='#{treeViewControlName}'; 
+							#{treeViewControlName}.style.position='absolute'; 					 
+							#{treeViewControlName}.id="#{treeViewDiv}"; 
+							#{treeViewControlName}.OnChange=#{treeViewControlName}OnChange; 
+							document.getElementById('#{treeViewDiv}').style.display="none";
+						}
+					 ]]> 
+				</property> 
+				<property name="functionName">create#{FieldAliasName}TreeView</property>  
+			</object>
+			<object class="ReportJsCodeFunction" id="initTreeViewData"   > 
+				<property name="code">
+					 <![CDATA[
+						function init#{treeViewControlName}Data(){
+							   #{ajaxDbTreeView}.setSql(#{sql});
+							   #{ajaxDbTreeView}.setRootParentIdValue("");
+							   #{ajaxDbTreeView}.setDbTreeViewControl(window.#{treeViewControlName});
+							   #{ajaxDbTreeView}.setCurrentNodeIdFormat("#{nodeIdFormat}");
+							   #{ajaxDbTreeView}.setParentNodeIdFormat("#{parentNodeIdFormat}");
+							   #{ajaxDbTreeView}.setNodeTexFormat("#{nodeTexFormat}");
+							   #{ajaxDbTreeView}.setHasChildNodeFormat("#{hasChildNodeFormat}");
+							   #{ajaxDbTreeView}.exportDbTreeView(document.getElementById('contextPath').value);
+						}
+					 ]]> 
+				</property> 
+				<property name="functionName">init#{treeViewControlName}Data</property>  
+			</object> 
+			<object class="ReportJsCodeFunction" id="treeViewOnChange"  > 
+				<property name="code">
+					 <![CDATA[
+						function #{treeViewControlName}OnChange(TreeView,SelectNode)){
+							  if (SelectNode.finishQuery==false && "#{treeOnChangeSql}"!=""){
+								   #{ajaxDbTreeView}.setSql(#{treeOnChangeSql});
+							 #{ajaxDbTreeView}.setRootParentIdValue(SelectNode.#{treeOnChangeRootParentIdValue});
+								   #{ajaxDbTreeView}.setDbTreeViewControl(window.#{treeViewControlName});
+								   #{ajaxDbTreeView}.setCurrentNodeIdFormat("#{nodeIdFormat}");
+								   #{ajaxDbTreeView}.setParentNodeIdFormat("#{parentNodeIdFormat}");
+								   #{ajaxDbTreeView}.setNodeTexFormat("#{nodeTexFormat}");
+								   #{ajaxDbTreeView}.setHasChildNodeFormat("#{hasChildNodeFormat}");
+								   #{ajaxDbTreeView}.setCurrentQueryNode(SelectNode);
+								   #{ajaxDbTreeView}.exportDbTreeView(document.getElementById('contextPath').value);
+								   SelectNode.finishQuery=true;
+								}
+								#{treeOnChangeFieldToComp}
+						}
+					 ]]> 
+				</property> 
+				<property name="functionName">#{treeViewControlName}OnChange</property> 
+			</object> 
+    </property> 
+	<property name="pageLoadAfterRunJs">
+	    create#{FieldAliasName}TreeView();
+		init#{treeViewControlName}Data();
+	</property> 
+  </template>
+  <template  id="dynamicSelect" controlKind="dynamicSelect" class="ReportJsCodeTemplate">
+    <property name="jsFileList" > 
+		<list> 
+				<value>/pages/js/JsAjax.js</value>
+		</list>
+	 </property>   
+	<property name="jsFunctionList" type="list"> 
+			<object class="ReportJsCodeFunction" id="dynamicSelectRefreshList"  > 
+				<property name="code">
+					 <![CDATA[
+						function #{fieldAliasName}RefreshList(contextPath){  
+							var ajaxSelectListLib=new AjaxSelectListLib(); 					ajaxSelectListLib.setSelectControl(document.getElementById("#{relationFieldAliasName}")); 
+							ajaxSelectListLib.setListKeyAndValueFormat(#{keyAndValue});
+							ajaxSelectListLib.setSql(#{sql});
+							ajaxSelectListLib.changeList(contextPath);							
+						}
+					 ]]> 
+				</property> 
+				<property name="functionName">#{fieldAliasName}RefreshList</property>  
+			</object> 
+    </property> 
+	<property name="pageLoadAfterRunJs">
+	    #{fieldAliasName}RefreshList('#{contextPath}'); 
+	</property> 
+  </template>
+  <template  id="inputDownList" controlKind="inputDownList" class="ReportJsCodeTemplate">
+    <property name="commonVariables" type="props"> 
+				<prop key="downSelectName">#{fieldAliasName}DownSelect</prop> 
+	 </property>     
+	<property name="jsFunctionList" type="list"> 
+			<object class="ReportJsCodeFunction" id="importDataToDownSelectTable"  > 
+				<property name="code">
+					 <![CDATA[
+						function #{fieldAliasName}ImportDataToDownSelectTable(contextPath){  
+							var  downSelect=#{downSelectName}; 
+							downSelect.tableType="radio"; 	 
+							downSelect.setSql(#{sql});	 
+							downSelect.importDataToDownSelectTable(contextPath,[#{tableHead}],[#{compTocolumn}]);							
+						}
+					 ]]> 
+				</property> 
+				<property name="functionName">#{fieldAliasName}ImportDataToDownSelectTable</property>  
+			</object> 
+    </property> 
+	<property name="pageLoadAfterRunJs">
+	    var  #{downSelectName}=new DownSelectTable(); 
+	    #{fieldAliasName}ImportDataToDownSelectTable('#{contextPath}'); 
+	</property> 
+  </template>
+  <template  id="multiCheck" controlKind="multiCheck" class="ReportJsCodeTemplate">
+     <property name="commonVariables" type="props"> 
+				<prop key="downSelectName">#{fieldAliasName}DownSelect</prop> 
+	 </property>   
+	<property name="jsFunctionList" type="list"> 
+			<object class="ReportJsCodeFunction" id="importDataToMultiSelectTable"  > 
+				<property name="code">
+					 <![CDATA[
+						function #{fieldAliasName}ImportDataToMultiSelectTable(contextPath){  
+							var  downSelect=#{downSelectName}; 
+							downSelect.tableType="checkbox"; 	 
+							downSelect.setSql(#{sql});	
+							downSelect.setDbServiceName('#{sourceDbServiceName}');
+							downSelect.importDataToDownSelectTable(contextPath,[#{tableHead}],[#{compTocolumn}]);							
+						}
+					 ]]> 
+				</property> 
+				<property name="functionName">#{fieldAliasName}ImportDataToMultiSelectTable</property>  
+			</object> 
+    </property> 
+	<property name="pageLoadAfterRunJs">
+	     var  #{downSelectName}=new DownSelectTable(); 
+	    #{fieldAliasName}ImportDataToMultiSelectTable('#{contextPath}'); 
+	</property> 
+  </template>
+  <template  id="dialog" controlKind="dialog" class="ReportJsCodeTemplate"> 
+	<property name="jsFunctionList" type="list"> 
+			<object class="ReportJsCodeFunction" id="choseDialogPage"  > 
+				<property name="code">
+					 <![CDATA[ 
+					   function chose#{FieldAliasName}Page(contextPath) {  
+						   var page="/initPublicListInfo.do?next=choseSearchResult&sysQueryModuleId=#{sysQueryModuleId}&initQueryListResult=1&checkbox=true"; 
+						   if ("#{allParameterValue}"!=""){
+							  page=page+"&allParameterValue=\${#{allParameterValue}}";
+						   }
+						   var ref = window.showModalDialog(contextPath+page,window, 'dialogWidth:800px;dialogHeight:550px;dialogTop:scree.height/2-100;dialogLeft:scree.width/2-200;status:no;resizable=yes');	   
+						   if (typeof(ref) !="undefined"){ 
+								#{choseFieldToComp} 
+								return true;
+						   } else {
+							   return false;
+						   }
+					   }
+					 ]]> 
+				</property> 
+				<property name="functionName">chose#{FieldAliasName}Page</property>  
+			</object> 
+    </property>  
+  </template>
+  <template  id="editDialog" controlKind="editDialog" class="ReportJsCodeTemplate">
+    <property name="jsFileList" > 
+		<list> 
+				<value>/pages/js/JsPublicUtils.js</value>
+		</list>
+	 </property>   
+	<property name="jsFunctionList" type="list"> 
+			<object class="ReportJsCodeFunction" id="choseEditDialogPage"  > 
+				<property name="code">
+					 <![CDATA[ 
+					   function chose#{FieldAliasName}Page(contextPath) {  
+						   var page="/initPublicListInfo.do?next=choseSearchResult&sysQueryModuleId=#{sysQueryModuleId}&initQueryListResult=1&checkbox=true"; 
+						   if ("#{allParameterValue}"!=""){
+							  page=page+"&allParameterValue=\\${#{allParameterValue}}";
+						   }
+						   var ref = window.showModalDialog(contextPath+page,window, 'dialogWidth:800px;dialogHeight:550px;dialogTop:scree.height/2-100;dialogLeft:scree.width/2-200;status:no;resizable=yes');	   
+						   if (typeof(ref) !="undefined"){ 
+								#{choseFieldToComp} 
+								return true;
+						   } else {
+							   return false;
+						   }
+					   }
+					 ]]> 
+				</property> 
+				<property name="functionName">chose#{FieldAliasName}Page</property>  
+			</object> 
+    </property>  
+  </template>
+</templates>

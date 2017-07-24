@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="bulletinServiceReport" type="object"> 
+    <property name="name">费用申请管理</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">travelFeeService</property>
+	<property name="dataSetId">travelFeeService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="workFlowConfigures" type="list">  
+		<object name="workFlowConfigure" type="object"  class="WorkFlowConfigure"   > 
+			<property name="processDefinitionKey">paymentRequireProcess2</property> 
+			<property name="title">费用申请单号为${bean.number}</property>
+			<property name="beanDeptValue">${bean.deptId}</property>
+			<property name="beanCompanyValue">${bean.orgId}</property>
+			<property name="entityName">com.ts.main.daily.travelfee.TravelFee</property>
+			<property name="lookupBillUr"><![CDATA[/main/travelFeeService/editTravelFee.do?workFlowFlag=1&appUrl=LookupTravelFee&id=${bean.id}]]></property>
+			<property name="appLookupBillUr"><![CDATA[/app/travelfeeAppService/looktravelfee.do?workFlowFlag=1&id=${bean.id}]]></property>
+			<property name="appReturnUrl"><![CDATA[/pages/app/jsp/oa.jsp]]></property>
+		</object>
+	</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="userServiceTable">
+        <property name="sql"><![CDATA[ from DAILY_TravelFee as a inner join HR_Employee as b on b.id=a.employeeId  
+		        left join HR_Department as c on c.id=a.deptId ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid" reportType="datagrid"  pageSize="20"   fitColumns="false"   toolbar="#calendarServiceToolbar"> 
+					<property name="customProperty" type="map">  
+						<entry key="striped" dataType="boolean">true</entry>
+						<entry key="autoRowHeight" dataType="boolean">false</entry>
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="calendarServiceToolbar"> 
+			  <property name="toolbars" type="list">  
+				 <object class="ReportToolbar"  name="新建" id="add" status="1" dataOptions="plain:true,iconCls:'icon-add'" url="/main/travelFeeService/addTravelFee.do"  >
+				   <property name="customProperty" type="map">
+					<entry key="limitChooseRows">0</entry>
+					<entry key="dialogOpts">maximized:true</entry>
+			       </property>
+				</object>
+				<object class="ReportToolbar"   name="修改"  id="edit"  dataOptions="plain:true,iconCls:'icon-edit'"     url="/main/travelFeeService/editTravelFee.do"  > 
+					 <property name="recParamTemplate">id=#{id}</property>
+					 <property name="customProperty" type="map"> 
+						<entry key="dialogOpts">maximized:true</entry>
+					   </property>
+				</object> 
+				<object class="ReportToolbar"   name="查看"  id="lookup"  dataOptions="plain:true,iconCls:'icon-edit'"     url="/main/travelFeeService/editTravelFee.do?appUrl=LookupTravelFee" position="dblClickRow"   > 
+					 <property name="recParamTemplate">id=#{id}</property>
+					 <property name="customProperty" type="map"> 
+						<entry key="dialogOpts">maximized:true</entry>
+					   </property>
+				</object>
+				<object class="ReportToolbar"   name="打印"  id="print"  dataOptions="plain:true,iconCls:'icon-print'"     url="/main/travelFeeService/printTravelFee.do"  targetName="newPage"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+					 <property name="customProperty" type="map"> 
+						<entry key="dialogOpts">maximized:true</entry>
+					   </property>
+				</object> 
+				<object class="ReportToolbar" className="easyui-linkbutton" id="delete"  name="删除" dataOptions="plain:true,iconCls:'icon-remove'"  url="/main/travelFeeService/json/delete.do" targetName="ajax">
+				    <property name="customProperty" type="map"> 
+						<entry key="limitChooseRows" >1</entry>  
+						<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
+			         </property>
+					 <property name="validateExp"><![CDATA[row.auditStatusId=='0']]></property>
+					     <property name="validatePrompt">已审核不能删除！</property>
+				</object>
+              </property>   
+			</object>
+		</object> 
+		<property name="invokeEventList" type="list"> 
+				<object class="InvokeEventConfigure"  isHql="0" isQuerySql="0" eventType="appendFilterSql">
+					<property name="sql"><![CDATA[  (  a.createrId=#{LOGIN_USER.employeeId} or  a.employeeId=#{LOGIN_USER.employeeId}  
+					 or (',#{LOGIN_USER.positionRoleIds},' like '%,2,%' and  a.deptId in (#{LOGIN_USER.deptIds}) )
+					  or (',#{LOGIN_USER.positionRoleIds},' like '%,3,%'  and  b.orgId in (  
+					  #{LOGIN_USER.companyIds}) ) )
+					]]></property>  
+					<property name="comments">创建人、申请人员、部门角色、公司角色</property>   
+				</object>
+			</property>  
+        <property name="sourceFields" type="list">
+		 <object class="SourceFieldRuleBean" tableName="a" fieldName="number"    displayLable="单据编号" dataType="string"   displayColumn="1" />
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="applyDate" displayLable="申请日期"  dataType="date"  displayColumn="1" isQueryCondition="1" queryControlKind="1"   sortType="1"/> 
+		  <object class="SourceFieldRuleBean" tableName="b" fieldName="name"   fieldAliasName="employeeName"  displayLable="姓名" dataType="string" isQueryCondition="1" displayColumn="1" />
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="applyAmount"   displayLable="申请金额" dataType="double"  displayColumn="1" />  
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="advanceAmount"   displayLable="预支金额" dataType="double"  displayColumn="1" />  
+		<object class="SourceFieldRuleBean" tableName="c" fieldName="name"   fieldAliasName="deptName"  displayLable="部门" dataType="string"  displayColumn="1" /> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="paymentMode"   displayLable="付款方式" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"    >
+            <property name="dataSourceSql">select code,name from TS_SysCode where codekind=103</property>
+          </object>
+		   <object class="SourceFieldRuleBean" tableName="a" fieldName="requestObjectKind"   displayLable="事业部" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"   multipleName="true"  >
+            <property name="dataSourceSql">select code,name from TS_SysCode where codekind=102</property>
+          </object>  
+		   <object class="SourceFieldRuleBean" tableName="a" fieldName="auditStatus"   displayLable="审核状态" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"  isQueryCondition="1"  >
+            <property name="dataSourceSql">select code,name from TS_SysCode where codekind=7</property>
+          </object> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="description"    displayLable="备注" dataType="string"   displayColumn="1" />
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0"/> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="deptId" fieldAliasName="deptIds" displayLable="部门" dataType="int" displayColumn="0" isQueryCondition="1"  queryControlKind="13" /> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="auditStatus" fieldAliasName="auditStatusId" displayLable="审核状态代码" dataType="string" displayColumn="0" />
+        </property> 
+      </object>
+    </property>  
+	<property name="loadAfterScript"><![CDATA[   
+		function loadDeptIdsCombotree( ){
+			$('#deptIds').combotree({
+			 url: tsContextPath +'/core/reportResolver/json/queryCombotree.do?moduleFileName=DepartmentCombotree',
+			 multiple: true,
+			 async:true 
+			});  
+		}
+		loadDeptIdsCombotree();
+	]]></property>
+  </ReportConfigureBean>
+</dbRuleDefines>

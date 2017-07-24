@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+	<ReportConfigureBean id="buildingServiceReport" type="object"> 
+		<property name="name">楼栋信息</property>
+		<property name="orderBy">1</property>
+		<property name="appKey">buildingService</property>
+		<property name="dataSetId">buildingService</property>
+		<property name="sourceDbServiceName">dbService</property>
+		<property name="sourceTableRules" type="list">
+			<object class="SourceTableRuleBean" id="employeeSerivceTable">
+				<property name="sql">
+					<![CDATA[ from DORM_Building a
+        				left join HR_Employee b on b.id=a.principalId ]]>
+				</property> 
+				<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+					<object name="datagrid" type="object"  class="ReportDatagrid"    reportType="treegrid" pageSize="-1" singleSelect="true"  autoRowHeight="false"  fitColumns="false"   toolbar="#buildingServiceToolbar"> 
+						<property name="customProperty" type="map">
+							<entry key="striped" dataType="boolean">true</entry>
+						</property>
+					</object> 
+					<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="buildingServiceToolbar"> 
+						<property name="toolbars" type="list">
+							<object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/buildingService/add.do" limitChooseRows="0">
+								<property name="recParamTemplate">id=#{id}</property>
+								<property name="customProperty" type="map">
+									<entry key="dialogOpts">cache:true,maximized:true</entry>  
+								</property>
+							</object> 
+							<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"   url="/main/buildingService/edit.do"> 
+								<property name="recParamTemplate">id=#{id}</property>
+								<property name="customProperty" type="map">
+									<entry key="dialogOpts">cache:true,maximized:true</entry>  
+								</property>
+							</object>
+							<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"  url="/main/buildingService/json/delete.do"  targetName="ajax"> 
+								<property name="recParamTemplate">id=#{id}</property>
+								<property name="customProperty" type="map">  
+									<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
+								</property>
+							</object>
+							<object class="ReportToolbar" className="easyui-linkbutton" name="导入" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/importExcelService/init.do?appUrl=InitImportExcel&amp;planNumber=building&amp;headNo=2" limitChooseRows="0"  >
+						 		<property name="customProperty" type="map">  
+									<entry key="dialogOpts">maximized:true,cache:true</entry>
+				         		</property>
+							</object> 
+						</property>   
+					</object>
+				</object> 
+				<property name="sourceFields" type="list"> 
+					<object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="name" frozenColumn="1" displayLable="名称" dataType="string" isQueryCondition="1" displayColumn="1" queryCondtiOrder="1" scopeType="treeField" colWidth="130"/>
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="number" displayLable="编号" dataType="string"  colWidth="60" /> 
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="kind" displayLable="属性" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1" colWidth="60"> 
+						<property name="dataSourceSql">select code,name from TS_SysCode where codeKind=103</property>
+					</object>
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="type" displayLable="类型" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1" colWidth="60"> 
+						<property name="dataSourceSql">select code,name from TS_SysCode where codeKind=300</property>
+					</object>
+					<object class="SourceFieldRuleBean" tableName="b" fieldName="name"  fieldAliasName="employeeName" displayLable="负责人"  dataType="string" colWidth="60" />   
+					<object class="SourceFieldRuleBean" tableName="B" fieldName="phone"   displayLable="联系电话" dataType="string" colWidth="80" />  
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="waterFee" displayLable="水费单价" dataType="bigDecimal" colWidth="60" />
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="powerFee" displayLable="电费单价" dataType="bigDecimal" colWidth="60" />
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="gasFee" displayLable="气费单价" dataType="bigDecimal" colWidth="60" />
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="sharedFee" displayLable="公摊费" dataType="bigDecimal" colWidth="60"  />  		    
+					<!-- <object class="SourceFieldRuleBean" tableName="a" fieldName="cleanFee" displayLable="卫生清洗费" dataType="bigDecimal"  colWidth="60" />   -->	     
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="description" displayLable="备注" dataType="string"  colWidth="60"  />
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="createDate" displayLable="创建日期" dataType="string" colWidth="70" />
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="createTime" displayLable="创建时间" dataType="string" colWidth="60" />
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="createdBy" displayLable="创建人" dataType="string" colWidth="60" />  
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="parentId" displayLable="parentId" dataType="int" displayColumn="0" scopeType="parentId"/> 
+					<object class="SourceFieldRuleBean" tableName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0" scopeType="idField"  />
+				</property> 
+			</object>
+		</property> 
+	</ReportConfigureBean>
+</dbRuleDefines>

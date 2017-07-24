@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="wtpwgsServiceReport" type="object"> 
+    <property name="name">水电气费用</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">wtpwgsService</property>
+	<property name="dataSetId">wtpwgsService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="omOrderPlanReportTable">
+        <property name="sql">
+        	<![CDATA[
+        		 from Dorm_Wtpwgs a 
+        		 	inner join VM_RoomInfo b on a.roomId=b.id
+        	]]>
+        </property> 
+		<object name="uiContainer" type="object" class="ReportUIContainer">
+			<object name="datagrid" type="object" class="ReportDatagrid"  pageSize="50" canCheckbox="1" singleSelect="false" toolbar="#wtpwgsServiceToolbar">
+				<property name="customProperty" type="map">
+					<entry key="striped" dataType="boolean">true</entry>
+					<entry key="autoRowHeight" dataType="boolean">false</entry>
+					<entry key="remoteSort" dataType="boolean">false</entry>
+					<entry key="multiSort" dataType="boolean">true</entry>
+					<entry key="ctrlSelect" dataType="boolean">true</entry>
+					<entry key="pageList" dataType="array">50,100,300,500</entry> 
+				</property>
+			</object>
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="wtpwgsServiceToolbar"> 
+				<property name="toolbars" type="list"> 
+				    <object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/wtpwgsService/add.do" limitChooseRows="0"  >
+						<property name="customProperty" type="map">  
+							<entry key="dialogOpts">maximized:true,cache:true</entry>
+				        </property>
+					</object> 
+					<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"  url="/main/wtpwgsService/edit.do" limitChooseRows="1" >
+						 <property name="customProperty" type="map"> 
+							<entry key="limitChooseRows" >1</entry>
+							<entry key="dialogOpts">maximized:true,cache:true</entry>
+				         </property>
+				         <property name="validateExp"><![CDATA[row.auditStatusId!='0']]></property>
+						 <property name="validatePrompt">不符合修改约束条件！</property>
+				         <property name="recParamTemplate">id=#{id}</property>
+					</object> 
+					<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"  url="/main/wtpwgsService/json/delete.do" targetName="ajax">
+					    <property name="customProperty" type="map"> 
+						    <entry key="title">删除</entry>
+							<entry key="limitChooseRows">2</entry> 
+							<entry key="promptStatement">您确认要删除该记录吗？</entry> 
+				         </property>
+				        <property name="recParamTemplate">{id:#{id}}</property>
+					</object>
+					<object class="ReportToolbar" className="easyui-linkbutton" name="导入" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/importExcelService/init.do?appUrl=InitImportExcel&amp;planNumber=wtpwgs&amp;headNo=2" limitChooseRows="0"  >
+						 <property name="customProperty" type="map">  
+							<entry key="dialogOpts">width:800,height:400,cache:true</entry>
+				         </property>
+					</object> 
+              	</property>   
+			</object>
+		</object> 
+        <property name="sourceFields" type="list"> 
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="yearMonth" displayLable="月份" colWidth="70" dataType="string" displayColumn="1" isQueryCondition="1" />
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="roomName" displayLable="房间" dataType="string" colWidth="60" isQueryCondition="1" /> 
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="buildingName" displayLable="楼栋" dataType="string" colWidth="70" isQueryCondition="1" /> 
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="unitName" displayLable="单元" dataType="string" colWidth="60" /> 
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="lastWaterNum"  displayLable="上月用&lt;br / &gt;水抄数" dataType="double" colWidth="60" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="thisWaterNum"  displayLable="本月用&lt;br / &gt;水抄数" dataType="double" colWidth="60" />
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="waterPrice"  displayLable="水费&lt;br / &gt;价格" dataType="double" colWidth="40" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="lastPowerNum"  displayLable="上月用&lt;br / &gt;电抄数" dataType="double" colWidth="60" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="thisPowerNum"  displayLable="本月用&lt;br / &gt;电抄数" dataType="double" colWidth="60" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="powerPrice"  displayLable="电费&lt;br / &gt;价格" dataType="double" colWidth="40" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="lastGasNum"  displayLable="上月燃&lt;br / &gt;气抄数" dataType="double" colWidth="60" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="thisGasNum"  displayLable="本月燃&lt;br / &gt;气抄数" dataType="double" colWidth="60" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="gasPrice"  displayLable="燃气&lt;br / &gt;价格" dataType="double" colWidth="40" />   
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string" colWidth="100" />  
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" defaultCondtionValue="yesterday" />
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="创建时间" dataType="string" colWidth="70"/>
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy"  displayLable="创建人"  dataType="string" colWidth="60" /> 
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0" />  
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="lockFlag" displayLable="lockFlag" dataType="int" displayColumn="0" />  
+        </property> 
+      </object>
+    </property>
+  </ReportConfigureBean>
+</dbRuleDefines>

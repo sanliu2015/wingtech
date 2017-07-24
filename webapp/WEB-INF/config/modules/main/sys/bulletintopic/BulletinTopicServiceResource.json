@@ -1,0 +1,9 @@
+{
+"appKey":"bulletinTopicService",
+"appName":"信息栏目设置",
+  "sqlScript":{
+      "sqlList":[{"keyName":"topicKindList","sql":"select code,name from  TS_SysCode  where codeKind=25","isHql":"0"}
+      ]
+  },
+  "formToJsonMethods":"editBulletinTopic"
+}

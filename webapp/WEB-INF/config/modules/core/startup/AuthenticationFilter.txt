@@ -1,0 +1,2 @@
+{"filterUrl":"/core/userService/login.do,/core/userService/execute/login.do",
+ "loginUrl":"/core/userService/login.do"}

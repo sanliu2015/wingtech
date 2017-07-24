@@ -1,0 +1,11 @@
+{
+"appKey":"subscribeService",
+"appName":"订阅内容管理",
+  "sqlScript":{
+      "sqlList":[{"keyName":"subscribeCodeList","sql":"select code,name from  TS_SysCode  where codeKind=25  and customer1='1' "}, 
+		{"keyName":"bulletinTopiceList","sql":"select id,name from SYS_BulletinTopic  "},
+		{"keyName":"topicKindList","sql":"select code,name from  TS_SysCode  where codeKind=25","isHql":"0"}
+      ]
+  } ,
+  "formToJsonMethods":"*"
+}

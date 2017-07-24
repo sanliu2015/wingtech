@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="KnowledgeTypeSerivceReport" type="object"> 
+    <property name="name">知识库类别信息</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">KnowledgeTypeSerivce</property>
+	<property name="dataSetId">KnowledgeTypeSerivce</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="employeeeSerivceTable">
+        <property name="sql"><![CDATA[ from SYS_KnowledgeType as a]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"    reportType="treegrid" pageSize="-1" singleSelect="true"   fitColumns="false"   toolbar="#materialTypeServiceToolbar"> 
+					<property name="customProperty" type="map">
+						<entry key="striped" dataType="boolean">true</entry>
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="materialTypeServiceToolbar"> 
+			  <property name="toolbars" type="list">
+				<object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/knowledgeTypeService/addType.do" limitChooseRows="0">
+				<property name="recParamTemplate">id=#{id}</property>
+				</object> 
+				<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"    url="/main/knowledgeTypeService/updateType.do"> 
+					  <property name="recParamTemplate">id=#{id}</property>
+					 <property name="customProperty" type="map"> 
+						<entry key="dialogOpts">maximized:true</entry>
+					  </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"    url="/main/knowledgeTypeService/json/deleteType.do"  targetName="ajax"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+					  <property name="customProperty" type="map"> 
+					    <entry key="title" >删除模块</entry> 
+						<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
+			         </property>
+				</object>
+              </property>   
+			</object>
+		</object> 
+        <property name="sourceFields" type="list"> 
+        	<object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="typeName" frozenColumn="1" displayLable="类型名称" dataType="string" isQueryCondition="1" displayColumn="1"   queryCondtiOrder="1" scopeType="treeField"></object>
+			<object class="SourceFieldRuleBean" tableName="a" fieldName="knowledgeTypeId" displayLable="父ID" dataType="int"   sortType="0"/>  
+        	<object class="SourceFieldRuleBean" tableName="a" fieldName="createDate" displayLable="创建日期" dataType="string"    />
+        	<object class="SourceFieldRuleBean" tableName="a" fieldName="createTime" displayLable="创建时间" dataType="string"  />
+        	<object class="SourceFieldRuleBean" tableName="a" fieldName="createdBy" displayLable="创建人" dataType="string"  />  
+			<object class="SourceFieldRuleBean" tableName="a" fieldName="parentId" displayLable="parentId" dataType="int" displayColumn="0" scopeType="parentId"/> 
+			<object class="SourceFieldRuleBean" tableName="a"   fieldName="id" displayLable="id" dataType="int" scopeType="idField" displayColumn="0"/>
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

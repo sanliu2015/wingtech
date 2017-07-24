@@ -1,0 +1,43 @@
+{
+	"appKey": "truckService",
+	"appName": "货车出入登记",
+	"attributes": 
+	{
+		"deleteSp": "{call truck_delete(?,?)}",
+		"queryObj": "select a.*,b.name empName,b.number empNumber,c.name depName 
+		from Dorm_Truck a
+		inner join HR_Employee b on a.employeeId=b.id 
+		left join HR_Department c on b.deptId=c.id 
+		where a.id=?"
+	},
+	"sqlScript": 
+	{
+		"sqlList": 
+		[
+			{
+				"keyName": "whetherList",
+				"sql": "select code,name from  TS_SysCode where codeKind=4 ",
+				"isHql": "0"
+			},
+			{
+				"keyName": "doorsList",
+				"sql": "select code,name from  TS_SysCode where codeKind=320 ",
+				"isHql": "0"
+			}
+		]
+	},
+	"codeRules":[{
+		"className":"Truck",
+		"dateFormat":"yyyyMM",
+		"filterCondition":"",
+		"numberName":"number",
+		"prefix":"TK",
+		"selected":false,
+		"sequenceLen":4,
+		"sequenceNoPrefix":"",
+		"submitDataSource":"pc",
+		"suffix":""
+	}],
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "Truck"
+}

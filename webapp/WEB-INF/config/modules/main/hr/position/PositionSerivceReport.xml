@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="positionServiceReport" type="object"> 
+    <property name="name">职位信息</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">positionService</property>
+	<property name="dataSetId">positionService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="employeeeSerivceTable">
+        <property name="sql"><![CDATA[ from HR_Position as a   ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid" singleSelect="true"   fitColumns="false"   toolbar="#positionServiceToolbar"> 
+					<property name="customProperty" type="map">
+						<entry key="striped" dataType="boolean">true</entry>
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="positionServiceToolbar"> 
+			  <property name="toolbars" type="list">
+				<object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/positionService/addPosition.do" limitChooseRows="0">
+				<property name="recParamTemplate">id=#{id}</property>
+				<property name="customProperty" type="map">
+					<entry key="dialogOpts">height:400,width:600</entry>  
+			       </property>
+				</object> 
+				<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"    url="/main/positionService/editPosition.do"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+					 <property name="customProperty" type="map">
+					<entry key="dialogOpts">height:400,width:600</entry>  
+			       </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"    url="/main/positionService/json/deletePosition.do"  targetName="ajax"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+					  <property name="customProperty" type="map">  
+						<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
+			         </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="导入" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/importExcelService/init.do?appUrl=InitImportExcel&amp;planNumber=position&amp;headNo=2" limitChooseRows="0"  >
+						 		<property name="customProperty" type="map">  
+									<entry key="dialogOpts">maximized:true,cache:true</entry>
+				         		</property>
+							</object> 
+              </property>   
+			</object>
+		</object> 
+        <property name="sourceFields" type="list"> 
+         <object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="name" frozenColumn="1" displayLable="职位名称" dataType="string" isQueryCondition="1"
+   		  displayColumn="1"   queryCondtiOrder="1" scopeType="treeField"></object>
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="number" displayLable="职位编号" dataType="string"   /> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="itemIndex" displayLable="顺序" dataType="int"  />   
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="createDate" displayLable="创建日期" dataType="string"    />
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="createTime" displayLable="创建时间" dataType="string"  />
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="createdBy" displayLable="创建人" dataType="string"  />  
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="parentId" displayLable="parentId" dataType="int" displayColumn="0" scopeType="parentId"/> 
+		   <object class="SourceFieldRuleBean" tableName="a"   fieldName="id" displayLable="id" dataType="int" scopeType="idField" displayColumn="0"/>
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

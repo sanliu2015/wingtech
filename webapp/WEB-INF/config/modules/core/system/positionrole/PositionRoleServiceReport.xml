@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="positionRoleServiceReport" type="object"> 
+    <property name="name">用户岗位角色</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">positionRoleService</property>
+	<property name="dataSetId">positionRoleService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="positionRoleServiceTable">
+        <property name="sql"><![CDATA[ from TS_PositionRole as a  left join HR_Employee as b on b.id=a.employeeId  ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"     pageSize="-1" singleSelect="true"   fitColumns="false"   toolbar="#positionServiceToolbar"> 
+					<property name="customProperty" type="map">
+						<entry key="striped" dataType="boolean">true</entry>
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="positionRoleServiceToolbar"> 
+			  <property name="toolbars" type="list">
+				<object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/core/positionRoleService/addPositionRole.do" limitChooseRows="0"> 
+				<property name="customProperty" type="map">
+					<entry key="dialogOpts">height:400,width:600</entry>  
+			       </property>
+				</object> 
+				<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"    url="/core/positionRoleService/editPositionRole.do"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+					 <property name="customProperty" type="map">
+					<entry key="dialogOpts">height:400,width:600</entry>  
+			       </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"    url="/core/positionRoleService/json/delete.do"  targetName="ajax"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+					  <property name="customProperty" type="map">  
+						<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
+			         </property>
+				</object>
+              </property>   
+			</object>
+		</object> 
+        <property name="sourceFields" type="list"> 
+         <object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="name" frozenColumn="1" displayLable="名称" dataType="string" isQueryCondition="1"
+   		  displayColumn="1"   queryCondtiOrder="1" ></object>
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="number" displayLable="编号" dataType="string"   />  
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="elExpress" displayLable="变量标识" dataType="string"   />  
+		    <object class="SourceFieldRuleBean" tableName="b" fieldName="name"    fieldAliasName="employeeName"  displayLable="关联人员" dataType="string"  />   
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="createDate" displayLable="创建日期" dataType="string"    />
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="createTime" displayLable="创建时间" dataType="string"  />
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="createdBy" displayLable="创建人" dataType="string"  />   
+		   <object class="SourceFieldRuleBean" tableName="a"   fieldName="id" displayLable="id" dataType="int" scopeType="idField"  />
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

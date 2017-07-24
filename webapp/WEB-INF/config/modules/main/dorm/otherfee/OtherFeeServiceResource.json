@@ -1,0 +1,11 @@
+{
+	"appKey": "otherFeeService",
+	"appName": "房间费用信息",
+	"attributes": 
+	{
+		"generateOtherFeeSp": "otherFee_generateOtherFee(?)",
+		"deleteOtherFeeSp": "otherFee_deleteOtherFee(?)"
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "OtherFee"
+}

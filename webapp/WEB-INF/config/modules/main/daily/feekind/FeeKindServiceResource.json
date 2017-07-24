@@ -1,0 +1,9 @@
+{
+"appKey":"feeKindService",
+"appName":"费用类别",
+"lang":{
+	"validate.existChildNodes":"存在下级费用类别，确认要删除吗？",
+	"validate.relateTravelFee":"出差费用申请单引用了该类别，确认要删除吗？"
+  },
+ "formToJsonMethods":"editFeeKind"
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="roomTotalServiceReport" type="object"> 
+    <property name="name">宿舍房间统计</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">roomTotalService</property>
+	<property name="dataSetId">roomTotalService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+    	<object class="SourceTableRuleBean" id="roomTotalServiceTable">
+        <property name="sql"><![CDATA[ from VM_RoomTotal a 
+          ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"     singleSelect="true"  fitColumns="false"   pageSize="20"  toolbar="#roomTotalServiceToolbar"> 
+					<property name="customProperty" type="map">  
+						<entry key="striped" dataType="boolean">true</entry> 
+			         </property>
+			</object> 
+		<!-- 	<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="roomTotalServiceToolbar"> 
+			  <property name="toolbars" type="list">
+				<object class="ReportToolbar" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/roomTotalService/add.do" limitChooseRows="0"> 
+				    <property name="customProperty" type="map">
+						<entry key="limitChooseRows">0</entry>
+						<entry key="dialogOpts">maximized:true</entry> 
+				    </property>
+				</object> 
+				<object class="ReportToolbar" className="easyui-linkbutton" name="修改" dataOptions="plain:true,iconCls:'icon-edit'"    url="/main/roomTotalService/edit.do"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+						<property name="customProperty" type="map"> 
+							<entry key="limitChooseRows">1</entry>
+							<entry key="dialogOpts">maximized:true</entry> 
+					 </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"    url="/main/roomTotalService/json/delete.do"  targetName="ajax"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+					  <property name="customProperty" type="map">  
+					  <entry key="limitChooseRows">2</entry>
+						<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
+			         </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="启用|停用" dataOptions="plain:true,iconCls:'icon-redo'"    url="/main/roomTotalService/openClose.do?appUrl=OpenCloseRoom"> 
+					 <property name="recParamTemplate">id=#{id}</property>
+						<property name="customProperty" type="map"> 
+							<entry key="limitChooseRows">1</entry>
+							<entry key="dialogOpts">maximized:true</entry> 
+					 </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" name="导入" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/importExcelService/init.do?appUrl=InitImportExcel&amp;planNumber=roomTotal" limitChooseRows="0"  >
+						 <property name="customProperty" type="map">  
+							<entry key="dialogOpts">maximized:true,cache:true</entry>
+				         </property>
+				</object> 
+              </property>    
+			</object>  -->
+		</object> 
+        <property name="sourceFields" type="list">
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="buildingName" displayLable="楼栋名称" dataType="string" isQueryCondition="1" colWidth="90"/>
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="buildingType" displayLable="楼栋属性" dataType="string" isQueryCondition="1" colWidth="90"/>
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="roomSum" displayLable="房间数量" dataType="int"  displayColumn="1"  colWidth="60" /> 
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="bigNumberSum" displayLable="可安排人数" dataType="int" colWidth="70" />
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="inSum" displayLable="现住人数" dataType="int" colWidth="60" />
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="a.bigNumberSum-a.inSum" isCalculateField="1"  fieldAliasName="freeSum" displayLable="未住人数" dataType="int" colWidth="60" />
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="emptyRoomSum" displayLable="空房数" dataType="int" colWidth="60" />
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="cast(CONVERT(decimal(18,2),inSum*100/bigNumberSum) as varchar(100))+'%'" isCalculateField="1"  fieldAliasName="inRate" displayLable="入住率" dataType="int" colWidth="60" />
+        </property> 
+      </object>
+    </property> 
+  </ReportConfigureBean>
+</dbRuleDefines>

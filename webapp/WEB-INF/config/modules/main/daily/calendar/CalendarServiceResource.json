@@ -1,0 +1,17 @@
+{
+"appKey":"calendarService",
+"appName":"日历管理",
+"lang":{
+	"operatePrompt.delete":"删除操作成功！",
+	"operatePrompt.deleteSummary":"删除操作成功！",
+	"operatePrompt.save":"周计划保存操作成功！",
+	"operatePrompt.saveLog":"每周日志保存操作成功！",
+	"operatePrompt.saveSummary":"本周工作总结保存操作成功！",
+	"operatePrompt.saveWeekPlan":"本周工作计划保存操作成功！",
+  },
+  "sqlScript":{
+      "sqlList":[{"keyName":"eventExplainList","sql":"select code,name from   TS_SysCode where codeKind=28"},
+	         {"keyName":"satisfactionList","sql":"select code,name from   TS_SysCode where codeKind=29"}]
+  },
+  "formToJsonMethods":"editCalendar"
+}

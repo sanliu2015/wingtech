@@ -1,0 +1,563 @@
+@import "inputstyle.css";
+a:link {
+	color: #092978;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	text-decoration: none;
+}
+.dibian {
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	font-size: 12px;
+	font-weight: bold;
+	color: #ACACAC;
+	background-image: url(../images/ion_3.gif);
+	background-repeat: repeat;
+	height: 25px;
+}
+.dibian2 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-top-color: #1b5ba5;
+	font-size: 12px;
+	font-weight: bold;
+	color: #ACACAC;
+	border-right-color: #1b5ba5;
+	border-bottom-color: #1b5ba5;
+	border-left-color: #1b5ba5;
+}
+.dibian3 {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: none;
+	border-left-style: none;
+	border-top-color: #1b5ba5;
+	font-size: 12px;
+	font-weight: bold;
+	color: #ACACAC;
+	border-right-color: #1B5BA5;
+}
+
+.dropDownMenuTable{
+	background-image: url(../images/ion_2.gif);
+	height: 25px;
+	font-size: 12px;
+	color: #1b5ba5;
+	border: 1px solid #1B5BA5;
+}
+.dropDownMenuTr{
+	font-size: 12px;
+	color: #CCFFFF;
+	background-image: url(../images/ion_3.gif);
+	height: 25px;
+}
+.bgcolor{
+	background-color: #b7cce7;
+	height:25px;
+}
+.bordercolor{
+	border-color:#B6D3F3;
+}
+.onMouseOverBgc{
+	text-align:left;
+	background-color:#DBEAF5;
+	height:25px;
+}
+.onSelectBgc{
+	text-align:left;
+	background-color:#66FF99;
+	height:25px;
+}
+.box {
+	border: 1px groove #000099;
+	margin: 2px;
+	padding: 2px;
+	background-color: #DBDBDB;
+	left: 1px;
+	top: 1px;
+	right: 1px;
+	bottom: 1px;
+	clip:  rect(2px 2px 2px 2px);
+}
+a:visited {
+	color: #092978;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	text-decoration: none;
+}
+a:hover {
+	color: #ff0000;
+	border: #C2DAFE;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	text-decoration: none;
+
+}
+.ant a:link {
+	color: #092978;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	text-decoration: none;
+	font-weight: bold;
+}
+.ant a:visited {
+	color: #092978;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	text-decoration: none;
+	font-weight: bold;
+}
+.ant a:hover {
+	color: #990000;
+	border: #C2DAFE;
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	text-decoration: none;
+	font-weight: bold;
+
+}
+
+
+td {
+	font-family: "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	overflow:hidden;
+}
+
+body {
+	FONT-SIZE: 12px;
+COLOR:  #660000;
+
+FONT-FAMILY:  "宋体";
+scrollbar-face-color: #A5C7E7;
+scrollbar-highlight-color: #E0E0E0;
+scrollbar-shadow-color: #E0E0E0;
+scrollbar-3dlight-color: #E0E0E0;
+scrollbar-arrow-color:  #E0E0E0;
+scrollbar-track-color: #E0E0E0;
+scrollbar-darkshadow-color: #E0E0E0;
+scrollbar-base-color:#006699;
+	
+	background-attachment: fixed;
+	background-repeat: repeat;
+	background-position: left;
+}
+.buttonstyle {
+	COLOR: #1b5ba5;
+	FONT-SIZE: 9pt;
+	font-family: "宋体";
+	text-decoration: none;
+	background-image: url(../images/images/input.gif);
+	border: 1px solid #609FE6;
+}
+
+.daybuttonstyle {
+width:20px; height:19px;
+background-image:url(../images/calendar4.gif);
+border:0;
+}
+
+.bgwhitecenter {
+	background-color: #FFFFFF;
+	text-align: center;
+}
+.bgcenter {
+	background-color: #DBEAF5;
+	text-align: center;
+	vertical-align: middle;
+	height:25px;
+}
+.bgbian {
+	background-color: #1b5ba5;
+	padding-bottom: 1px;
+	padding-right: 1px;
+
+}
+.txtBox {
+	border: 1px solid #000000;
+	font-size: 12px;
+}
+.errorTxtBox {
+	border: 1px solid #FF0000;
+	font-size: 12px;
+}
+.txtBoxnoborder {
+	background-color: #FFFFFF;
+	border: none;
+	font-size: 12px;
+}
+.mustInputFlag {
+  color:#FF0000;
+  font-size:12px;
+}
+.title {
+	font-size: 13px;
+	font-weight: bold;
+	color: #1b5ba5;
+	background-image: url(../images/ion_2.gif);
+}
+.titlenew {
+	font-size: 13px;
+	font-weight: bold;
+	color: #1b5ba5;
+	background-image: url(../images/ion_2.gif);
+	height: 25px;
+	text-align:center;
+}
+.title3 {
+	font-size: 18px;
+	font-weight: bolder;
+	color: #FF3300;
+	font-family: "宋体";
+}
+.bgwhiteleft{
+	text-align: left;
+	background-color: #FFFFFF;
+	overflow:hidden;
+	height:25px;
+}
+.bgwhiteright{
+	text-align: right;
+	background-color: #FFFFFF;
+
+}
+
+.listlead {
+	color: #476076;
+	font-weight: bold;
+
+}
+.hint_format {
+	color: #0000CC;
+}
+.link_box {
+CURSOR: default; TEXT-ALIGN: left
+}
+.link_head {
+BORDER-RIGHT: 2px inset; BORDER-TOP: 2px inset; BORDER-LEFT: 2px inset; WIDTH: 100%; 
+BORDER-BOTTOM: 2px inset; HEIGHT: 23px
+}
+.link_text {
+PADDING-LEFT: 2px; BACKGROUND: #fff
+}
+.link_arrow0 {
+BORDER-RIGHT: 2px outset; BORDER-TOP: 2px outset; BACKGROUND: url(../images/images/input.gif); 
+FONT: 14px marlett; BORDER-LEFT: 2px outset; WIDTH: 22px;
+ BORDER-BOTTOM: 2px outset;  TEXT-ALIGN: center
+}
+.link_arrow1 {
+BORDER-RIGHT: buttonshadow 1px solid; PADDING-RIGHT: 0px; 
+BORDER-TOP: buttonshadow 1px solid; PADDING-LEFT: 2px; 
+BACKGROUND: buttonface; PADDING-BOTTOM: 0px; FONT: 14px marlett; 
+BORDER-LEFT: buttonshadow 1px solid; WIDTH: 22px; PADDING-TOP: 2px; 
+BORDER-BOTTOM: buttonshadow 1px solid;  TEXT-ALIGN: center
+}
+.link_value { 
+ BORDER-RIGHT:   1px solid; BORDER-TOP: 1px solid; FILTER: alpha(opacity:0) ; 
+VISIBILITY: hidden;  OVERFLOW-X : hidden; OVERFLOW : auto; BORDER-LEFT : 1px solid; 
+BORDER-BOTTOM : 1px solid; POSITION:   absolute 
+}
+.link_record0 {
+BORDER-TOP: #eee 1px solid; PADDING-LEFT: 2px; BACKGROUND: #fff; 
+WIDTH: 100%; COLOR:  #000; HEIGHT: 20px
+}
+.link_record1 {
+BORDER-TOP: #047 1px solid; PADDING-LEFT: 2px; BACKGROUND: #999999; 
+WIDTH: 100%; COLOR:   #fe0; HEIGHT: 20px
+}
+.link_record2 {
+BORDER-TOP: #047 1px solid; PADDING-LEFT: 2px; BACKGROUND: #FFFFCC; 
+WIDTH: 100%; COLOR: #fe0; HEIGHT: 20px
+}
+.link_value1 { height:200px;
+ BORDER-RIGHT:   1px solid; BORDER-TOP: 1px solid; FILTER: alpha(opacity:0) ; 
+VISIBILITY: hidden;  OVERFLOW-X : hidden; OVERFLOW : auto; BORDER-LEFT : 1px solid; 
+BORDER-BOTTOM : 1px solid; POSITION:   absolute 
+}
+.bgblueleft {
+	text-align: left;
+	background-image: url(../images/ion_2.gif);
+	height: 25px;
+}
+.bgblueleft2 {
+	text-align: left;
+	background-image: url(../images/ion_3.gif);
+	height: 25px;
+}
+.welcome {
+	text-align: left;
+	background-image: url(../images/welcome.jpg);
+	height: 122px;
+	background-repeat: no-repeat;
+	width: 680px;
+}
+.welcometext{
+	font-size: 16px;
+	font-weight: bolder;
+	color: #1b5ba5;
+
+}
+.bgbluecenter {
+	background-color: #A0C6E5;
+	text-align: center;
+}
+.divStyle {
+	SCROLLBAR-FACE-COLOR: #A5C7E7; 
+	Z-INDEX: 10; 
+	OVERFLOW: auto; 
+	overflow-y:hidden;
+	WIDTH: 830px; 
+	SCROLLBAR-SHADOW-COLOR: #E0E0E0; 
+	SCROLLBAR-3DLIGHT-COLOR: #E0E0E0; 
+	SCROLLBAR-ARROW-COLOR: #E0E0E0; 
+	SCROLLBAR-TRACK-COLOR: #E0E0E0; 
+	SCROLLBAR-DARKSHADOW-COLOR: #E0E0E0; 
+	height:auto; 
+} 
+.top {
+	background-image: url(../images/images/title.gif);
+	background-repeat: no-repeat;
+	padding-left: 56px;
+	font-weight: bold;
+	color: #476076;
+	line-height: 41px;
+	background-position: left center;
+	vertical-align: middle;
+}
+.ajaxTreeDiv {
+	position:	absolute;
+	width:		250px;
+	border:		1px Solid WindowFrame; 
+	background:	Infobackground; 
+	font:		StatusBar;
+	font:		Status-Bar;
+	padding:	3px;
+	filter:		progid:DXImageTransform.Microsoft.Shadow(color="#777777", Direction=135, Strength=3);
+	z-index:	10000;
+}
+.reportHeadTitle {
+	font-size: large;
+	font-weight: bold;
+}
+.downSelectTableSelDiv{
+position:absolute;z-index:1000;overflow:auto;border-left:1 solid #000000;border-bottom:1 solid #000000;border-right:1 solid #000000;
+SCROLLBAR-FACE-COLOR: #d0dff7; 
+SCROLLBAR-HIGHLIGHT-COLOR: #d0dff7; 
+SCROLLBAR-SHADOW-COLOR: #FFFFFF; 
+SCROLLBAR-3DLIGHT-COLOR: #FFFFFF; 
+SCROLLBAR-ARROW-COLOR: #ffffff; 
+SCROLLBAR-TRACK-COLOR: #ffffff; 
+SCROLLBAR-DARKSHADOW-COLOR: #d0dff7;}
+.downSelectTable{background-color:white;FONT-FAMILY: Courier New, Courier;font-size:12px}
+.downSelectTableTdOut{FONT-FAMILY: Courier New, Courier;font-size:12px;color:#000000;height:15px;border:1 solid #ffffff;}
+.downSelectTableTdOver{FONT-FAMILY: Courier New, Courier;font-size:12px;cursor:default;background-color:#3366cc;border:1 solid #000000;color:#ffffff;height:15px}
+.downSelectTableTextinput_slv{vertical-align:bottom;FONT-FAMILY: Courier New, Courier;font-size:12px;border-left-width:0;border-top-width:0;border-bottom-width:0;border-right:0 solid #000000;vertical-align:middle;height:18px;color:#000000;}
+.downSelectTableButtonDown{	
+	left:0px;
+	font-size:11px;
+	width:16;
+	height:21;
+	color:#2050b0;
+	background-color:#D0DFF7;
+	border:1 solid #9fA3Ce;
+	writing-mode:tb-rl;
+	font-weight:bold;
+}
+.bgbianl {
+	background-color: #4185AE;
+	padding-bottom: 1px;
+	padding-right: 1px;
+}
+.titleCopy {
+
+	font-size: 13px;
+	font-weight: bold;
+	color: #113355;
+	font-family: "宋体";
+	background-image: url(../images/ion_2.gif);
+	height: 25px;
+}
+.bgwhiteleftCopy {
+
+	text-align: left;
+}
+.messagetext {
+
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.wew {
+	border: 1px dashed #999999;
+	padding: 1px;
+	margin: 1px;
+	padding-left: 1px;
+	padding-top: 1px;
+}
+.tableStyle {
+	margin: 2px;
+	padding: 2px;
+	border-top-width: thin;
+	border-bottom-width: thin;
+	border-top-style: outset;
+	border-bottom-style: outset;
+	border-top-color: #666666;
+	border-bottom-color: #666666;
+}
+/* popupMessage*/
+.msgTableStyle{
+	border: 1px solid #000066;
+	width: 190px;
+	height:80px;
+	background-image: url(../images/bian1.gif);
+	background-repeat: repeat;
+}
+.topTrStyle{
+	text-align: right;	
+}
+.topTdStyle{
+	color: #000066;
+	font-size:12;
+	font-weight: bolder;
+	font-family: Arial, Helvetica, sans-serif;
+	background-image: url(../images/tongzhi1.gif);
+	background-repeat: no-repeat;
+	background-color: #4295AA;
+}
+.msgTrStyle{
+	cursor:hand;
+	text-align: left;
+}
+.msgTdStyle{
+	color: #ff0000;
+	font-size: 12px;
+	font-family: "黑体";
+	background-position: right center;
+	text-align: justify;
+	vertical-align: 20%;
+	font-weight: normal;
+	text-decoration: underline;
+}
+.btmTrStyle{
+	text-align:center;
+}
+.btmTdStyle{
+	color: #000000;
+	font-size:10;
+	font-weight: normal;
+
+}
+.hlMsgTdStyle{
+	color: #e7e7e7;
+	font-size: 12px;
+	background-color: #215e9e;
+}
+.btmTdStyleCopy {
+	color: #FFFFFF;
+	font-size:11;
+	font-weight: normal;
+	background-image: url(../images/ion_3.gif);
+	background-repeat: repeat;
+	height: 20px;
+}
+img.imagebutton {
+	border:none;
+	cursor:pointer;
+	dyn-behavior:expression(
+		onmouseover==null?(onmouseover=function(){
+			this.style.backgroundImage = "url("+contextPath+"/images/picture.gif)";
+		}):true,
+		onmouseout==null?(onmouseout=function(){
+			this.style.backgroundImage = "";
+		}):true
+	);
+}
+img.imagebutton:hover {
+	background:url(../images/picture.gif);
+	background-position:center;
+	cursor:pointer;
+}
+a.imageLink {
+	padding-left:4px;
+	padding-right:4px;
+	vertical-align:middle;
+}
+a.imageLink:hover {
+	padding-left:3px;
+	padding-right:3px;
+	padding-bottom:1px;
+	padding-top:1px;
+	border:1px solid #609fe6;
+	background:url(../images/picture1.gif);
+}
+.tableHeadBgcolor {
+	background-image: url(../images/ion_5.gif);
+	height: 20px;
+}
+.txtBoxTR{
+	border: solid #7eadd9;
+	border-width:1px;
+	font-size: 12px;
+	height:20px;
+}
+.txtBox1{
+	border: solid #7eadd9;
+	border-width:0 0 1px 0;
+	font-size: 12px;
+	text-align:center;
+}
+.tableStyle1{
+border-collapse:collapse;
+border:1px solid;
+border-color:#1b5ba5;
+border-spacing:5px;
+background-color:#f6f6f6;
+}
+.biaoti{
+font-weight:bold;
+font-size:14px;
+}
+.tableStyle2{
+border-collapse:collapse;
+border-style:solid;
+border-width:1px;
+border-color:#1b5ba5;
+border-spacing:5px;
+background-color:#f6f6f6;
+}
+.tdyou{
+border-width:0 1px 0 0;
+border-color:#999999;
+border-style:solid;
+}
+.buttonstyleping {
+	BORDER-BOTTOM: #666b52 1px solid;
+	BORDER-LEFT: #666b52 1px solid;
+	BORDER-RIGHT: #666b52 1px solid;
+	BORDER-TOP: #666b53 1px solid;
+	COLOR: #000000;
+	FONT-SIZE: 9pt;
+	font-family: "宋体";
+	text-decoration: none;
+	background-color:#FFFFFF;
+}
+.bgwhiteleftxin{
+height:25px;
+}
+.fieldsetstyle{
+font-size:14px; 
+border:solid 1px; 
+border-color:#1b5ba5; 
+font-weight: bold;
+color:#0033CC
+}
+.selectstyle{
+width:132px;
+}

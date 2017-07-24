@@ -1,0 +1,14 @@
+{
+"appKey":"travelFeeService",
+"appName":"出差费用",
+"lang":{
+	"validate.existChildNodes":"存在下级费用类别，确认要删除吗？",
+	"validate.relateTravelFee":"出差费用申请单引用了该类别，确认要删除吗？"
+  },
+  "codeRules":[{"prefix":"TF","dateFormat":"yyyyMM","sequenceNoPrefix":"-","sequenceLen":4,"className":"TravelFee"}],
+  "beanSql":[{"key":"TravelFee","includeMethods":"addTravelFee,editTravelFee,printTravelFee","sqlList":[{"id":"deptId","name":"deptName","table":"HR_Department"},
+  {"id":"calendarLogId","name":"calendarLogEvent","table":"DAILY_CalendarLog"}]},
+  {"key":"TravelFeeDtl","includeMethods":"printTravelFee","sqlList":[{"id":"feeKindParentId","name":"feeKindParentName","table":"DAILY_FeeKind"},
+  {"id":"feeKindId","name":"feeKindName","table":"DAILY_FeeKind"}]}],
+ "formToJsonMethods":"addTravelFee,editTravelFee,printTravelFee"
+}

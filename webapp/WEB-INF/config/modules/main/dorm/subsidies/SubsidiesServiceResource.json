@@ -1,0 +1,15 @@
+{
+	"appKey": "subsidiesService",
+	"appName": "住房补贴费用",
+	"attributes": 
+	{
+		"doEffectiveSp": "{call subsidies_effect(?,?)}",
+		"findObj": "select a.id,a.employeeId,a.positionId,a.description,a.subsidies,b.name empName,b.number empNumber,e.name posName 
+		from Dorm_Subsidies a
+			left join HR_Employee b on a.employeeId=b.id 
+			left join HR_Position e on a.positionId=e.id 
+			where a.id=? "
+	},
+	"formToJsonMethods": "*",
+	"viewFileSuffix": "Subsidies"
+}

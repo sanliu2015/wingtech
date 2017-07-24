@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="knowledgeServiceReport" type="object"> 
+    <property name="name">知识库信息管理</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">knowledgeService</property>
+	<property name="dataSetId">knowledgeService</property>
+    <property name="sourceDbServiceName">dbService</property>
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="userServiceTable">
+        <property name="sql"><![CDATA[ from SYS_Knowledge as a left join SYS_KnowledgeType as b on b.id=a.knowledgeType   ]]></property>
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid" reportType="datagrid"  pageSize="20"   fitColumns="false"   toolbar="#userServiceToolbar"> 
+					<property name="customProperty" type="map">  
+						<entry key="striped" dataType="boolean">true</entry>
+						<entry key="autoRowHeight" dataType="boolean">false</entry>
+			         </property>
+			</object> 
+			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="userServiceToolbar"> 
+			  <property name="toolbars" type="list">
+				<object class="ReportToolbar" id="add" className="easyui-linkbutton" name="新建" dataOptions="plain:true,iconCls:'icon-add'"  url="/main/mainknowledgeService/saveKnow.do" limitChooseRows="0">
+				</object>
+				<object class="ReportToolbar"   name="修改"  id="edit"  dataOptions="plain:true,iconCls:'icon-edit'" url="/main/mainknowledgeService/updateKnow.do"  > 
+					 <property name="recParamTemplate">id=#{id}</property>
+					 <property name="customProperty" type="map"> 
+						<entry key="dialogOpts">maximized:true</entry>
+					  </property>
+				</object>
+				<object class="ReportToolbar" className="easyui-linkbutton" id="delete"  name="删除" dataOptions="plain:true,iconCls:'icon-remove'"  url="/main/mainknowledgeService/json/delete.do" targetName="ajax">
+				    <property name="customProperty" type="map">
+						<entry key="limitChooseRows" >1</entry> 
+						<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
+			         </property>
+				</object>
+              </property>   
+			</object>
+		</object> 
+		<property name="invokeEventList" type="list"> 
+				<object class="InvokeEventConfigure"  isHql="0" isQuerySql="0" eventType="appendFilterSql" submitDataSource="pc">
+					<property name="sql"><![CDATA[  (  a.createrId=#{LOGIN_USER.employeeId}  
+					 or (',#{LOGIN_USER.positionRoleIds},' like '%,2,%' and  a.departmentId in (#{LOGIN_USER.deptIds}) )
+					  or (',#{LOGIN_USER.positionRoleIds},' like '%,3,%'  and  a.companyId in (#{LOGIN_USER.companyIds}) ) )
+					]]></property>  
+					<property name="comments">创建人、申请人员、部门角色、公司角色</property>   
+				</object>
+				<object class="InvokeEventConfigure"  isHql="0" isQuerySql="0" eventType="appendFilterSql" submitDataSource="mobile">
+					<property name="sql"><![CDATA[  (  a.createrId=#{LOGIN_USER.employeeId}   )
+					]]></property>  
+					<property name="comments">手机端只能看到自己的单据</property>   
+				</object>
+		</property> 
+        <property name="sourceFields" type="list">
+          <object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="name" frozenColumn="1" displayLable="标题" dataType="string" isQueryCondition="1"
+   		  displayColumn="1"   queryCondtiOrder="1"></object> 
+		  <object class="SourceFieldRuleBean" tableName="b" fieldName="typeName" displayLable="类别名称" dataType="string" isQueryCondition="1" displayColumn="1" /> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="receiverType"    displayLable="接收者类型" dataType="string"   dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" displayColumn="1" isQueryCondition="1"  >
+            <property name="dataSourceSql">select code,name from TS_SysCode where codekind=26</property>
+          </object>
+          <object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="size" displayLable="文件大小" dataType="string"  displayColumn="1" /> 
+   		  <object class="SourceFieldRuleBean"  tableAliasName="a" fieldName="readingTime" displayLable="最近阅读时间" dataType="string" displayColumn="1" /> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="createDate" displayLable="创建日期" dataType="string"  displayColumn="1"   />
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="createdBy" displayLable="创建人" dataType="string"  />
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0"/>
+        </property> 
+      </object>
+    </property>  
+  </ReportConfigureBean>
+</dbRuleDefines>

@@ -1,0 +1,9 @@
+{
+"appKey":"workFlowAuditService",
+"appName":"工作流审核",
+  "sqlScript":{
+      "sqlList":[{"keyName":"roleKindList","sql":"select code,name from  TS_SysCode where codeKind='21' ","isHql":"0"},
+      {"keyName":"depts","sql":"select id,name from  HR_Department   ","isHql":"0"}]
+  } ,
+  "formToJsonMethods":"editRole"
+}

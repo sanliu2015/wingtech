@@ -1,0 +1,5 @@
+{
+"appKey":"PositionRoleService",
+"appName":"用户岗位角色信息",
+ "formToJsonMethods":"editPositionRole"
+}

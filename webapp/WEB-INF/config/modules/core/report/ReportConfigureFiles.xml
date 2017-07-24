@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="GBK"?>
+<ReportConfigures>
+  <Environment type="object" class="Environment">
+    <property name="imports" type="props">
+      <prop key="Environment">com.ts.core.api.oxml.mapping.service.Environment</prop>
+      <prop key="ReportConfigureFiles">com.ts.core.report.bean.ReportConfigureFiles</prop>
+      <prop key="ReportConfigureFile">com.ts.core.report.bean.ReportConfigureFile</prop>  
+    </property>
+  </Environment>
+  <ReportConfigureFiles id="systemPortal" type="object"> 
+    <property name="name">系统报表配置</property> 
+    <property name="configureList" type="list">
+	  <object class="ReportConfigureFile">
+        <property name="fileName">/core/report/importdata/ImportDepartment.xml</property>  
+		<property name="name">部门信息</property>
+		<property name="id">ImportDepartment</property> 
+		<property name="orderBy">1</property> 
+		<property name="reportCatalog">excel</property> 
+      </object> 
+	  <object class="ReportConfigureFile">
+        <property name="fileName">/core/report/importdata/ImportHrPosition.xml</property>  
+		<property name="name">职位信息</property>
+		<property name="id">ImportHrPosition</property> 
+		<property name="orderBy">2</property> 
+		<property name="reportCatalog">excel</property> 
+      </object> 
+	  <object class="ReportConfigureFile">
+        <property name="fileName">/core/report/importdata/ImportEmployee.xml</property>  
+		<property name="name">员工信息</property>
+		<property name="id">ImportEmployee</property> 
+		<property name="orderBy">3</property> 
+		<property name="reportCatalog">excel</property> 
+      </object> 
+     <object class="ReportConfigureFile">
+        <property name="fileName">/core/report/importdata/ImportProductSeries.xml</property>  
+		<property name="name">产品系列</property>
+		<property name="id">ImportProductSeries</property> 
+		<property name="orderBy">4</property> 
+		<property name="reportCatalog">excel</property> 
+      </object>  
+	   <object class="ReportConfigureFile">
+        <property name="fileName">/core/report/importdata/ImportSupplier.xml</property>  
+		<property name="name">供应商信息</property>
+		<property name="id">ImportSupplier</property> 
+		<property name="orderBy">5</property> 
+		<property name="reportCatalog">excel</property> 
+      </object> 
+	  <object class="ReportConfigureFile">
+        <property name="fileName">/core/report/importdata/ImportProduct.xml</property>  
+		<property name="name">商品信息</property>
+		<property name="id">ImportProduct</property> 
+		<property name="orderBy">6</property> 
+		<property name="reportCatalog">excel</property> 
+      </object> 
+	  <object class="ReportConfigureFile">
+        <property name="fileName">/core/report/importdata/ImportProductPrice.xml</property>  
+		<property name="name">商品价格</property>
+		<property name="id">ImportProduct</property> 
+		<property name="orderBy">7</property> 
+		<property name="reportCatalog">excel</property> 
+      </object> 
+	  <object class="ReportConfigureFile">
+        <property name="fileName">/core/report/importdata/ImportServiceProject.xml</property>  
+		<property name="name">服务项目</property>
+		<property name="id">ImportProduct</property> 
+		<property name="orderBy">8</property> 
+		<property name="reportCatalog">excel</property> 
+      </object>
+	  <object class="ReportConfigureFile">
+        <property name="fileName">/core/report/importdata/ImportCustomer.xml</property>  
+		<property name="name">会员档案</property>
+		<property name="id">ImportCustomer</property> 
+		<property name="orderBy">9</property> 
+		<property name="reportCatalog">excel</property> 
+      </object>
+    </property>
+  </ReportConfigureFiles>
+</ReportConfigures>

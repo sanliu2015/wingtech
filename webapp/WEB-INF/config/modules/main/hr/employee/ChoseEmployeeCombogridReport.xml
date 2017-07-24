@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="GBK"?>
+<dbRuleDefines>
+  <ReportConfigureBean id="employeeeCombogridSerivceReport" type="object"> 
+    <property name="name">员工信息</property>
+    <property name="orderBy">1</property>
+	<property name="appKey">employeeCombogridSerivce</property>
+	<property name="dataSetId">employeeCombogridSerivce</property> 
+    <property name="sourceTableRules" type="list">
+      <object class="SourceTableRuleBean" id="employeeeCombogridSerivceTable">
+        <property name="sql"><![CDATA[ from HR_Employee as a inner join HR_Company as c on c.id=a.orgId
+		 left  JOIN HR_Department as b on a.deptId=b.id
+		 left join HR_Department as e on e.id=b.parentId
+		 left join HR_Position as d on d.id=a.positionId  ]]></property> 
+		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
+			<object name="datagrid" type="object"  class="ReportDatagrid"   pagination="false"  singleSelect="true"  fitColumns="false"   pageSize="20"  toolbar="#employeeeCombogridSerivceToolbar"> 
+					<property name="customProperty" type="map">  
+						<entry key="striped" dataType="boolean">true</entry> 
+			         </property>
+			</object>  
+		</object> 
+		<property name="invokeEventList" type="list"> 
+				<object class="InvokeEventConfigure"  isHql="0" isQuerySql="0" eventType="appendFilterSql">
+					<property name="sql"><![CDATA[  (   a.id=#{LOGIN_USER.employeeId} 
+					  or (',#{LOGIN_USER.positionRoleIds},' like '%,2,%' and  a.deptId in (#{LOGIN_USER.deptIds}) ) 
+					  or (',#{LOGIN_USER.positionRoleIds},' like '%,6,%' and  a.deptId in (#{LOGIN_USER.deptIds}) ) 
+					  or (',#{LOGIN_USER.positionRoleIds},' like '%,5,%' and  a.deptId in (#{LOGIN_USER.deptIds}) )  
+					  or (',#{LOGIN_USER.positionRoleIds},' like '%,3,%'  and  b.orgId in (#{LOGIN_USER.companyIds}) ) )
+					]]></property>  
+					<property name="comments">创建人、业务员、部门经理、公司角色</property>   
+				</object>
+	    </property>  
+        <property name="sourceFields" type="list">
+         
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="number"   displayLable="员工号" dataType="string"  isQueryCondition="1"/>
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="name"    displayLable="姓名" dataType="string" isQueryCondition="1"/> 
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="gender"   displayLable="性别" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"    >
+            <property name="dataSourceSql">select code,name from TS_SysCode where codekind=27</property>
+          </object>
+		  <object class="SourceFieldRuleBean" tableName="d" fieldName="name" fieldAliasName="positionName" displayLable="职位" dataType="string" displayColumn="1"/>  
+		  <object class="SourceFieldRuleBean" tableName="e" fieldName="name" fieldAliasName="departmentname" displayLable="部门名称" dataType="string" displayColumn="1"/>
+		  <object class="SourceFieldRuleBean" tableName="b" fieldName="name" fieldAliasName="deptName" displayLable="科室" dataType="string" displayColumn="1"/>
+          <object class="SourceFieldRuleBean" tableName="a" fieldName="deptId" displayLable="部门id" dataType="int" displayColumn="0"   />  
+		  <object class="SourceFieldRuleBean" tableName="a" fieldName="orgId" displayLable="公司id" dataType="int" displayColumn="0"   />   
+		    <object class="SourceFieldRuleBean" tableName="a"   fieldName="id" displayLable="id" dataType="int" displayColumn="0"  />
+			<object class="SourceFieldRuleBean" tableName="a"   fieldName="employeeCategory"  fieldAliasName="employeeCategoryCode" displayLable="分类代码"  displayColumn="0"  />
+        </property> 
+      </object>
+    </property>  
+  </ReportConfigureBean>
+</dbRuleDefines>
