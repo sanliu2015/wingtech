@@ -41,10 +41,9 @@ public class MeetingReserveServiceImpl implements IAppService {
 			}
 		}
 		
-		opb.setError(error.substring(1) + "时间段有预定信息，请重新选择其他时间！");
-		
-		
-		
+		if (error.length() > 0) {
+			opb.setError(error.substring(1) + "时间段有预定信息，请重新选择其他时间！");
+		}
 		
 		return opb;
 	}

@@ -58,7 +58,7 @@
 		  	<object class="SourceFieldRuleBean" tableAliasName="c" fieldName="name" fieldAliasName="deptName" displayLable="科室" dataType="string" colWidth="90" />
 		    <object class="SourceFieldRuleBean" tableAliasName="d" fieldName="name" fieldAliasName="parentDeptName" displayLable="部门" dataType="string" colWidth="90" />
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string" colWidth="100" />  
-	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="outDate" displayLable="离职日期" dataType="string" colWidth="70" dataType="date"  queryCondtiOrder="8" isQueryCondition="1"  displayColumn="1" queryControlKind="1"/>  
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="outDate" displayLable="离职日期" colWidth="70" dataType="date"  queryCondtiOrder="8" isQueryCondition="1"  displayColumn="1" queryControlKind="1"/>  
 	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="leaveReason" displayLable="离职原因" dataType="string" colWidth="100" />  
 			
 			<!-- <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" />
