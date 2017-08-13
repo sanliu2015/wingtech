@@ -52,8 +52,9 @@
 		</object> 
         <property name="sourceFields" type="list"> 
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="inDate" displayLable="入住日期" colWidth="70" dataType="date"  queryCondtiOrder="7" isQueryCondition="1"  displayColumn="1" queryControlKind="1"  />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="outDate" displayLable="退宿日期" colWidth="70" dataType="date"  queryCondtiOrder="7" isQueryCondition="1"  displayColumn="1" queryControlKind="1"  />
 	        <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="roomName" displayLable="房间" dataType="string" queryCondtiOrder="1" isQueryCondition="1" colWidth="60"/>
-	        <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="roomNumber" displayLable="房间编号" dataType="string" isQueryCondition="1" colWidth="60"/>
+	        <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="roomNumber" displayLable="房间编号" dataType="string" queryCondtiOrder="2" isQueryCondition="1" colWidth="60"/>
 	        <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="buildingName"  displayLable="楼栋" dataType="string" queryCondtiOrder="2" displayColumn="1" isQueryCondition="1" colWidth="60"/>
 		    <!-- <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="unitName"  displayLable="单元" dataType="string" queryCondtiOrder="3" displayColumn="1" isQueryCondition="1" colWidth="60"/> -->
 		    <!-- <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="floorName"  displayLable="楼层" dataType="string" queryCondtiOrder="4" displayColumn="1" isQueryCondition="1" colWidth="60"/> -->
