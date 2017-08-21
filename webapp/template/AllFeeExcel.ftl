@@ -103,7 +103,7 @@
     <Cell ss:StyleID="s20"><Data ss:Type="String">${dtl.number!''}</Data></Cell>
     <Cell ss:StyleID="s20"><Data ss:Type="String">${dtl.labourCorName!''}</Data></Cell>
     <Cell ss:StyleID="s20"><Data ss:Type="Number">${dtl.wtpwgsFee!''}</Data></Cell>
-    <Cell ss:StyleID="s20"><Data ss:Type="Number">${dtl.shareFee!''}</Data></Cell>
+    <Cell ss:StyleID="s20"><Data ss:Type="Number">${dtl.sharedFee!''}</Data></Cell>
     <Cell ss:StyleID="s20"><Data ss:Type="Number">${dtl.paidRoomFee!''}</Data></Cell>
     <Cell ss:StyleID="s20"><Data ss:Type="Number">${dtl.damageFee!''}</Data></Cell>
     <Cell ss:StyleID="s20"><Data ss:Type="Number">${dtl.rewardFee!''}</Data></Cell>
