@@ -40,6 +40,7 @@
 	   	<td style="width:30%;line-height:100px;" id="number"></td>
 	   	<td style="width:300px;text-align:center;vertical-align:middle;" rowspan="3">
 	   		<img height="280px" width="200px;" id="photo" src="${contextPath}/upload/employee/001.jpg" alt="暂无相片"/>
+	   		<span id="idCard" style="color:red"></span>
 	   	</td>
       </tr>
 	  <tr style="height:100px;">
@@ -62,6 +63,8 @@
 <script type="text/javascript">
 	var tsContextPath = "${contextPath}";
 	$(function(){
+		$("#icNo")[0].focus();
+		
 		document.onkeydown = function(event){
 			var e = event || window.event || arguments.callee.caller.arguments[0];
 			if(e && e.keyCode==13){ // enter 键
@@ -82,7 +85,8 @@
 								$("#posName").text(result.posName);
 								$("#depName").text(result.depName);
 								$("#parentDepName").text(result.parentDepName);
-								$("#photo").attr("src", tsContextPath + "/upload/employee/" + result.idCard + ".jpg");	
+								$("#photo").attr("src", tsContextPath + "/upload/employee/" + result.idCard + ".jpg");
+								$("#idCard").text(result.idCard);
 							} else {
 								$("#errorMsg").text(result.errorMsg);
 								$('#errorAudio')[0].play();
@@ -94,6 +98,7 @@
 								$("#parentDepName").text("");
 								$("#photo").attr("src", "");
 							}
+							
 						},
 						error: function(XmlHttpRequest, textStatus, errorThrown) {  
 							var str=XmlHttpRequest.responseText; 
@@ -111,7 +116,7 @@
 						}
 					});
 				}
-			
+				$("#icNo").select();
 				return false;
 			}
 		}

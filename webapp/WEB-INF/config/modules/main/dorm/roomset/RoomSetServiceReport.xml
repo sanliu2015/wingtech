@@ -50,7 +50,8 @@
 		</object> 
         <property name="sourceFields" type="list"> 
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="endDay" displayLable="每月截止日" colWidth="70" dataType="string" displayColumn="1" isQueryCondition="1" />
-	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string" colWidth="100" />  
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="sharedFee" displayLable="公摊费" dataType="bigDecimal"  displayColumn="1"  colWidth="70" /> 
+	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string" colWidth="150" />  
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" />
           	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="创建时间" dataType="string" colWidth="70"/>
           	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy"  displayLable="创建人"  dataType="string" colWidth="60" /> 

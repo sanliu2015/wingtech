@@ -18,9 +18,13 @@
         	<tr>
           		<td  nowrap><label   for="bean.endDay">每月截止日<span style="color:red">*</span></label></td>
 				<td><input name="bean.endDay" id="bean.endDay" class="easyui-numberspinner" style="height:30px;width:130px;" value="25" data-options="max:28,formatter:myFormamter"/></td>
-				<td nowrap><label   for="bean.description">备注</label></td>
-			    <td><input class="easyui-textbox" name="bean.description" style="height:30px;width:130px;"></td>
+				<td nowrap><label   for="bean.sharedFee">公摊费</label></td>
+			   	<td  ><input class="easyui-numberbox" name="bean.sharedFee"  id="bean.sharedFee" data-options="min:0,precision:2"  style="width:150px;height:30px"></td>
 		   	</tr >
+		   	<tr>
+		   		<td nowrap><label   for="bean.description">备注</label></td>
+			    <td colspan="3"><input class="easyui-textbox" name="bean.description" style="height:30px;width:300px;"></td>
+		   	</tr>
 		</table>
 	</div> 
 	<div id="pagePanel" class="easyui-panel dialog-button" width="100%" style="text-align:center;padding:5px;">

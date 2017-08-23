@@ -6,7 +6,7 @@
 		"generateAllFeeSp": "allFee_generateAllFee(?)",
 		"deleteAllFeeSp": "allFee_deleteAllFee(?)",
 		"exportSql":"select a.id,c.name,c.number,d.name depName,e.name parentDepName,f.name jobName,g.name orgName,h.name labourCorName,
-a.wtpwgsFee,a.sharedFee,a.paidRoomFee,a.damageFee,a.rewardFee,a.punishFee,isnull(a.wtpwgsFee,0)+isnull(a.sharedFee,0)+isnull(a.paidRoomFee,0)+isnull(a.damageFee,0)-isnull(a.rewardFee,0) totalFee
+a.wtpwgsFee,a.sharedFee,a.paidRoomFee,a.damageFee,a.rewardFee,a.punishFee,isnull(a.paidRoomFee,0)+isnull(a.damageFee,0)-isnull(a.rewardFee,0) totalFee
  from Dorm_AllFee a 
 	inner join HR_Employee c on a.employeeId=c.id 
 	left join HR_Department d on c.deptId=d.id 
