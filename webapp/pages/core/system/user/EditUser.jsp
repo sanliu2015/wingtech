@@ -11,6 +11,7 @@
 <body id="${appReqeustContext.appKey}Body"   >  
  <form action="${contextPath}/core/${appReqeustContext.appService}/json/update.do" id="${appReqeustContext.appKey}Form" name="${appReqeustContext.appKey}Form" method="post">  
    <input name="bean.id" type="hidden"  /> 
+   <input name="bean.loginKind" type="hidden"  /> 
    <div id="${appReqeustContext.appKey}FormJson" style="display:none">${formJson}</div> 
 <div style="padding:10px;padding-left:20%">
 		<table cellpadding="0" cellspacing="0" class="baseForm-table">
@@ -29,11 +30,11 @@
 				<td><input name="bean.password" id="bean.password" class="easyui-textbox"   type="password"  style="width:180px;height:30px"  /></input> 
                 <label   for="bean.confirmPassword">确认密码*</label><input name="bean.confirmPassword" id="bean.confirmPassword" class="easyui-textbox"   type="password"  style="width:180px;height:30px"  /></input></td>
            </tr> 
-           <tr>
+           <!-- <tr>
 				<td nowrap><label  for="bean.loginKind">用户对象</label></td>
 				<td><input type="radio" name="bean.loginKind"     value="0"/>员工
                 <input type="radio" name="bean.loginKind"  value="1"/>客户</td> 
-			</tr>
+			</tr> -->
             <tr  id="loginKindEmployeeId" >
                 <td  nowrap><label   for="bean.employeeName">员工姓名</label></td>
 				<td><input name="bean.employeeName"   id="bean.employeeName"  class="easyui-textbox" readonly  style="width:125px;height:30px"></input><a href="javascript:void(0)" class="easyui-linkbutton" plain=true iconCls="icon-search" onClick="return userScript.chooseEmployee(this);">选择</a> <label id="number-label" for="bean.departmentName">部门&nbsp;&nbsp;</label><input name="bean.departmentName"  id="bean.departmentName"  class="easyui-textbox"   readonly style="width:180px;height:30px"></input> <input name="bean.employeeId" id="bean.employeeId" type="hidden"  /></td>

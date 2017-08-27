@@ -251,7 +251,7 @@ public class ExecuteTask {
 					for (int i=0,len=list.size(); i<len; i++) {
 						params[i] = list.get(i);
 					}
-					qrLocal.batch(LocalDBUtil.getConnection(), "insert into Im_employee(name,number,sex,depNo,jobNo,idNo,labourNo,status,outDate,phone,leaveReason) values(?,?,?,?,?,?,?,?,?,?,?)", params);
+					qrLocal.batch(LocalDBUtil.getConnection(), "insert into Im_employee(name,number,sex,depNo,jobNo,idNo,labourNo,status,outDate,phone,leaveReason,inDate) values(?,?,?,?,?,?,?,?,?,?,?,?)", params);
 					qrLocal.update(LocalDBUtil.getConnection(), "exec ipexl_employee_after");
 					LocalDBUtil.commit();
 				} catch(Exception e) {

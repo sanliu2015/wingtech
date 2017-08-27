@@ -276,5 +276,5 @@ public class RepairApply extends CommonBean {
 		this.notifyFlag = notifyFlag;
 	}
 
-	
+
 }

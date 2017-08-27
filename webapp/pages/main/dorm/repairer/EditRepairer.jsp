@@ -27,9 +27,7 @@
 				</td>
 				<td  nowrap><label   for="bean.buildingId">负责楼栋</label></td>
 				<td>
-					<select name="bean.buildingId"  id="bean.buildingId" class="easyui-combobox" data-options="editable:false" style="width:150px;height:30px">   
-                		<ts:forEach name='buildingIdList' insertEmpty='1' value="" />
-					</select>
+					<input id="bean.buildingId" name="bean.buildingId" />
 				</td>
 	      	</tr>  
 	      	<tr>
@@ -58,6 +56,12 @@
             valueField:'value',    
             textFiled:'text',
             data:<ts:forEach name="repairTypeList" toJson="1"/>
+        });
+		$("#bean\\.buildingId").combobox({
+            multiple:true,
+            valueField:'value',    
+            textFiled:'text',
+            data:<ts:forEach name="buildingIdList" toJson="1"/>
         });
 	} 
 </script>      

@@ -23,11 +23,11 @@ public class Repairer extends CommonBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Integer id;
 	
-	@Column(length = 10)
+	@Column(length = 500)
 	private String repairType;
 	
-	@Column
-	private Integer buildingId;
+	@Column(length = 500)
+	private String buildingId;
 	
 	@Column(length = 50)
 	private String name;
@@ -52,11 +52,11 @@ public class Repairer extends CommonBean {
 		this.repairType = repairType;
 	}
 
-	public Integer getBuildingId() {
+	public String getBuildingId() {
 		return buildingId;
 	}
 
-	public void setBuildingId(Integer buildingId) {
+	public void setBuildingId(String buildingId) {
 		this.buildingId = buildingId;
 	}
 
