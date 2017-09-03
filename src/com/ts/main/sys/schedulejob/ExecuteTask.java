@@ -47,6 +47,7 @@ public class ExecuteTask {
 	private static String queryCop = "";	// 公司
 	private static String queryLab = "";	// 劳务
 	private static String queryEmp = "";
+	private static String queryTempEmp = "";
 	private static String queryKq = "select a.badgenumber,b.cardno from userinfo a inner join personnel_issuecard b on a.userid=b.UserID_id";		// 考勤查询
 	private static String queryPhoto = "";
 	static {
@@ -60,6 +61,7 @@ public class ExecuteTask {
 			queryCop = prop.getProperty("queryCop").trim();
 			queryLab = prop.getProperty("queryLab").trim();
 			queryEmp = prop.getProperty("queryEmp").trim();
+			queryTempEmp = prop.getProperty("queryTempEmp").trim();
 			queryPhoto = prop.getProperty("queryPhoto").trim();
 		} catch (Exception e) {
             e.printStackTrace();
@@ -243,6 +245,7 @@ public class ExecuteTask {
 		try {
 			List<Object[]> list = (List<Object[]>) qr.query(HrorcDbUtil.getConnection(), queryEmp, new ArrayListHandler());
 			if (list != null && list.size() > 0) {
+				System.out.println(list.size());
 				QueryRunner qrLocal = new QueryRunner(LocalDBUtil.getDataSource());
 				try {
 					LocalDBUtil.startTransaction();
@@ -265,6 +268,47 @@ public class ExecuteTask {
 		    	} finally { 
 		    		LocalDBUtil.close();
 		    	}
+			} else {
+				System.out.println("没查到结果");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 临时人员
+	public void syncTempEmp(Integer jobId) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String occurTime = df.format(new Date());
+		QueryRunner qr = new QueryRunner(HrorcDbUtil.getDataSource());
+		try {
+			List<Object[]> list = (List<Object[]>) qr.query(HrorcDbUtil.getConnection(), queryTempEmp, new ArrayListHandler());
+			if (list != null && list.size() > 0) {
+				System.out.println(list.size());
+				QueryRunner qrLocal = new QueryRunner(LocalDBUtil.getDataSource());
+				try {
+					LocalDBUtil.startTransaction();
+					qrLocal.update(LocalDBUtil.getConnection(), "truncate table Im_tempEmployee");
+					Object[][] params = new Object[list.size()][];
+					for (int i=0,len=list.size(); i<len; i++) {
+						params[i] = list.get(i);
+					}
+					qrLocal.batch(LocalDBUtil.getConnection(), "insert into Im_tempEmployee(name,number,sex,depNo,jobNo,idNo,labourNo,inDate) values(?,?,?,?,?,?,?,?)", params);
+					qrLocal.update(LocalDBUtil.getConnection(), "exec ipexl_tempEmployee_after");
+					LocalDBUtil.commit();
+				} catch(Exception e) {
+					e.printStackTrace();
+					Log.error(e.getMessage());
+		    		LocalDBUtil.rollback();
+		    		// 插入出错日志
+		    		LocalDBUtil.startTransaction();
+		    		Object[] insertRs = qrLocal.insert(LocalDBUtil.getConnection(), "insert into Sys_ScheduleJobLog(occurDate,infoFlag,jobId,description) values(?,?,?,?)", new ArrayHandler(), new Object[]{occurTime,"同步临时员工信息失败",jobId,e.getMessage()});
+		    		LocalDBUtil.commit();
+		    	} finally { 
+		    		LocalDBUtil.close();
+		    	}
+			} else {
+				System.out.println("没查到结果");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
