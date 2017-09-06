@@ -26,12 +26,19 @@
 					<input name="bean.empName" id="bean.empName" class="easyui-textbox"   style="width:150px;height:30px" readonly />
 				</td>
 		   	</tr >
-			<tr>
-				<td  nowrap><label   for="bean.outTime">退宿时间</label></td>
+		   	<tr>
+		   		<td  nowrap><label   for="bean.outTime">退宿时间</label></td>
 				<td><input name="bean.outTime" id="bean.outTime" class="easyui-my97" style="width:126px;height:28px" onfocus="WdatePicker({dateFmt:'HH:mm:ss'})"/></td>
+	      		<td  nowrap><label   for="bean.keyStatus">进门户钥匙</label></td>
+	      		<td><input name="bean.keyStatus" id="bean.keyStatus" class="easyui-textbox"  style="width:150px;height:30px" readonly /></td>
+				<td  nowrap><label   for="bean.empName">空调遥控器</label></td>
+				<td>
+					<input name="remoterKeep" id="remoterKeep" class="easyui-textbox" style="width:150px;height:30px" readonly />
+				</td>
+	      	</tr>
+			<tr>
 	      		<td nowrap><label   for="bean.outReason">退宿原因</label></td>
-			    <td colspan="3" ><input class="easyui-textbox" name="bean.outReason" id="bean.outReason" style="height:30px;width:400px"></td>
-	      		
+			    <td colspan="5" ><input class="easyui-textbox" name="bean.outReason" id="bean.outReason" style="height:30px;width:400px"></td>
 	      	</tr>  
 		</table>
 	</div> 
