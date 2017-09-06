@@ -62,6 +62,9 @@ public class Damage extends CommonBean {
 	@Column
 	private Integer repairApplyId;
 	
+	@BeanProperty(description = "退款绑定")
+	private Integer checkInId;
+	
 	
 	public Integer getId() {
 		return id;
@@ -140,6 +143,12 @@ public class Damage extends CommonBean {
 	}
 	public void setRepairApplyId(Integer repairApplyId) {
 		this.repairApplyId = repairApplyId;
+	}
+	public Integer getCheckInId() {
+		return checkInId;
+	}
+	public void setCheckInId(Integer checkInId) {
+		this.checkInId = checkInId;
 	}
 	
 	
