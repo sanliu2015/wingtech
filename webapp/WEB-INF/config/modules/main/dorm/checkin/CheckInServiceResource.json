@@ -12,7 +12,7 @@ left join TS_SysCode c on c.codeKind=304 and a.type=c.code ",
 left join HR_Department b on a.deptId=b.id 
 left join TS_SysCode c on c.codeKind=27 and a.gender=c.code 
 left join Dorm_CheckIn d on a.id=d.employeeId and checkOutFlag is null 
-where a.status='1' and d.id is null ",
+where a.status='1' and d.id is null and DATEDIFF(day,a.inDate, getdate()) <=3 ",
 	"queryRoomEmp": "select a.id,a.name,a.number,isnull(a.gender,'') gender,b.name deptName,d.inDate,d.roomId orgRoom from HR_Employee a 
 	left join HR_Department b on a.deptId=b.id 
 	left join TS_SysCode c on c.codeKind=27 and a.gender=c.code 
