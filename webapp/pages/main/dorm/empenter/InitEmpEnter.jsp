@@ -20,7 +20,7 @@
     <form class="form-inline">
 	  <div class="form-group">
 	    <label for="name">工卡</label>
-	    <input type="text" class="form-control" id="icNo" placeholder="请刷工卡">
+	    <input type="text" class="form-control" id="icNo" placeholder="请刷工卡"   >
 	    <span id="errorMsg" style="color:red;"></span>
 	    <label for="name">厂门</label>
 	    	<select name="bean.door"  id="bean.door" class="form-control">
@@ -74,7 +74,7 @@
 					$.ajax({
 						type:"post",
 						url: tsContextPath + "/main/empEnterService/json/doCheck.do?timestamp=" + new Date().getTime(),
-						data:{"door":$("#door").val(),"icNo":$("#icNo").val()},
+						data:{"door":$("#door").val(),"icNo":$("#icNo").val().replace(/\b(0+)/gi,"")},
 						dataType:"json",
 						success:function(result,textStatus) {
 							if (result.success == "1") {
