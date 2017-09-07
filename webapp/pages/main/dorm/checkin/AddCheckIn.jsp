@@ -25,13 +25,13 @@
 				<td><input name="bean.buildingName" id="bean.buildingName" class="easyui-textbox"  style="width:150px;height:30px" readonly /></td>
 			</tr>
 			<tr>
+				<td  nowrap><label   for="bean.empNumber">工号</label></td>
+				<td><input name="bean.empNumber" id="bean.empNumber" class="easyui-textbox"  style="width:150px;height:30px" /></td>
 				<td  nowrap><label   for="bean.empName">姓名<span style="color:red">*</span></label></td>
 				<td>
 					<input name="bean.empName" id="bean.empName" class="easyui-textbox"   style="width:150px;height:30px" readonly />
 					<a href="javascript:void(0)" class="easyui-linkbutton"  iconCls="icon-search" onClick="return checkInScript.chooseEmployee(this);"  plain='true'></a>
 				</td>
-				<td  nowrap><label   for="bean.empNumber">工号</label></td>
-				<td><input name="bean.empNumber" id="bean.empNumber" class="easyui-textbox"  style="width:150px;height:30px" readonly /></td>
 			</tr>
 			<tr>
 				<td  nowrap><label   for="bean.inDate">入住日期<span style="color:red">*</span></label></td>
@@ -55,7 +55,7 @@
  		<a href="javascript:void(0)" class="easyui-linkbutton" id="submitBtn" iconCls="icon-save"  onClick=" return checkInScript.submitForm(this);">确定</a>  
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"  onClick="$.ts.EasyUI.closeDialog(this,'0');">关闭</a>     
     </div> 
-<script type="text/javascript" src="<ts:base ref='path'/>/CheckIn.js"></script> 
+<script type="text/javascript" src="<ts:base ref='path'/>/CheckIn.js?v170907"></script> 
 <script type="text/javascript">
     var checkInScript = new CheckInScript();  
 	function modalDialogLoadEvent() {

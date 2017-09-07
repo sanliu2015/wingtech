@@ -240,8 +240,9 @@ CheckInScript.prototype={
 			);    
 	},
 	chooseEmployee:function(obj){    
-	      var urlJson={urlType:"chooseRow",  moduleFileName:"ChoseEmployeeReport",tsFilterSql:"{and not exists(select 1 from dorm_checkIn x where x.employeeId=a.id and isnull(x.checkOutFlag,0)=0 ) }",openQueryResult:"1"}; 
+	      var urlJson={urlType:"chooseRow", number:$("#bean\\.empNumber").val(),  moduleFileName:"ChoseEmployeeReport",tsFilterSql:"{and not exists(select 1 from dorm_checkIn x where x.employeeId=a.id and isnull(x.checkOutFlag,0)=0 ) }",openQueryResult:"1"}; 
 		  var url=$.ts.Utils.toUrlParam(urlJson);  
+		  //debugger;
 		  var that=this;
 		  var handler=$.ts.EasyUI.frameDialog( { 
 		        title:"选择员工",   
