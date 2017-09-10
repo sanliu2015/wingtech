@@ -29,6 +29,7 @@
 		<thead>
 			<tr>
 				<th data-options="field:'roomName',width:90">房间</th>
+				<th data-options="field:'roomNumber',width:90">房间编号</th>
                 <th data-options="field:'empNumber',width:100">工号</th>
 				<th data-options="field:'empName',width:90">姓名</th>
 				<th data-options="field:'amount',width:70, formatter:checkInScript.numberboxInputFormat">扣款金额</th>

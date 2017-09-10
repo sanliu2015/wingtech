@@ -30,10 +30,10 @@
 		   		<td  nowrap><label   for="bean.outTime">退宿时间</label></td>
 				<td><input name="bean.outTime" id="bean.outTime" class="easyui-my97" style="width:126px;height:28px" onfocus="WdatePicker({dateFmt:'HH:mm:ss'})"/></td>
 	      		<td  nowrap><label   for="bean.keyStatus">进门户钥匙</label></td>
-	      		<td><input name="bean.keyStatus" id="bean.keyStatus" class="easyui-textbox"  style="width:150px;height:30px" readonly /></td>
+	      		<td><input name="bean.keyStatus" id="bean.keyStatus" class="easyui-textbox"  style="width:150px;height:30px" /></td>
 				<td  nowrap><label   for="bean.empName">空调遥控器</label></td>
 				<td>
-					<input name="remoterKeep" id="remoterKeep" class="easyui-textbox" style="width:150px;height:30px" readonly />
+					<input name="remoterKeep" id="remoterKeep" class="easyui-textbox" style="width:150px;height:30px" />
 				</td>
 	      	</tr>
 			<tr>

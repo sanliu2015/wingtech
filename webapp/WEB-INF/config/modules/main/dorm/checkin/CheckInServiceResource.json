@@ -23,7 +23,7 @@ where a.status='1' and d.id is null and DATEDIFF(day,a.inDate, getdate()) <=3 ",
 		inner join HR_Employee b on a.employeeId=b.id 
 		inner join VM_RoomInfo c on a.roomId=c.id 
 		where a.id=? ",
-	"batchOutSql":"select b.id employeeId,b.name empName,b.number empNumber,c.name roomName from Dorm_CheckIn a 
+	"batchOutSql":"select b.id employeeId,b.name empName,b.number empNumber,c.name roomName,c.number roomNumber from Dorm_CheckIn a 
 	inner join HR_Employee b on a.employeeId=b.id 
 	inner join Dorm_Room c on a.roomId=c.id where a.id in ?",	
 	"saveBeforeSp":"checkIn_saveBefore(?)",

@@ -227,8 +227,12 @@ EmployeeScript.prototype={
 	     var bodyId="#"+this.opts.appKey+"Body";
 		 var formId= this.opts.appKey+"Form";
 		 var url=$("#"+formId).attr("action")+'?timeStamp='+(new Date()).getTime();  
-		 if ($.trim($("#bean\\.number").textbox("getText")) == "") {
+		 if ($.trim($("#bean\\.name").textbox("getText")) == "") {
 			 $.messager.alert("警告", "姓名不能为空!");
+			 return false;
+		 }
+		 if ($.trim($("#bean\\.number").textbox("getText")) == "") {
+			 $.messager.alert("警告", "工号不能为空!");
 			 return false;
 		 }
 		 $.ts.EasyUI.ajaxSubmitForm(url,formId,function(){

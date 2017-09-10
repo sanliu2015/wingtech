@@ -24,7 +24,7 @@
             <td  nowrap><label   for="bean.positionName">职位</label></td>
 				<td><input name="bean.positionName" id="bean.positionName"    data-options="editable:false" class="easyui-textbox"  style="width:180px;height:30px"  /></input>
                 <input name="bean.positionId" id="bean.positionId" type="hidden"   /> </td>
-                <td nowrap><label id="number-label" for="bean.number">工号</label></td>
+                <td nowrap><label id="number-label" for="bean.number">工号*</label></td>
 				<td style="width:260px"><input name="bean.number"  id="bean.number"  class="easyui-textbox"   style="width:180px;height:30px"></input></td>  
            </tr> 
 			<tr  > 
@@ -114,7 +114,7 @@
  			 <a href="javascript:void(0)" class="easyui-linkbutton" id="submitBtn" iconCls="icon-save"  onClick=" return employeeScript.submitForm(this);">确定</a>  
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"  onClick="$.ts.EasyUI.closeDialog(this,'0');">关闭</a>     
      </div> 
-<script type="text/javascript" src="<ts:base ref='path'/>/Employee.js"></script> 
+<script type="text/javascript" src="<ts:base ref='path'/>/Employee.js?v170910"></script> 
 <style type="text/css">
 #preview{width:130px;height:150px;border:1px solid #000;overflow:hidden;}
 #imghead {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
