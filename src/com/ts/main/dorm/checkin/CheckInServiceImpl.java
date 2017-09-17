@@ -250,19 +250,18 @@ public class CheckInServiceImpl implements IAppService {
 		return opb;
 	}
 	
-//	public void editCheckOut(CheckInForm form,RequestContext requestContext , IBaseServiceManger service) {
-//		Map<String, Object> beanMap = service.getDb().findForJdbc(requestContext.getMessageResource().get("findObj").toString(), new Object[]{form.getId()}).get(0);
-//		CheckIn bean = JSON.parseObject(JSON.toJSONString(beanMap), CheckIn.class);
-//		form.setBean(bean); 
-//		StringBuilder sql = new StringBuilder(100);
-//		sql.append("select id from dorm_damage where checkInId=").append(form.getId());
-//		List<Map<String, Object>> rs = service.getDb().findForJdbc(sql.toString());
-//		if (rs != null && rs.size() > 0) {
-//			Damage damage = service.getDb().getObject(Damage.class, (Integer)rs.get(0).get("id"), requestContext);
-//			form.setDamage(damage);
-//		}
-//		
-//	}
+	public void editCheckOut(CheckInForm form,RequestContext requestContext , IBaseServiceManger service) {
+		Map<String, Object> beanMap = service.getDb().findForJdbc(requestContext.getMessageResource().get("findObj").toString(), new Object[]{form.getId()}).get(0);
+		CheckIn bean = JSON.parseObject(JSON.toJSONString(beanMap), CheckIn.class);
+		form.setBean(bean); 
+		StringBuilder sql = new StringBuilder(100);
+		sql.append("select id from dorm_damage where checkInId=").append(form.getId());
+		List<Map<String, Object>> rs = service.getDb().findForJdbc(sql.toString());
+		if (rs != null && rs.size() > 0) {
+			Damage damage = service.getDb().getObject(Damage.class, (Integer)rs.get(0).get("id"), requestContext);
+			form.setDamage(damage);
+		}
+	}
 	
 	public void outBatch(CheckInForm form,RequestContext requestContext , IBaseServiceManger service) {
 		OperatePromptBean opb = new OperatePromptBean();

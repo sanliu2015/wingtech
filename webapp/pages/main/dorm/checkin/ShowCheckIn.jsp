@@ -122,9 +122,9 @@ body {
 		
 	</div>
 	<div data-options="title:'',region:'center'" style="background:#eee;width:100%;">
-		<div class="easyui-panel" title="房间信息" id="roomPanel" style="width:100%;height:70%;background:#fafafa;" >
+		<div class="easyui-panel" title="房间信息" id="roomPanel" style="width:100%;height:40%;background:#fafafa;" >
 		</div>
-		<div class="easyui-panel" title="未入住员工" id="empPanel" style="width:100%;height:30%;background:#fafafa;" >
+		<div class="easyui-panel" title="未入住员工" id="empPanel" style="width:100%;height:60%;background:#fafafa;" >
 		</div>
 	</div>
 	<div style="clear:both"></div>

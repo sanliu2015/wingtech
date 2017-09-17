@@ -27,9 +27,9 @@ response.setHeader("Expires","0");//防止被proxy
     <span style="width:130px;display:inline-block;">行李数量:${form.bean.packageNum}</span><br/><br/>
     <c:if test="${dtlListPrint != null && fn:length(dtlListPrint) > 0}">
     	= = = = = = = = = = = = = = = = = = = = = <br>
-    	<span style="width:130px;display:inline-block;">贵重物品名称</span>数量<br/>
+    	<span style="width:65px;display:inline-block;">物品名称</span><span style="width:35px;display:inline-block;">数量</span>备注<br/>
     	<c:forEach items="${dtlListPrint}" var="obj" varStatus="idx">
-    		<span style="width:130px;display:inline-block;">${obj['name']}</span>${obj['quantity']}<br/>
+    		<span style="width:70px;display:inline-block;font-weight:normal;">${obj['name']}</span><span style="width:30px;display:inline-block;font-weight:normal;">${obj['quantity']}</span><span style="font-weight:normal;">${obj['description']}</span><br/>
     	</c:forEach>
     	= = = = = = = = = = = = = = = = = = = = = <br><br>
     </c:if>

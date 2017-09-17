@@ -52,7 +52,7 @@ public class EmployeeServiceImpl implements IAppService{
 	}
 	public OperatePromptBean update(RequestContext requestContext , IBaseServiceManger service,EmployeeForm form){
 		Employee bean=service.getDb().getObject(Employee.class, form.getBean().getId(),requestContext); 
-		 BeanUtils.copyNoNullProperties(form.getBean(), bean);
+		 BeanUtils.copyNoNullProperties(form.getBean(), bean, "interimId");
 		 service.getDb().updateObject(bean,requestContext);  
 		 DefaultMultipartHttpServletRequest mvcRequest = (DefaultMultipartHttpServletRequest) requestContext.getRequest();
 		 MultipartFile file = mvcRequest.getFile("photoFile");

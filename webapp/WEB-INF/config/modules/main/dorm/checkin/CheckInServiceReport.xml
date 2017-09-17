@@ -41,8 +41,6 @@
 							<entry key="limitChooseRows" >1</entry>
 							<entry key="dialogOpts">maximized:true,cache:true</entry>
 				         </property>
-				         <property name="validateExp"><![CDATA[row.auditStatusId!='0']]></property>
-						 <property name="validatePrompt">不符合修改约束条件！</property>
 				         <property name="recParamTemplate">id=#{id}</property>
 					</object> 
 					<object class="ReportToolbar" className="easyui-linkbutton" name="删除" dataOptions="plain:true,iconCls:'icon-remove'"  url="/main/checkInService/json/delete.do" targetName="ajax">

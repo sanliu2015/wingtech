@@ -14,6 +14,7 @@
         		left join Dorm_Room c on a.roomId=c.id 
         		left join Dorm_Building d on a.buildId=d.id 
           ]]></property> 
+          
 		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
 			<object name="datagrid" type="object"  class="ReportDatagrid"     singleSelect="true"  fitColumns="false"   pageSize="20"  toolbar="#passBillServiceToolbar"> 
 					<property name="customProperty" type="map">  
@@ -66,7 +67,7 @@
 		    <object class="SourceFieldRuleBean" tableAliasName="d" fieldName="name" fieldAliasName="buildName"  displayLable="楼栋" dataType="string" colWidth="90" /> 
 		    <object class="SourceFieldRuleBean" tableAliasName="c" fieldName="name" fieldAliasName="roomName"  displayLable="房间" dataType="string" colWidth="90" /> 
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="reason"  displayLable="离厂原因" dataType="string" colWidth="90" /> 
-		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="passDate" displayLable="日期"  colWidth="70"  dataType="date" displayColumn="1" queryControlKind="1" />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="passDate" displayLable="日期"  colWidth="70" sortType="1"  dataType="date" displayColumn="1" queryControlKind="1" isQueryCondition="1"/>
             <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" dataType="string"  displayColumn="1"  colWidth="70"  />                                              
             <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="创建时间" dataType="string" displayColumn="1" colWidth="70"/>
             <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy" displayLable="创建人" dataType="string" colWidth="60" />

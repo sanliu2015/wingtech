@@ -12,13 +12,13 @@ left join TS_SysCode c on c.codeKind=304 and a.type=c.code ",
 left join HR_Department b on a.deptId=b.id 
 left join TS_SysCode c on c.codeKind=27 and a.gender=c.code 
 left join Dorm_CheckIn d on a.id=d.employeeId and checkOutFlag is null 
-where a.status='1' and d.id is null and DATEDIFF(day,a.inDate, getdate()) <=3 ",
+where a.status='1' and d.id is null and DATEDIFF(day,a.inDate, getdate()) <=5 order by a.number desc ",
 	"queryRoomEmp": "select a.id,a.name,a.number,isnull(a.gender,'') gender,b.name deptName,d.inDate,d.roomId orgRoom from HR_Employee a 
 	left join HR_Department b on a.deptId=b.id 
 	left join TS_SysCode c on c.codeKind=27 and a.gender=c.code 
 	inner join Dorm_CheckIn d on a.id=d.employeeId and isnull(checkOutFlag,0)=0  
 	where d.roomId = ?",
-	"findObj": "select a.id,a.inDate,a.employeeId,b.name empName,b.number empNumber,c.roomName,c.buildingName,a.roomId,
+	"findObj": "select a.id,a.inDate,a.outDate,a.employeeId,b.name empName,b.number empNumber,c.roomName,c.buildingName,a.roomId,
 	 a.keyStatus,a.remoterKeep,a.description from Dorm_CheckIn a
 		inner join HR_Employee b on a.employeeId=b.id 
 		inner join VM_RoomInfo c on a.roomId=c.id 
