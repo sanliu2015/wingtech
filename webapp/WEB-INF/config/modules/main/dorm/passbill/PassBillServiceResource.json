@@ -29,6 +29,10 @@
 				"keyName": "nameList",
 				"sql": "select name value,name text from TS_SysCode where codeKind=314",
 				"isHql": "0"
+			},
+			{
+				"keyName": "damageReasonList",
+				"sql": "select code,name from  TS_SysCode  where codeKind=306 "
 			}
 		]
 	},

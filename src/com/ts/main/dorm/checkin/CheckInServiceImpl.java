@@ -118,6 +118,7 @@ public class CheckInServiceImpl implements IAppService {
 		String gender = requestContext.getRequest().getParameter("gender");
 		String interimId = requestContext.getRequest().getParameter("interimId");
 		String queryEmp = "" + requestContext.getMessageResource().get("queryEmp");
+		String orderSql = "" + requestContext.getMessageResource().get("orderSql");
 		StringBuilder whereSql = new StringBuilder(100);
 		if (!StringUtil.isNoValue(empName)) {
 			whereSql.append("and a.name='").append(empName).append("' ");
@@ -134,7 +135,7 @@ public class CheckInServiceImpl implements IAppService {
 		if (!StringUtil.isNoValue(interimId)) {
 			whereSql.append("and a.interimId=").append(interimId).append(" ");
 		}
-		List<Map<String, Object>> roomList = service.getDb().findForJdbc(queryEmp+whereSql);
+		List<Map<String, Object>> roomList = service.getDb().findForJdbc(queryEmp+whereSql+orderSql);
 		try {
 			requestContext.getResponse().getWriter().write(JSON.toJSONString(roomList));
 			requestContext.getResponse().getWriter().flush();

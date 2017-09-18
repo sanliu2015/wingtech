@@ -43,7 +43,7 @@ DamageScript.prototype={
 			 return false;
 		 }
 		 
-		 if ($.trim($("#bean\\.amount").numberbox("getValue")) == "" || $("#bean\\.amount").numberbox("getValue") == 0) {
+		 if ($.trim($("#bean\\.amount").numberbox("getValue")) == "") {
 			 $.messager.alert("警告", "金额不能为空!");
 			 return false;
 		 }

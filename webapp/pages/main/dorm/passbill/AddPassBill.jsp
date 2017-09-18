@@ -20,6 +20,7 @@
 					<a href="javascript:void(0)" class="easyui-linkbutton"  iconCls="icon-search" onClick="return passBillScript.chooseEmployee(this);"  plain='true'>在住</a>
 					<a href="javascript:void(0)" class="easyui-linkbutton"  iconCls="icon-search" onClick="return passBillScript.chooseEmployeeOut(this);"  plain='true'>退宿</a>
 					<input name="bean.empId" id="bean.empId" type="hidden"  />
+					<input name="damage.checkInId" id="damage.checkInId" type="hidden" />
 				</td>
           		<td  nowrap><label   for="bean.empNumber">工号</label></td>
 				<td>
@@ -70,22 +71,39 @@
 	      	</tr>
 		</table>
 	</div> 
-	
-	<table id="dtlListGrid" class="easyui-datagrid" style="width:100%" data-options="title:'贵重物品清单',rownumbers:true,toolbar:'#dtlListGridToolbar'">
-		<thead>
+	<div class="easyui-tabs">
+	<div title="贵重物品清单">
+		<table id="dtlListGrid" class="easyui-datagrid" style="width:100%" data-options="title:'',rownumbers:true,toolbar:'#dtlListGridToolbar'">
+			<thead>
+				<tr>
+					<th data-options="field:'operateField',width:40,formatter:passBillScript.removeRowFormat">操作</th>
+	                <th data-options="field:'name',width:200, formatter:passBillScript.comboboxFormat">物品名称</th>
+					<th data-options="field:'quantity',width:100, formatter:passBillScript.numberspinnerInputFormat">数量</th>
+					<th data-options="field:'description',width:300, formatter:passBillScript.textInputFormat">备注</th>                                      
+					<th data-options="field:'recordOperateStatus',width:10, formatter:passBillScript.hiddenColumnFormat,hidden:true"></th> 
+					<th data-options="field:'id',width:10, formatter:passBillScript.hiddenColumnFormat,hidden:true"></th> 
+				</tr>
+			</thead>
+		</table> 
+		<div id="dtlListGridToolbar"  >
+	        <a href="javascript:void(0)" class="easyui-linkbutton" id="insertDtlRowId" data-options="iconCls:'icon-add',plain:true" onclick="passBillScript.appendRow(this);">添加</a>
+		</div> 
+	</div>
+	<div title="遗失顺坏费用" style="padding:10px">
+		<table cellpadding="0" cellspacing="0" class="baseForm-table" width="100%">
 			<tr>
-				<th data-options="field:'operateField',width:40,formatter:passBillScript.removeRowFormat">操作</th>
-                <th data-options="field:'name',width:200, formatter:passBillScript.comboboxFormat">物品名称</th>
-				<th data-options="field:'quantity',width:100, formatter:passBillScript.numberspinnerInputFormat">数量</th>
-				<th data-options="field:'description',width:300, formatter:passBillScript.textInputFormat">备注</th>                                      
-				<th data-options="field:'recordOperateStatus',width:10, formatter:passBillScript.hiddenColumnFormat,hidden:true"></th> 
-				<th data-options="field:'id',width:10, formatter:passBillScript.hiddenColumnFormat,hidden:true"></th> 
-			</tr>
-		</thead>
-	</table> 
-	<div id="dtlListGridToolbar"  >
-        <a href="javascript:void(0)" class="easyui-linkbutton" id="insertDtlRowId" data-options="iconCls:'icon-add',plain:true" onclick="passBillScript.appendRow(this);">添加</a>
-	</div> 
+			   	<td nowrap><label   for="damage.amount">扣款金额</label></td>
+			   	<td  ><input class="easyui-numberbox" name="damage.amount" id="damage.amount" data-options="min:0,precision:0" style="width:150px;height:30px" /></td>
+			   	<td nowrap><label   for="damage.reason">扣款原因</label></td>
+			   	<td  colspan="3">
+			   		<input name="damage.reason" id="damage.reason" style="width:250px;height:30px" />
+			   	</td>
+	      	</tr>
+		</table>
+	</div>
+	</div>
+	
+	
  	<div id="pagePanel" class="easyui-panel dialog-button" width="100%" style="text-align:center;padding:5px;">
  			 <a href="javascript:void(0)" class="easyui-linkbutton" id="submitBtn" iconCls="icon-save"  onClick=" return passBillScript.submitForm(this);">确定</a>  
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"  onClick="$.ts.EasyUI.closeDialog(this,'0');">关闭</a>     
@@ -95,12 +113,17 @@
         height: 27px;
     }
 </style>      
-<script type="text/javascript" src="<ts:base ref='path'/>/PassBill.js"></script> 
+<script type="text/javascript" src="<ts:base ref='path'/>/PassBill.js?v1709182201"></script> 
 <script type="text/javascript">
     var passBillScript=new PassBillScript();   
     passBillScript.nameList = '<ts:forEach name="nameList" insertEmpty="0" toJson="1"/>'
 	function modalDialogLoadEvent() {   
-		
+    	$("#damage\\.reason").combobox({
+			multiple:true,
+			valueField:"name",    
+	        textField:"name",
+			data:<ts:forEach name="damageReasonList" toJson="1"/>,
+		});
 	}
 	$(function() { 
 		$("#bean\\.packageNum").combobox({
