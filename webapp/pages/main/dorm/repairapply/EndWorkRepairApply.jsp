@@ -33,6 +33,10 @@
 				<td class="dis">
 					<input name="bean.empPhone" id="bean.empPhone" class="easyui-textbox" style="width:150px;height:30px" />
 				</td>
+				<td nowrap><label   for="bean.rewardFee">奖励费用</label></td>
+				<td>
+					<input name="bean.rewardFee" id="bean.rewardFee" class="easyui-numberbox" data-options="min:0,precision:2" style="width:150px;height:30px" />
+				</td>
 	      	</tr>
         	<tr>
         		<td  nowrap><label   for="bean.employeeId">报修人员<span style="color:red">*</span></label></td>

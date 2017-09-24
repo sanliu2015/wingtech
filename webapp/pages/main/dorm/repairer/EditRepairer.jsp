@@ -17,19 +17,23 @@
         	<tr>
 				<td  nowrap><label   for="bean.name">名称<span style="color:red">*</span></label></td>
 				<td><input name="bean.name" id="bean.name" class="easyui-textbox"  style="width:150px;height:30px" /></td>
-				<td  nowrap><label   for="bean.phone">手机号</label></td>
-				<td><input name="bean.phone" id="bean.phone" class="easyui-textbox"  style="width:150px;height:30px" /></td>
+				<td  nowrap><label   for="bean.idCard">身份证<span style="color:red">*</span></label></td>
+				<td><input name="bean.idCard" id="bean.idCard" class="easyui-textbox"  style="width:150px;height:30px" /></td>
 		   	</tr>
 	      	<tr>
+	      		<td  nowrap><label   for="bean.phone">手机号</label></td>
+				<td><input name="bean.phone" id="bean.phone" class="easyui-textbox"  style="width:150px;height:30px" /></td>
 	      		<td  nowrap><label   for="bean.repairType">维修类别</label></td>
 				<td>
 				    <input id="bean.repairType" name="bean.repairType" />
 				</td>
-				<td  nowrap><label   for="bean.buildingId">负责楼栋</label></td>
+	      	</tr>  
+	      	<tr>
+	      		<td  nowrap><label   for="bean.buildingId">负责楼栋</label></td>
 				<td>
 					<input id="bean.buildingId" name="bean.buildingId" />
 				</td>
-	      	</tr>  
+	      	</tr>
 	      	<tr>
 	      		<td nowrap><label   for="bean.description">备注</label></td>
 			    <td colspan="3"><input class="easyui-textbox" name="bean.description" style="height:30px;width:400px"></td>
@@ -40,7 +44,7 @@
  		<a href="javascript:void(0)" class="easyui-linkbutton" id="submitBtn" iconCls="icon-save"  onClick=" return repairerScript.submitFormOnEdit(this);">确定</a>  
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"  onClick="$.ts.EasyUI.closeDialog(this,'0');">关闭</a>     
     </div> 
-<script type="text/javascript" src="<ts:base ref='path'/>/Repairer.js"></script> 
+<script type="text/javascript" src="<ts:base ref='path'/>/Repairer.js?v17092401"></script> 
 <script type="text/javascript">
     var repairerScript = new RepairerScript();  
     $(function() {    

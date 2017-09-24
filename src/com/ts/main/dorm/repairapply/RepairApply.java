@@ -74,6 +74,10 @@ public class RepairApply extends CommonBean {
 	@Column
 	private BigDecimal repairFee;
 	
+	@BeanProperty(description = "奖励费用")
+	@Column
+	private BigDecimal rewardFee;
+	
 	@BeanProperty(description = "评分结果")
 	@Column(length = 5)
 	private String scoreResult;
@@ -274,6 +278,14 @@ public class RepairApply extends CommonBean {
 
 	public void setNotifyFlag(Integer notifyFlag) {
 		this.notifyFlag = notifyFlag;
+	}
+
+	public BigDecimal getRewardFee() {
+		return rewardFee;
+	}
+
+	public void setRewardFee(BigDecimal rewardFee) {
+		this.rewardFee = rewardFee;
 	}
 
 

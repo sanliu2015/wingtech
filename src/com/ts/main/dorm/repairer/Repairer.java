@@ -35,6 +35,9 @@ public class Repairer extends CommonBean {
 	@Column(length = 20)
 	private String phone;
 	
+	@Column(length = 50)
+	private String idCard;
+	
 
 	public Integer getId() {
 		return id;
@@ -74,6 +77,14 @@ public class Repairer extends CommonBean {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getIdCard() {
+		return idCard;
+	}
+
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
 	}
 	
 	

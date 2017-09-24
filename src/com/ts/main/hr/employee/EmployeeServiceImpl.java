@@ -2,10 +2,13 @@ package com.ts.main.hr.employee;
     
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory; 
 import org.springframework.beans.BeanUtils;
+import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
@@ -14,7 +17,8 @@ import com.ts.core.api.cache.SimpleCachePool;
 import com.ts.core.common.bean.OperatePromptBean; 
 import com.ts.core.common.service.IAppService;
 import com.ts.core.common.service.IBaseServiceManger;
-import com.ts.core.context.RequestContext;    
+import com.ts.core.context.RequestContext;
+import com.ts.core.db.support.CallableParameter;
 import com.ts.core.util.ReflectUtils;
 
 @Service("employeeSerivce")
@@ -82,6 +86,23 @@ public class EmployeeServiceImpl implements IAppService{
 		OperatePromptBean prompt=new OperatePromptBean();
 		prompt.setId(bean.getId().toString());
 		prompt.setStatememt(prompt.hint_success); 
+		return prompt;
+	}
+	
+	public void refreshEmployeeId(RequestContext requestContext, IBaseServiceManger service) {
+		
+	}
+	
+	public OperatePromptBean doRefreshEmployeeId(RequestContext requestContext, IBaseServiceManger service) {
+		String yearMonth = requestContext.getRequest().getParameter("yearMonth");
+		String sp = "dorm_ReSetEmployeeId(?)";
+		List<CallableParameter> paraList = new ArrayList<CallableParameter>();
+		CallableParameter param1 = new CallableParameter(); 
+		param1.setParameterValue(yearMonth);
+		param1.setSqlParameter(new SqlParameter("yearMonth", java.sql.Types.VARCHAR));
+		paraList.add(param1);
+		service.getDb().sp().call(sp, paraList);
+		OperatePromptBean prompt = new OperatePromptBean();
 		return prompt;
 	}
 	  

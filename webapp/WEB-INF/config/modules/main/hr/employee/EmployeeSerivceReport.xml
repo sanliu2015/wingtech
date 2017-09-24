@@ -57,7 +57,15 @@
                                 <property name="customProperty" type="map">  
                                     <entry key="dialogOpts">maximized:true,cache:true</entry>
                                 </property>
-                            </object> 		
+                            </object> 	
+                            
+                            <object class="ReportToolbar" className="easyui-linkbutton" name="Ë¢ÐÂÈËÔ±ID" dataOptions="plain:true,iconCls:'icon-edit'"  url="/main/employeeSerivce/refreshEmployeeId.do?appUrl=refreshEmployId" limitChooseRows="0"> 
+				    <property name="customProperty" type="map">
+						<entry key="limitChooseRows">0</entry>
+						<entry key="dialogOpts">height:200,width:400</entry> 
+				    </property>
+				</object> 
+                            	
               </property>    
 			</object> 
 		</object> 

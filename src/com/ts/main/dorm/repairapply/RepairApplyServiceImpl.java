@@ -1,8 +1,10 @@
 package com.ts.main.dorm.repairapply;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.httpclient.util.DateUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -20,6 +22,7 @@ import com.ts.main.dorm.SendLog;
 import com.ts.main.dorm.building.BuildingForm;
 import com.ts.main.dorm.damage.Damage;
 import com.ts.main.dorm.repairer.Repairer;
+import com.ts.main.dorm.reward.Reward;
 import com.ts.main.util.SendSmsUtil;
 
 @Service("repairApplyService")
@@ -191,8 +194,21 @@ public class RepairApplyServiceImpl implements IAppService {
 			for (Damage dtl : form.getDamageList()) {
 				dtl.setRepairApplyId(orignBean.getId());
 				dtl.setOccurDate(DateTimeUtil.formatDate());
+				dtl.setDescription("报修扣款费用，报修单号：" + orignBean.getNumber());
 				service.getDb().saveObject(dtl);
 			}
+		}
+		
+		if (form.getBean().getRewardFee().doubleValue() > 0) {
+			Reward reward = new Reward();
+			reward.setOccurDate(DateUtil.formatDate(new Date()));
+			reward.setAmount(form.getBean().getRewardFee());
+			StringBuilder sql = new StringBuilder(100);
+			sql.append("select a.id from hr_employee a inner join Dorm_Repairer b on a.idCard=b.idCard where a.status=1 and b.id=?");
+			List<Map<String, Object>> rsList = service.getDb().findForJdbc(sql.toString(), orignBean.getRepairerId());
+			reward.setEmployeeId(Integer.valueOf(rsList.get(0).get("id").toString()));
+			reward.setDescription("报修奖励费用，报修单号：" + orignBean.getNumber());
+			service.getDb().saveObject(reward);
 		}
 		
 		return opb;

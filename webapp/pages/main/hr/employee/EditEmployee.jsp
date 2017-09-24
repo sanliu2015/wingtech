@@ -114,7 +114,7 @@
  			 <a href="javascript:void(0)" class="easyui-linkbutton" id="submitBtn" iconCls="icon-save"  onClick=" return employeeScript.submitForm(this);">确定</a>  
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"  onClick="$.ts.EasyUI.closeDialog(this,'0');">关闭</a>     
      </div> 
-<script type="text/javascript" src="<ts:base ref='path'/>/Employee.js?v170910"></script> 
+<script type="text/javascript" src="<ts:base ref='path'/>/Employee.js?v170924"></script> 
 <style type="text/css">
 #preview{width:130px;height:150px;border:1px solid #000;overflow:hidden;}
 #imghead {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}

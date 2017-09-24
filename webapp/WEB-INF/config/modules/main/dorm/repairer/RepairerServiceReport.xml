@@ -51,6 +51,7 @@
 		</object> 
         <property name="sourceFields" type="list"> 
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="name" displayLable="姓名" colWidth="100" dataType="string" displayColumn="1" isQueryCondition="1" />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="idCard" displayLable="身份证" colWidth="150" dataType="string" displayColumn="1" isQueryCondition="1" />
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="phone" displayLable="手机" colWidth="130" dataType="string" displayColumn="1" isQueryCondition="1" />
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="stuff((select ','+b.name from TS_SysCode b where b.codeKind=130 and charindex(b.code+',',a.repairType+',')>0 for xml path('')),1,1,'')" isCalculateField="1" fieldAliasName="repairTypeName" displayLable="维修类别"  colWidth="150" isQueryCondition="1"/>
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="stuff((select ','+b.name from Dorm_Building b where b.kind=0 and parentId is null and charindex(cast(b.id as varchar(10))+',',a.buildingId+',')>0 for xml path('')),1,1,'')" isCalculateField="1" fieldAliasName="buildName" displayLable="负责楼栋" colWidth="150" isQueryCondition="1" /> 
