@@ -22,6 +22,8 @@ PassBillScript.prototype = {
 							  $("#bean\\.buildName").textbox('setText',json.buildingName);  
 							  $("#bean\\.roomName").textbox('setText',json.roomName);  
 							  $("#bean\\.empNumber").textbox('setText',json.number);  
+							  $("#bean\\.keyStatus").textbox('setText',json.keyStatus);  
+							  $("#bean\\.telStatus").textbox('setText',json.remoterKeep);  
 							  $("#bean\\.empId").val(json.employeeId);   
 							  $("#bean\\.roomId").val(json.roomId);   
 							  $("#bean\\.buildId").val(json.buildingId); 
@@ -46,7 +48,9 @@ PassBillScript.prototype = {
 							  $("#bean\\.empName").textbox('setText',json.empName);  
 							  $("#bean\\.buildName").textbox('setText',json.buildingName);  
 							  $("#bean\\.roomName").textbox('setText',json.roomName);  
-							  $("#bean\\.empNumber").textbox('setText',json.number);  
+							  $("#bean\\.empNumber").textbox('setText',json.number); 
+							  $("#bean\\.keyStatus").textbox('setText',json.keyStatus);  
+							  $("#bean\\.telStatus").textbox('setText',json.remoterKeep); 
 							  $("#bean\\.empId").val(json.employeeId);   
 							  $("#bean\\.roomId").val(json.roomId);   
 							  $("#bean\\.buildId").val(json.buildingId);   

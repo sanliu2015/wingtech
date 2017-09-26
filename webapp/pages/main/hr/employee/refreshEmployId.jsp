@@ -11,6 +11,7 @@
 <body id="${appReqeustContext.appKey}Body">  
 <form action="${contextPath}/main/${appReqeustContext.appService}/json/doRefreshEmployeeId.do" id="${appReqeustContext.appKey}Form" name="${appReqeustContext.appKey}Form" method="post">  
 	<input name="actionType" id="actionType" type="hidden" value="insert"/>
+	<input name="empId" id="empId" type="hidden" value="${id}"/>
 	<div id="pagePanel" title="" class="easyui-panel" width="100%"  style="padding:10px">
 		<table cellpadding="0" cellspacing="0" class="baseForm-table" width="100%">
         	<tr>

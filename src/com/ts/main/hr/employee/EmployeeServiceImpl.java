@@ -89,18 +89,23 @@ public class EmployeeServiceImpl implements IAppService{
 		return prompt;
 	}
 	
-	public void refreshEmployeeId(RequestContext requestContext, IBaseServiceManger service) {
-		
+	public void refreshEmployeeId(RequestContext requestContext, IBaseServiceManger service, EmployeeForm form) {
+		requestContext.getRequest().setAttribute("id", form.getId());
 	}
 	
 	public OperatePromptBean doRefreshEmployeeId(RequestContext requestContext, IBaseServiceManger service) {
 		String yearMonth = requestContext.getRequest().getParameter("yearMonth");
-		String sp = "dorm_ReSetEmployeeId(?)";
+		String empId = requestContext.getRequest().getParameter("empId");
+		String sp = "dorm_ReSetEmpId(?,?)";
 		List<CallableParameter> paraList = new ArrayList<CallableParameter>();
 		CallableParameter param1 = new CallableParameter(); 
 		param1.setParameterValue(yearMonth);
 		param1.setSqlParameter(new SqlParameter("yearMonth", java.sql.Types.VARCHAR));
 		paraList.add(param1);
+		CallableParameter param2 = new CallableParameter(); 
+		param2.setParameterValue(empId);
+		param2.setSqlParameter(new SqlParameter("empId", java.sql.Types.VARCHAR));
+		paraList.add(param2);
 		service.getDb().sp().call(sp, paraList);
 		OperatePromptBean prompt = new OperatePromptBean();
 		return prompt;

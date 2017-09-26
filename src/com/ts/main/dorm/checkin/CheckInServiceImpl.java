@@ -244,7 +244,7 @@ public class CheckInServiceImpl implements IAppService {
 				damage.setCheckInId(bean.getId());
 				damage.setEmployeeId(bean.getEmployeeId());
 				damage.setOccurDate(bean.getOutDate());
-				service.getDb().saveObject(damage);
+				service.getDb().saveObject(damage, requestContext);
 			}
 		}
 		
@@ -289,7 +289,7 @@ public class CheckInServiceImpl implements IAppService {
 			for(Damage temp : form.getDtlList()) {
 				if (temp.getAmount() != null && temp.getAmount().intValue() > 0) {
 					temp.setOccurDate(form.getBean().getOutDate());
-					service.getDb().saveObject(temp);
+					service.getDb().saveObject(temp, requestContext);
 				}
 			}
 		}

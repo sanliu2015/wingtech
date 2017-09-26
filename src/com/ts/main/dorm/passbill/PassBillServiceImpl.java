@@ -26,12 +26,12 @@ public class PassBillServiceImpl implements IAppService {
 		service.getDb().saveObject(bean, requestContext);
 		// 自动退宿
 		if ("离职".equals(bean.getReason()) || "外住".equals(bean.getReason()) || "自离".equals(bean.getReason())) {
-			service.getDb().executeSqlForJdbc("update DORM_CheckIn set outDate=?,outTime=?,outReason=?,checkOutFlag=1 where employeeId=? and roomId=? and isnull(checkOutFlag,0)=0", new Object[]{bean.getCreateDate(),bean.getCreateTime(),bean.getReason(),bean.getEmpId(),bean.getRoomId()});
+			service.getDb().executeSqlForJdbc("update DORM_CheckIn set keyStatus=?, remoterKeep=? ,outDate=?,outTime=?,outReason=?,checkOutFlag=1 where employeeId=? and roomId=? and isnull(checkOutFlag,0)=0", new Object[]{bean.getKeyStatus(),bean.getTelStatus(),bean.getCreateDate(),bean.getCreateTime(),bean.getReason(),bean.getEmpId(),bean.getRoomId()});
 			Damage damage = form.getDamage();
 			if (damage.getAmount() != null && damage.getAmount().intValue() > 0) {
 				damage.setEmployeeId(bean.getEmpId());
 				damage.setOccurDate(bean.getPassDate());
-				service.getDb().saveObject(damage);
+				service.getDb().saveObject(damage, requestContext);
 			}
 		}
 		sumbitEntryList(requestContext, service, form);
