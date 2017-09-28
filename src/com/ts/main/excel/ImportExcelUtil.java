@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -16,6 +18,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.ts.core.util.DateTimeUtil;
 
 
 /**
@@ -178,9 +182,15 @@ public class ImportExcelUtil {
 			Cell cell = row.getCell(column);
 			if (cell != null){
 				if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC){
-					cell.setCellType(Cell.CELL_TYPE_STRING);
-//					val = cell.getNumericCellValue();	// 防止出现科学计数
-					val = cell.toString();
+					
+					if (HSSFDateUtil.isCellDateFormatted(cell)) {
+						val = DateTimeUtil.formatDate(cell.getDateCellValue(), "yyyy-MM-dd");
+					} else {
+//						val = cell.getNumericCellValue();	// 防止出现科学计数
+						cell.setCellType(Cell.CELL_TYPE_STRING);
+						val = cell.toString();
+					}
+					
 				}else if (cell.getCellType() == Cell.CELL_TYPE_STRING){
 					val = cell.getStringCellValue().trim();		// 去除空格
 				}else if (cell.getCellType() == Cell.CELL_TYPE_FORMULA){
