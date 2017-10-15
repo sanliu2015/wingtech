@@ -14,8 +14,8 @@ import com.ts.core.context.RequestContext;
 @Service("empEnterService")
 public class EmpEnterServiceImpl implements IAppService {
 
-	private static String queryEmpSql = "select isnull(a.status,'0') as status,a.name,a.number,a.idCard,b.name depName,c.name parentDepName,d.name posName,e.name gender from HR_Employee a left join HR_Department b on a.deptId=b.id left join HR_Department c on b.parentId=c.id left join HR_Position d on a.positionId=d.id left join TS_SysCode e on e.codeKind=27 and a.gender=e.code where a.icNo=? order by a.id desc ";
-	private static String queryIcLost = "select id from Dorm_IcLost where icNo=?";
+	private static String queryEmpSql = "select isnull(a.status,'0') as status,a.name,a.number,a.idCard,b.name depName,c.name parentDepName,d.name posName,e.name gender from HR_Employee a WITH(NOLOCK) left join HR_Department b WITH(NOLOCK) on a.deptId=b.id left join HR_Department c WITH(NOLOCK) on b.parentId=c.id left join HR_Position d WITH(NOLOCK) on a.positionId=d.id left join TS_SysCode e WITH(NOLOCK) on e.codeKind=27 and a.gender=e.code where a.icNo=? order by a.id desc ";
+	private static String queryIcLost = "select id from Dorm_IcLost WITH(NOLOCK) where icNo=?";
 	
 	
 	public void init(RequestContext requestContext, IBaseServiceManger service) {

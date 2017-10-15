@@ -48,7 +48,7 @@ public class ExecuteTask {
 	private static String queryLab = "";	// 劳务
 	private static String queryEmp = "";
 	private static String queryTempEmp = "";
-	private static String queryKq = "select a.badgenumber,b.cardno from userinfo a inner join personnel_issuecard b on a.userid=b.UserID_id";		// 考勤查询
+	private static String queryKq = "";		// 考勤查询
 	private static String queryPhoto = "";
 	static {
 		try {
@@ -63,6 +63,7 @@ public class ExecuteTask {
 			queryEmp = prop.getProperty("queryEmp").trim();
 			queryTempEmp = prop.getProperty("queryTempEmp").trim();
 			queryPhoto = prop.getProperty("queryPhoto").trim();
+			queryKq = prop.getProperty("queryKq").trim();
 		} catch (Exception e) {
             e.printStackTrace();
         }
