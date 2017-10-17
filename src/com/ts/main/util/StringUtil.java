@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
-
+import java.io.StringWriter;
 import java.security.MessageDigest;
 
 import java.util.ArrayList;
@@ -1039,7 +1039,14 @@ public class StringUtil {
         return new org.apache.commons.beanutils.BeanMap(obj);  
     }    
 	
-	
+	public static String getStackTraceAsString(Throwable e) {
+		if (e == null){
+			return "";
+		}
+		StringWriter stringWriter = new StringWriter();
+		e.printStackTrace(new PrintWriter(stringWriter));
+		return stringWriter.toString();
+	}
     	   
 }
 

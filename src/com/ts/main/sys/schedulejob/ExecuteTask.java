@@ -20,6 +20,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
 import org.apache.commons.dbutils.handlers.ArrayListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +32,8 @@ import com.ts.main.dorm.init.MyInitTaskService;
 import com.ts.main.util.HrorcDbUtil;
 import com.ts.main.util.KqDbUtil;
 import com.ts.main.util.LocalDBUtil;
+import com.ts.main.util.StringUtil;
 
-import nl.justobjects.pushlet.util.Log;
 
 
 /**
@@ -41,7 +42,7 @@ import nl.justobjects.pushlet.util.Log;
  *
  */
 public class ExecuteTask {
-	
+	private final  Logger log = Logger.getLogger(this.getClass());
 	private static String queryJob = "";	// 职位
 	private static String queryDep = "";	// 部门
 	private static String queryCop = "";	// 公司
@@ -65,7 +66,8 @@ public class ExecuteTask {
 			queryPhoto = prop.getProperty("queryPhoto").trim();
 			queryKq = prop.getProperty("queryKq").trim();
 		} catch (Exception e) {
-            e.printStackTrace();
+//			log.error(StringUtil.getStackTraceAsString(e));
+			e.printStackTrace();
         }
 	}
 	
@@ -91,7 +93,7 @@ public class ExecuteTask {
 					LocalDBUtil.commit();
 				} catch(Exception e) {
 					e.printStackTrace();
-					Log.error(e.getMessage());
+					log.error(e.getMessage());
 		    		LocalDBUtil.rollback();
 		    		// 插入出错日志
 		    		LocalDBUtil.startTransaction();
@@ -102,7 +104,7 @@ public class ExecuteTask {
 		    	}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(StringUtil.getStackTraceAsString(e));
 		}
 	}
 	
@@ -126,8 +128,7 @@ public class ExecuteTask {
 					qrLocal.update(LocalDBUtil.getConnection(), "exec ipexl_department_after");
 					LocalDBUtil.commit();
 				} catch(Exception e) {
-					e.printStackTrace();
-					Log.error(e.getMessage());
+					log.error(StringUtil.getStackTraceAsString(e));
 		    		LocalDBUtil.rollback();
 		    		// 插入出错日志
 		    		LocalDBUtil.startTransaction();
@@ -138,7 +139,7 @@ public class ExecuteTask {
 		    	}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(StringUtil.getStackTraceAsString(e));
 		}
 	}
 	
@@ -161,8 +162,7 @@ public class ExecuteTask {
 					qrLocal.update(LocalDBUtil.getConnection(), "exec ipexl_position_after");
 					LocalDBUtil.commit();
 				} catch(Exception e) {
-					e.printStackTrace();
-					Log.error(e.getMessage());
+					log.error(StringUtil.getStackTraceAsString(e));
 		    		LocalDBUtil.rollback();
 		    		// 插入出错日志
 		    		LocalDBUtil.startTransaction();
@@ -173,7 +173,7 @@ public class ExecuteTask {
 		    	}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(StringUtil.getStackTraceAsString(e));
 		}
 	}
 	
@@ -196,8 +196,7 @@ public class ExecuteTask {
 					qrLocal.update(LocalDBUtil.getConnection(), "exec ipexl_labour_after");
 					LocalDBUtil.commit();
 				} catch(Exception e) {
-					e.printStackTrace();
-					Log.error(e.getMessage());
+					log.error(StringUtil.getStackTraceAsString(e));
 		    		LocalDBUtil.rollback();
 		    		// 插入出错日志
 		    		LocalDBUtil.startTransaction();
@@ -208,7 +207,7 @@ public class ExecuteTask {
 		    	}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(StringUtil.getStackTraceAsString(e));
 		}
 	}
 	
@@ -222,8 +221,7 @@ public class ExecuteTask {
 			qrLocal.update(LocalDBUtil.getConnection(), "exec dorm_autoScore");
 			LocalDBUtil.commit();
 		} catch(Exception e) {
-			e.printStackTrace();
-			Log.error(e.getMessage());
+			log.error(StringUtil.getStackTraceAsString(e));
     		LocalDBUtil.rollback();
     		// 插入出错日志
     		LocalDBUtil.startTransaction();
@@ -232,7 +230,7 @@ public class ExecuteTask {
 				LocalDBUtil.commit();
     		} catch (SQLException e1) {
 				LocalDBUtil.rollback();
-				Log.error(e.getMessage());
+				log.error(e.getMessage());
 			}
     	} finally { 
     		LocalDBUtil.close();
@@ -259,8 +257,7 @@ public class ExecuteTask {
 					qrLocal.update(LocalDBUtil.getConnection(), "exec ipexl_employee_after");
 					LocalDBUtil.commit();
 				} catch(Exception e) {
-					e.printStackTrace();
-					Log.error(e.getMessage());
+					log.error(StringUtil.getStackTraceAsString(e));
 		    		LocalDBUtil.rollback();
 		    		// 插入出错日志
 		    		LocalDBUtil.startTransaction();
@@ -273,7 +270,7 @@ public class ExecuteTask {
 				System.out.println("没查到结果");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(StringUtil.getStackTraceAsString(e));
 		}
 	}
 	
@@ -298,8 +295,7 @@ public class ExecuteTask {
 					qrLocal.update(LocalDBUtil.getConnection(), "exec ipexl_tempEmployee_after");
 					LocalDBUtil.commit();
 				} catch(Exception e) {
-					e.printStackTrace();
-					Log.error(e.getMessage());
+					log.error(StringUtil.getStackTraceAsString(e));
 		    		LocalDBUtil.rollback();
 		    		// 插入出错日志
 		    		LocalDBUtil.startTransaction();
@@ -312,7 +308,7 @@ public class ExecuteTask {
 				System.out.println("没查到结果");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(StringUtil.getStackTraceAsString(e));
 		}
 	}
 	
@@ -336,8 +332,7 @@ public class ExecuteTask {
 					qrLocal.update(LocalDBUtil.getConnection(), "exec ipexl_kq_after");
 					LocalDBUtil.commit();
 				} catch(Exception e) {
-					e.printStackTrace();
-					Log.error(e.getMessage());
+					log.error(StringUtil.getStackTraceAsString(e));
 		    		LocalDBUtil.rollback();
 		    		// 插入出错日志
 		    		LocalDBUtil.startTransaction();
@@ -348,7 +343,7 @@ public class ExecuteTask {
 		    	}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(StringUtil.getStackTraceAsString(e));
 		}
 	}
 	
@@ -381,8 +376,7 @@ public class ExecuteTask {
 			stmt.close();
 			
 		} catch (Exception e) {
-			e.printStackTrace();
-			Log.error(e.getMessage());
+			log.error(StringUtil.getStackTraceAsString(e));
 			QueryRunner qrLocal = new QueryRunner(LocalDBUtil.getDataSource());
     		try {
     			// 插入出错日志
@@ -426,7 +420,7 @@ public class ExecuteTask {
 					int b = 3/0;
 					LocalDBUtil.commit();
 				} catch(Exception e) {
-		    		e.printStackTrace();
+					e.printStackTrace();
 		    		LocalDBUtil.rollback();
 		    		LocalDBUtil.startTransaction();
 		    		Object[] insertRs = qrLocal.insert(LocalDBUtil.getConnection(), "insert into Sys_ScheduleJobLog(jobId,description) values(?,?)", new ArrayHandler(), new Object[]{1,e.getMessage()});
@@ -438,7 +432,7 @@ public class ExecuteTask {
 				
 			}
     	} catch (SQLException e) {
-			e.printStackTrace();
+    		e.printStackTrace();
 		}
 	}
 }
