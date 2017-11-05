@@ -43,14 +43,17 @@
 			</object>
 		</object> 
         <property name="sourceFields" type="list"> 
-		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="name"  displayLable="姓名" dataType="string" colWidth="90" />
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="door" displayLable="门号" dataType="string" colWidth="60" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
+				<property name="dataSourceSql">select code value,name text from TS_SysCode where codeKind=320</property>
+			</object>
+		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="name"  displayLable="姓名" dataType="string" colWidth="90" isQueryCondition="1" />
 		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="number"  displayLable="工号" dataType="int" colWidth="90" />
 		  	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="icNo"  displayLable="考勤卡号" dataType="string" colWidth="90" />    
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="depName" displayLable="所在部门" dataType="string" colWidth="150" />
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="parentDepName" displayLable="科室" dataType="string" colWidth="150" />
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="posName" displayLable="职位" dataType="string" colWidth="150" />
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string" colWidth="100" />  
-			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" />
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" isQueryCondition="1" />
           	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="时间" dataType="string" colWidth="70"/>
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0" />  
         </property> 

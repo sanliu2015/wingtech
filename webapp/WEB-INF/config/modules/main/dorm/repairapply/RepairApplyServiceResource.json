@@ -3,7 +3,7 @@
 	"appName": "维修申请",
 	"attributes": 
 	{
-		"queryObj":"select a.*,b.name employeeName,b.phone empPhone,c.name repairerName from DORM_RepairApply a inner join HR_Employee b on a.employeeId=b.id inner join DORM_Repairer c on a.repairerId=c.id where a.id=? ",
+		"queryObj":"select a.*,b.name repairerName,c.id repairerLogId,e.roomNumber roomNumber,e.buildingName buildingName from DORM_RepairApply a inner join HR_Employee b on a.repairerId=b.id inner join dorm_repairer c on b.idCard=c.idCard inner join VM_RoomInfo e on a.roomId=e.id where a.id=? ",
 		"querySql":"select 'update' recordOperateStatus,a.id,a.name,a.description from DORM_RepairApplyDtl a inner join DORM_RepairApply b on a.hdrId=b.id  where a.hdrId=?",
 		"queryDamageSql": "select a.id,a.employeeId,a.amount,a.description,a.occurDate,a.reason,
 		b.name empName,b.number empNumber,'update' recordOperateStatus  

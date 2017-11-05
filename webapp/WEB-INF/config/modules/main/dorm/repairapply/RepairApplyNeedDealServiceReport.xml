@@ -10,8 +10,8 @@
     	<object class="SourceTableRuleBean" id="repairApplyServiceTable">
         <property name="sql"><![CDATA[ 
         	from Dorm_RepairApply a 
-        		inner join HR_Employee b on a.employeeId=b.id
-        		inner join Dorm_Repairer c on a.repairerId=c.id 
+        		left join HR_Employee b on a.repairerId=b.id 
+        		left join VM_RoomInfo e on a.roomId=e.id
         		where isnull(a.status,'0')='0' and a.auditStatus='1' 
           ]]></property> 
 		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
@@ -34,18 +34,15 @@
 		</object> 
         <property name="sourceFields" type="list">
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="number" displayLable="报修编号" dataType="string" isQueryCondition="1" colWidth="90"/>
-		    <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="name" fieldAliasName="employeeName"  displayLable="报修人姓名" dataType="string" isQueryCondition="1" colWidth="80"/>
-		    <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="number" fieldAliasName="employeeNo"  displayLable="报修人工号" dataType="string" isQueryCondition="1" colWidth="80"/>
-		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="buildingId" displayLable="楼栋位置" dataType="int" colWidth="60" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
-				<property name="dataSourceSql">select id value,name text from Dorm_building where parentId is null</property>
-			</object>
+		    <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="roomNumber" displayLable="房间编号" dataType="string" isQueryCondition="1" colWidth="60"/>
+	        <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="buildingName"  displayLable="楼栋" dataType="string" queryCondtiOrder="2" displayColumn="1" isQueryCondition="1" colWidth="60"/>
+		    <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="name" fieldAliasName="employeeName"  displayLable="维修人姓名" dataType="string" isQueryCondition="1" colWidth="80"/>
+		    <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="number" fieldAliasName="employeeNo"  displayLable="维修人工号" dataType="string" isQueryCondition="1" colWidth="80"/>
     	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="repairType" displayLable="报修类别" dataType="string" colWidth="60" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
 				<property name="dataSourceSql">select code value,name text from TS_SysCode where codeKind=130</property>
 			</object>
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="repairDate" displayLable="报修日期" dataType="string"  displayColumn="1"  colWidth="70"  />
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="repairContent" displayLable="报修内容" dataType="string"  colWidth="150"  />
-			 <object class="SourceFieldRuleBean" tableAliasName="c" fieldName="name" displayLable="维修工姓名" dataType="string" isQueryCondition="1" colWidth="80"/>
-			 <object class="SourceFieldRuleBean" tableAliasName="c" fieldName="phone" displayLable="维修工手机" dataType="string" isQueryCondition="1" colWidth="80"/>
             <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" dataType="string"  displayColumn="1"  colWidth="70"  />                                              
             <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="创建时间" dataType="string" displayColumn="1" colWidth="70"/>
             <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy" displayLable="创建人" dataType="string" colWidth="60" />

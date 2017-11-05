@@ -47,6 +47,9 @@ public class EmpEnter extends CommonBean {
 	private String posName;
 	
 	@Column(length = 5)
+	private String door;
+	
+	@Column(length = 5)
 	private String doorIn;
 	@Column(length = 5)
 	private String doorOut;
@@ -137,6 +140,14 @@ public class EmpEnter extends CommonBean {
 
 	public void setDoorOut(String doorOut) {
 		this.doorOut = doorOut;
+	}
+
+	public String getDoor() {
+		return door;
+	}
+
+	public void setDoor(String door) {
+		this.door = door;
 	}
 	
 	

@@ -95,6 +95,7 @@
 			</object>
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="leaveDate" displayLable="离开日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" />
           	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="leaveTime" displayLable="离开时间" dataType="string" colWidth="70"/>
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="DATEDIFF(minute ,a.visitDate+' '+a.visitTime,isnull(a.leaveDate+' '+a.leaveTime, getDate()))" fieldAliasName="stayMinute" isCalculateField="1" displayLable="滞留时间（分钟）" dataType="integer" colWidth="70"/>
           	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="leaveBy"  displayLable="离开登记人"  dataType="string" colWidth="70" /> 
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0" />  
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="status" fieldAliasName="auditStatus" dataType="string" displayColumn="0"  /> 

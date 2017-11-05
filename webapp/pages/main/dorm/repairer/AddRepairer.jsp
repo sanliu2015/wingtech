@@ -16,7 +16,7 @@
 		<thead>
 			<tr>
 				<th data-options="field:'operateField',width:40,formatter:repairerScript.removeRowFormat">操作</th>
-                <th data-options="field:'name',width:100, formatter:repairerScript.textInputFormat">姓名<span style="color:red">*</span></th>
+                <!-- <th data-options="field:'name',width:100, formatter:repairerScript.textInputFormat">姓名<span style="color:red">*</span></th> -->
 				<th data-options="field:'idCard',width:130,formatter:repairerScript.textInputFormat">身份证<span style="color:red">*</span></th>
 				<th data-options="field:'phone',width:130,formatter:repairerScript.textInputFormat">手机号</th>
 				<th data-options="field:'repairType',width:150,formatter:repairerScript.comboboxFormat">维修类别</th>

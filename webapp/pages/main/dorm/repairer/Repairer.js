@@ -57,11 +57,11 @@ RepairerScript.prototype={
 	 
 		var failFlag = false;
 		$.each(visibleTr,function(i,row) {
-			if ($(row).find('td[field="name"]').find(".easyui-textbox").textbox("getValue") == "") {
-				$.messager.alert('提示','行号为' + (i+1) + "名称不能为空!");
-				failFlag = true;
-				return false;
-			}
+//			if ($(row).find('td[field="name"]').find(".easyui-textbox").textbox("getValue") == "") {
+//				$.messager.alert('提示','行号为' + (i+1) + "名称不能为空!");
+//				failFlag = true;
+//				return false;
+//			}
 			if ($(row).find('td[field="idCard"]').find(".easyui-textbox").textbox("getValue") == "") {
 				$.messager.alert('提示','行号为' + (i+1) + "身份证不能为空!");
 				failFlag = true;
@@ -84,10 +84,10 @@ RepairerScript.prototype={
 	     var bodyId="#"+this.opts.appKey+"Body";
 		 var formId= this.opts.appKey+"Form";
 		 var url=$("#"+formId).attr("action")+'?timeStamp='+(new Date()).getTime();  
-		 if ($.trim($("#bean\\.name").textbox("getText")) == "") {
-			 $.messager.alert("警告", "姓名不能为空!");
-			 return false;
-		 }
+//		 if ($.trim($("#bean\\.name").textbox("getText")) == "") {
+//			 $.messager.alert("警告", "姓名不能为空!");
+//			 return false;
+//		 }
 		 if ($.trim($("#bean\\.idCard").textbox("getText")) == "") {
 			 $.messager.alert("警告", "身份证不能为空!");
 			 return false;

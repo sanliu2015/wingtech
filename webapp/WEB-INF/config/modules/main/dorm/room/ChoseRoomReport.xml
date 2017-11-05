@@ -51,6 +51,7 @@
             <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy" displayLable="创建人" dataType="string" colWidth="60" />
             <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string"  colWidth="100"  />
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0"/>
+        	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="buildingId" displayLable="buildingId" dataType="int" displayColumn="0"/>
         </property> 
       </object>
     </property> 

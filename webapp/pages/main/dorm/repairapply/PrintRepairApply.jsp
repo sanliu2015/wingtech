@@ -29,8 +29,8 @@ response.setHeader("Expires","0");//防止被proxy
           <td nowrap width="18%" align="left" >${form.bean.number}</td> 
           <td nowrap width="15%" align="left" >报修人员： </td> 
           <td nowrap width="18%" align="left" >${form.bean.employeeName}</td>
-          <td nowrap width="15%" align="left" >楼栋位置： </td> 
-          <td nowrap width="18%" align="left" ><ts:forEach name='buildingIdList' value='${form.bean.buildingId}' outValue="1"/></td>  
+          <td nowrap width="15%" align="left" >报修单位： </td> 
+          <td nowrap width="18%" align="left" >${form.bean.roomNumber}</td>  
        </tr>
        <tr style="height:36px;"> 
           <td nowrap width="15%" align="left" >报修类别： </td> 

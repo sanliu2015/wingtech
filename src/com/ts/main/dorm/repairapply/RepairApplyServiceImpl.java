@@ -78,9 +78,13 @@ public class RepairApplyServiceImpl implements IAppService {
 		OperatePromptBean opb = new OperatePromptBean();
 		RepairApply bean = form.getBean(); 
 		RepairApply orignBean = service.getDb().getObject(RepairApply.class, bean.getId(), requestContext);
-		BeanUtils.copyNoNullProperties(bean, orignBean);
-		service.getDb().updateObject(orignBean, requestContext);
-		sumbitEntryList(requestContext, service, form);
+		if ("1".equals(orignBean.getStatus())) {
+			opb.setError("已经审核通过，不能修改！");
+		} else {
+			BeanUtils.copyNoNullProperties(bean, orignBean);
+			service.getDb().updateObject(orignBean, requestContext);
+			sumbitEntryList(requestContext, service, form);
+		}
 		opb.setBillId(bean.getId());
 		return opb;
 	}
@@ -103,9 +107,12 @@ public class RepairApplyServiceImpl implements IAppService {
 	
 	public OperatePromptBean doAudit(RequestContext requestContext, IBaseServiceManger service, RepairApplyForm form) {
 		OperatePromptBean opb = new OperatePromptBean();
-		RepairApply orignBean = service.getDb().getObject(RepairApply.class, form.getBean().getId(), requestContext);
+//		RepairApply orignBean = service.getDb().getObject(RepairApply.class, form.getBean().getId(), requestContext);
+		String queryObj = "" + requestContext.getMessageResource().get("queryObj");
+		List<Map<String, Object>> beanList = service.getDb().findForJdbc(queryObj, new Object[]{form.getBean().getId()});
+		RepairApply orignBean = JSON.parseObject(JSON.toJSONString(beanList.get(0)), RepairApply.class);
 		// 发送短信给修理人员
-		Repairer repairer = (Repairer) service.getDb().getObject(Repairer.class, orignBean.getRepairerId(), requestContext);
+		Repairer repairer = (Repairer) service.getDb().getObject(Repairer.class, orignBean.getRepairerLogId(), requestContext);
 		if (repairer.getPhone() != null && !"".equals(repairer.getPhone())) {
 			StringBuilder content = new StringBuilder(500);
 			content.append("收到一条报修申请：【单号】").append(orignBean.getNumber())
@@ -159,7 +166,7 @@ public class RepairApplyServiceImpl implements IAppService {
 		RepairApply orignBean = service.getDb().getObject(RepairApply.class, form.getBean().getId(), requestContext);
 		orignBean.setAutoScoreDate(form.getBean().getAutoScoreDate());
 		orignBean.setNotifyFlag(form.getBean().getNotifyFlag());
-		orignBean.setEmpPhone(form.getBean().getEmpPhone());
+		orignBean.setContactPhone(form.getBean().getContactPhone());
 		orignBean.setEndWorkDate(form.getBean().getEndWorkDate());
 		orignBean.setStatus("1");
 		if (orignBean.getNotifyFlag().intValue() == 1) {
@@ -169,7 +176,7 @@ public class RepairApplyServiceImpl implements IAppService {
 					.append("，若要对此次维修做出评价，请于").append(orignBean.getAutoScoreDate()).append("前（含当日）前往物业管理中心处理，谢谢您的配合！");
 			SendLog log = new SendLog();
 			try {
-				String sb = SendSmsUtil.sendSms(orignBean.getEmpPhone(),content.toString());
+				String sb = SendSmsUtil.sendSms(orignBean.getContactPhone(),content.toString());
 				Document document;
 				try {
 	    			document = DocumentHelper.parseText(sb.toString());
@@ -199,14 +206,11 @@ public class RepairApplyServiceImpl implements IAppService {
 			}
 		}
 		
-		if (form.getBean().getRewardFee().doubleValue() > 0) {
+		if (form.getBean().getRewardFee() != null && form.getBean().getRewardFee().doubleValue() > 0) {
 			Reward reward = new Reward();
 			reward.setOccurDate(DateUtil.formatDate(new Date()));
 			reward.setAmount(form.getBean().getRewardFee());
-			StringBuilder sql = new StringBuilder(100);
-			sql.append("select a.id from hr_employee a inner join Dorm_Repairer b on a.idCard=b.idCard where a.status=1 and b.id=?");
-			List<Map<String, Object>> rsList = service.getDb().findForJdbc(sql.toString(), orignBean.getRepairerId());
-			reward.setEmployeeId(Integer.valueOf(rsList.get(0).get("id").toString()));
+			reward.setEmployeeId(orignBean.getRepairerId());
 			reward.setDescription("报修奖励费用，报修单号：" + orignBean.getNumber());
 			service.getDb().saveObject(reward);
 		}

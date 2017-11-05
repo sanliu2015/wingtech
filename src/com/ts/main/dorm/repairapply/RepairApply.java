@@ -55,7 +55,7 @@ public class RepairApply extends CommonBean {
 	@Column(length = 5)
 	private String status;
 	
-	@BeanProperty(description = "维修人id")
+	@BeanProperty(description = "维修人Empid")
 	@Column
 	private Integer repairerId;
 	
@@ -89,7 +89,7 @@ public class RepairApply extends CommonBean {
 	@Column
 	private Integer notifyFlag;
 	
-	@Column(length=15)
+	@Transient
 	private String empPhone;
 	
 	@Column(length=10)
@@ -102,7 +102,22 @@ public class RepairApply extends CommonBean {
 	private String employeeName;
 	@Transient
 	private String repairerName;
+	@BeanProperty(description = "房间编号")
+	@Column
+	private Integer roomId;
+	@BeanProperty(description = "报修人")
+	@Column
+	private String applyer;	
+	@Column
+	private String contactPhone;
+	@Column
+	private String repairComment;
 	
+	@Transient
+	private String roomNumber;
+	@Transient
+	private Integer repairerLogId;	// 维修人员主键id
+
 
 	public Integer getId() {
 		return id;
@@ -288,5 +303,52 @@ public class RepairApply extends CommonBean {
 		this.rewardFee = rewardFee;
 	}
 
+	public Integer getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(Integer roomId) {
+		this.roomId = roomId;
+	}
+
+	public String getApplyer() {
+		return applyer;
+	}
+
+	public void setApplyer(String applyer) {
+		this.applyer = applyer;
+	}
+
+	public String getContactPhone() {
+		return contactPhone;
+	}
+
+	public void setContactPhone(String contactPhone) {
+		this.contactPhone = contactPhone;
+	}
+
+	public String getRepairComment() {
+		return repairComment;
+	}
+
+	public void setRepairComment(String repairComment) {
+		this.repairComment = repairComment;
+	}
+
+	public String getRoomNumber() {
+		return roomNumber;
+	}
+
+	public void setRoomNumber(String roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+
+	public Integer getRepairerLogId() {
+		return repairerLogId;
+	}
+
+	public void setRepairerLogId(Integer repairerLogId) {
+		this.repairerLogId = repairerLogId;
+	}
 
 }

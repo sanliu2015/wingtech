@@ -11,22 +11,30 @@
 </head>
 <body id="${appReqeustContext.appKey}Body">  
 <form action="${contextPath}/main/${appReqeustContext.appService}/json/update.do" id="${appReqeustContext.appKey}Form" name="${appReqeustContext.appKey}Form" method="post"> 
-  	<input type="hidden" name="bean.id" /> 
+  	<input type="hidden" name="bean.id" id="bean.id"/> 
   	<div id="${appReqeustContext.appKey}FormJson" style="display:none">${formJson}</div> 
  	<div id="pagePanel" class="easyui-panel" width="100%"  style="padding:10px">
 		<table cellpadding="0" cellspacing="0" class="baseForm-table" width="100%">
         	<tr>
-        		<td  nowrap><label   for="bean.employeeId">报修人员<span style="color:red">*</span></label></td>
+				<td nowrap><label   for="bean.repairDate">报修日期<span style="color:red">*</span></label></td>
+			   	<td  ><input name="bean.repairDate" id="bean.repairDate" class="easyui-my97" style="width:126px;height:28px"></td>
+				<td  nowrap><label   for="bean.roomId">报修单位<span style="color:red">*</span></label></td>
 				<td>
-					<input name="bean.employeeName" id="bean.employeeName" class="easyui-textbox" readonly style="width:150px;height:30px" />
-					<a href="javascript:void(0)" class="easyui-linkbutton"  iconCls="icon-search" onClick="return repairApplyScript.chooseEmployee(this);"  plain='true'></a>
-					<input name="bean.employeeId" id="bean.employeeId" type="hidden"  />
+					<input type="hidden" name="bean.roomId" id="bean.roomId" />
+					<input type="hidden" name="bean.buildingName" id="bean.buildingName" />
+					<input name="bean.roomNumber"  id="bean.roomNumber" class="easyui-textbox" readonly style="width:150px;height:30px" />   
+					<a href="javascript:void(0)" class="easyui-linkbutton"  iconCls="icon-search" onClick="return repairApplyScript.chooseRoom(this);"  plain='true'></a>
+                		
 				</td>
-          		<td  nowrap><label   for="bean.buildingId">楼栋位置<span style="color:red">*</span></label></td>
+				<td  nowrap><label   for="bean.applyer">报修人员<span style="color:red">*</span></label></td>
 				<td>
-					<select name="bean.buildingId"  id="bean.buildingId" class="easyui-combobox" data-options="editable:false" style="width:150px;height:30px">   
-                		<ts:forEach name='buildingIdList' insertEmpty='0' />
-					</select>
+					<input name="bean.applyer" id="bean.applyer" class="easyui-textbox" style="width:150px;height:30px" />
+				</td>
+		   	</tr >
+		    <tr>
+		    	<td  nowrap><label   for="bean.contactPhone">联系电话<span style="color:red">*</span></label></td>
+				<td>
+					<input name="bean.contactPhone" id="bean.contactPhone" class="easyui-textbox" style="width:150px;height:30px" />
 				</td>
 				<td  nowrap><label   for="bean.repairType">报修类别<span style="color:red">*</span></label></td>
 				<td>
@@ -34,16 +42,12 @@
                 		<ts:forEach name='repairTypeList' insertEmpty='0' />
 					</select>
 				</td>
-		   	</tr >
-		    <tr>
 	      		<td  nowrap><label   for="bean.repairerId">维修人员<span style="color:red">*</span></label></td>
 				<td>
 					<input name="bean.repairerName" id="bean.repairerName" class="easyui-textbox" readonly style="width:150px;height:30px" />
 					<a href="javascript:void(0)" class="easyui-linkbutton"  iconCls="icon-search" onClick="return repairApplyScript.chooseRepairer(this);"  plain='true'></a>
 					<input name="bean.repairerId" id="bean.repairerId" type="hidden"  />
 				</td>
-	      		<td nowrap><label   for="bean.repairDate">报修日期<span style="color:red">*</span></label></td>
-			   	<td  ><input name="bean.repairDate" id="bean.repairDate" class="easyui-my97" style="width:126px;height:28px"></td>
 	      	</tr>
 	      	<tr>
 	      		<td nowrap><label   for="bean.repairContent">报修内容<span style="color:red">*</span></label></td>
@@ -80,7 +84,7 @@
         height: 27px;
     }
 </style>
-<script type="text/javascript" src="<ts:base ref='path'/>/RepairApply.js"></script> 
+<script type="text/javascript" src="<ts:base ref='path'/>/RepairApply.js?171111"></script> 
 <script type="text/javascript">
     var repairApplyScript=new RepairApplyScript();   
     var dtlList = ${dtlList};

@@ -16,40 +16,43 @@
  	<div id="pagePanel" class="easyui-panel" width="100%"  style="padding:10px">
 		<table cellpadding="0" cellspacing="0" class="baseForm-table" width="100%">
         	<tr>
-        		<td  nowrap><label   for="bean.employeeId">报修人员<span style="color:red">*</span></label></td>
+        		<td nowrap><label   for="bean.repairDate">报修日期<span style="color:red">*</span></label></td>
+			   	<td  ><input name="bean.repairDate" id="bean.repairDate" class="easyui-textbox" style="width:126px;height:28px" readonly></td>
+				<td  nowrap><label   for="bean.roomId">报修单位<span style="color:red">*</span></label></td>
 				<td>
-					<input name="bean.employeeName" id="bean.employeeName" class="easyui-textbox" readonly style="width:150px;height:30px" />
-					<input name="bean.employeeId" id="bean.employeeId" type="hidden"  />
+					<input type="hidden" name="bean.roomId" id="bean.roomId" />
+					<input type="hidden" name="bean.buildingName" id="bean.buildingName" />
+					<input name="bean.roomNumber"  id="bean.roomNumber" class="easyui-textbox" readonly style="width:150px;height:30px" />   
 				</td>
-          		<td  nowrap><label   for="bean.buildingId">楼栋位置<span style="color:red">*</span></label></td>
+				<td  nowrap><label   for="bean.repairerId">维修人员<span style="color:red">*</span></label></td>
 				<td>
-					<select name="bean.buildingId"  id="bean.buildingId" class="easyui-combobox" data-options="editable:false,disabled:true" style="width:150px;height:30px">   
-                		<ts:forEach name='buildingIdList' insertEmpty='0' />
-					</select>
-				</td>
-				<td  nowrap><label   for="bean.repairType">报修类别<span style="color:red">*</span></label></td>
-				<td>
-					<select name="bean.repairType"  id="bean.repairType" class="easyui-combobox" data-options="editable:false,disabled:true" style="width:150px;height:30px">   
-                		<ts:forEach name='repairTypeList' insertEmpty='0' />
-					</select>
+					<input name="bean.repairerName" id="bean.repairerName" class="easyui-textbox" readonly style="width:150px;height:30px" />
 				</td>
 		   	</tr >
 		    <tr>
-	      		<td  nowrap><label   for="bean.repairerId">维修人员<span style="color:red">*</span></label></td>
+		    	<td  nowrap><label   for="bean.applyer">报修人员<span style="color:red">*</span></label></td>
 				<td>
-					<input name="bean.repairerName" id="bean.repairerName" class="easyui-textbox" readonly style="width:150px;height:30px" />
-					<input name="bean.repairerId" id="bean.repairerId" type="hidden"  />
+					<input name="bean.applyer" id="bean.applyer" class="easyui-textbox" readonly style="width:150px;height:30px" />
 				</td>
-	      		<td nowrap><label   for="bean.repairDate">报修日期<span style="color:red">*</span></label></td>
-			   	<td  ><input name="bean.repairDate" id="bean.repairDate" readonly class="easyui-textbox" style="width:150px;height:30px"></td>
+				<td  nowrap><label   for="bean.contactPhone">联系电话<span style="color:red">*</span></label></td>
+				<td>
+					<input name="bean.contactPhone" id="bean.contactPhone" class="easyui-textbox" style="width:150px;height:30px" />
+				</td>
+				<td  nowrap><label   for="bean.repairType">报修类别<span style="color:red">*</span></label></td>
+				<td>
+					<select name="bean.repairType"  id="bean.repairType" class="easyui-combobox" data-options="editable:false" style="width:150px;height:30px">   
+                		<ts:forEach name='repairTypeList' insertEmpty='0' />
+					</select>
+				</td>
+	      		
+	      	</tr>
+	      	<tr>
+	      		<td nowrap><label   for="bean.repairContent">报修内容<span style="color:red">*</span></label></td>
+			   	<td colspan="3" ><input class="easyui-textbox" readonly name="bean.repairContent" id="bean.repairContent" style="width:500px;height:30px;"></td>
 	      		<td  nowrap><label   for="bean.number">报修单号<span style="color:red">*</span></label></td>
 				<td>
 					<input name="bean.number" id="bean.number" class="easyui-textbox" readonly style="width:150px;height:30px" />
 				</td>
-	      	</tr>
-	      	<tr>
-	      		<td nowrap><label   for="bean.repairContent">报修内容<span style="color:red">*</span></label></td>
-			   	<td colspan="5" ><input class="easyui-textbox" readonly name="bean.repairContent" id="bean.repairContent" style="width:500px;height:30px;"></td>
 	      	</tr>
 	      	<tr>
 	      		<td nowrap><label   for="bean.description">备注</label></td>

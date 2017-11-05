@@ -9,6 +9,27 @@ RepairApplyScript.prototype = {
 		this.opts = $.extend({}, option);
 	},
 	
+	chooseRoom:function(obj){    
+	      var urlJson={urlType:"chooseRow",  moduleFileName:"ChoseRoomReport",openQueryResult:"1"}; 
+		  var url=$.ts.Utils.toUrlParam(urlJson);  
+		  var that=this;
+		  var handler=$.ts.EasyUI.frameDialog( { 
+		        title:"选择房间",   
+				href : url   
+			  } , function(json){ 
+					  try{  
+						 if(json!=null){ 
+							  $("#bean\\.roomNumber").textbox('setText',json.roomNumber);  
+							  $("#bean\\.roomId").val(json.id);   
+							  $("#bean\\.buildingName").val(json.buildingName);   
+						 }
+					  } catch(e){
+						 $.messager.alert('Hint', e); 
+					  }
+				}
+			);    
+	},
+	
 	chooseEmployee:function(obj){    
 	      var urlJson={urlType:"chooseRow",  moduleFileName:"ChoseEmployeeReport",openQueryResult:"1"}; 
 		  var url=$.ts.Utils.toUrlParam(urlJson);  
@@ -30,9 +51,9 @@ RepairApplyScript.prototype = {
 	},
 	
 	chooseRepairer:function(obj){    
-		  var buildingId = $("#bean\\.buildingId").combobox("getValue");
+		  var buildingName = $("#bean\\.buildingName").val();
 		  var repairTypeName = $("#bean\\.repairType").combobox("getText");
-	      var urlJson={urlType:"chooseRow", moduleFileName:"repairerServiceReport",openQueryResult:"1", repairTypeName:repairTypeName, buildingId:buildingId}; 
+	      var urlJson={urlType:"chooseRow", moduleFileName:"repairerServiceReport",openQueryResult:"1", repairTypeName:repairTypeName, buildName:buildingName}; 
 		  var url=$.ts.Utils.toUrlParam(urlJson);  
 		  var that=this;
 		  var handler=$.ts.EasyUI.frameDialog( { 
@@ -42,7 +63,7 @@ RepairApplyScript.prototype = {
 					  try{  
 						 if(json!=null){ 
 							  $("#bean\\.repairerName").textbox('setText',json.name);  
-							  $("#bean\\.repairerId").val(json.id);   
+							  $("#bean\\.repairerId").val(json.empId);   
 						 }
 					  } catch(e){
 						 $.messager.alert('Hint', e); 
@@ -192,12 +213,12 @@ RepairApplyScript.prototype = {
 		var url = $("#" + formId).attr("action") + '?timeStamp='
 				+ (new Date()).getTime();
 
-		if ($.trim($("#bean\\.employeeId").val()) == "") {
-			$.messager.alert("警告", "报修人员不能为空!");
-			return false;
-		}
-		if ($("#bean\\.buildingId").combobox("getValue") == "") {
-			$.messager.alert("警告", "楼栋位置不能为空!");
+//		if ($.trim($("#bean\\.employeeId").val()) == "") {
+//			$.messager.alert("警告", "报修人员不能为空!");
+//			return false;
+//		}
+		if ($("#bean\\.roomId").val() == "") {
+			$.messager.alert("警告", "报修单位不能为空!");
 			return false;
 		}
 		if ($("#bean\\.repairType").combobox("getValue") == "") {

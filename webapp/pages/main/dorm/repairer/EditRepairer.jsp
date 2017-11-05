@@ -15,28 +15,24 @@
 	<div id="pagePanel" title="基本信息" class="easyui-panel" width="100%"  style="padding:10px">
 		<table cellpadding="0" cellspacing="0" class="baseForm-table" width="100%">
         	<tr>
-				<td  nowrap><label   for="bean.name">名称<span style="color:red">*</span></label></td>
-				<td><input name="bean.name" id="bean.name" class="easyui-textbox"  style="width:150px;height:30px" /></td>
 				<td  nowrap><label   for="bean.idCard">身份证<span style="color:red">*</span></label></td>
 				<td><input name="bean.idCard" id="bean.idCard" class="easyui-textbox"  style="width:150px;height:30px" /></td>
+		   		<td  nowrap><label   for="bean.phone">手机号</label></td>
+				<td><input name="bean.phone" id="bean.phone" class="easyui-textbox"  style="width:150px;height:30px" /></td>
 		   	</tr>
 	      	<tr>
-	      		<td  nowrap><label   for="bean.phone">手机号</label></td>
-				<td><input name="bean.phone" id="bean.phone" class="easyui-textbox"  style="width:150px;height:30px" /></td>
 	      		<td  nowrap><label   for="bean.repairType">维修类别</label></td>
 				<td>
-				    <input id="bean.repairType" name="bean.repairType" />
+				    <input id="bean.repairType" name="bean.repairType" style="width:350px;height:30px"/>
+				</td>
+				<td  nowrap><label   for="bean.buildingId">负责楼栋</label></td>
+				<td>
+					<input id="bean.buildingId" name="bean.buildingId" style="width:350px;height:30px" />
 				</td>
 	      	</tr>  
 	      	<tr>
-	      		<td  nowrap><label   for="bean.buildingId">负责楼栋</label></td>
-				<td>
-					<input id="bean.buildingId" name="bean.buildingId" />
-				</td>
-	      	</tr>
-	      	<tr>
 	      		<td nowrap><label   for="bean.description">备注</label></td>
-			    <td colspan="3"><input class="easyui-textbox" name="bean.description" style="height:30px;width:400px"></td>
+			    <td colspan="3"><input class="easyui-textbox" name="bean.description" style="height:30px;width:350px"></td>
 	      	</tr>
 		</table>
 	</div> 

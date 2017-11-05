@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory; 
@@ -81,9 +82,15 @@ public class EmployeeServiceImpl implements IAppService{
 	}
 	 
 	public OperatePromptBean delete(RequestContext requestContext , IBaseServiceManger service,EmployeeForm form){ 
-		Employee bean=service.getDb().getObject(Employee.class, form.getId(),requestContext);  
-		service.getDbService().deleteObject(bean,requestContext); 
 		OperatePromptBean prompt=new OperatePromptBean();
+		Employee bean=service.getDb().getObject(Employee.class, form.getId(),requestContext);  
+		StringBuilder sql = new StringBuilder("select 1 from dorm_checkIn where employeeId=").append(form.getId());
+		List<Map> rs = service.getDb().queryForList(sql.toString(), requestContext);
+		if (rs != null && rs.size() > 0) {
+			prompt.setError("有入住信息不能删除！");
+		} else {
+			service.getDbService().deleteObject(bean,requestContext); 
+		}
 		prompt.setId(bean.getId().toString());
 		prompt.setStatememt(prompt.hint_success); 
 		return prompt;

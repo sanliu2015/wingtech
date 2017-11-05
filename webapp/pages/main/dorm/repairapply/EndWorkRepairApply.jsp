@@ -11,7 +11,7 @@
 </head>
 <body id="${appReqeustContext.appKey}Body">  
 <form action="${contextPath}/main/${appReqeustContext.appService}/json/doEndWork.do" id="${appReqeustContext.appKey}Form" name="${appReqeustContext.appKey}Form" method="post"> 
-  	<input type="hidden" name="bean.id" /> 
+  	<input type="hidden" name="bean.id" id="bean.id"/> 
   	<div id="${appReqeustContext.appKey}FormJson" style="display:none">${formJson}</div> 
  	<div id="pagePanel" class="easyui-panel" width="100%"  style="padding:10px">
 		<table cellpadding="0" cellspacing="0" class="baseForm-table" width="100%">
@@ -29,9 +29,9 @@
 	      	<tr>
         		<td nowrap><label   for="bean.notifyFlag">完工短信通知<span style="color:red">*</span></label></td>
 			   	<td  ><input type="radio" name="bean.notifyFlag" value="1" checked="true" />是<input type="radio" name="bean.notifyFlag" value="0" />否</td>
-			   	<td  nowrap class="dis"><label   for="bean.empPhone">申请人手机号<span style="color:red">*</span></label></td>
+			   	<td  nowrap class="dis"><label   for="bean.contactPhone">申请人手机号<span style="color:red">*</span></label></td>
 				<td class="dis">
-					<input name="bean.empPhone" id="bean.empPhone" class="easyui-textbox" style="width:150px;height:30px" />
+					<input name="bean.contactPhone" id="bean.contactPhone" class="easyui-textbox" style="width:150px;height:30px" />
 				</td>
 				<td nowrap><label   for="bean.rewardFee">奖励费用</label></td>
 				<td>
@@ -39,32 +39,30 @@
 				</td>
 	      	</tr>
         	<tr>
-        		<td  nowrap><label   for="bean.employeeId">报修人员<span style="color:red">*</span></label></td>
+        		<td nowrap><label   for="bean.repairDate">报修日期<span style="color:red">*</span></label></td>
+			   	<td  ><input name="bean.repairDate" id="bean.repairDate" readonly class="easyui-textbox" style="width:150px;height:28px"></td>
+          		<td  nowrap><label   for="bean.buildingId">报修单位<span style="color:red">*</span></label></td>
 				<td>
-					<input name="bean.employeeName" id="bean.employeeName" class="easyui-textbox" readonly style="width:150px;height:30px" />
-					<input name="bean.employeeId" id="bean.employeeId" type="hidden"  />
+					<input name="bean.roomNumber"  id="bean.roomNumber" class="easyui-textbox" readonly style="width:150px;height:30px" />   
 				</td>
-          		<td  nowrap><label   for="bean.buildingId">楼栋位置<span style="color:red">*</span></label></td>
+				<td  nowrap><label   for="bean.employeeId">报修人员<span style="color:red">*</span></label></td>
 				<td>
-					<select name="bean.buildingId"  id="bean.buildingId" class="easyui-combobox" data-options="editable:false,disabled:true" style="width:150px;height:30px">   
-                		<ts:forEach name='buildingIdList' insertEmpty='0' />
-					</select>
+					<input name="bean.applyer" id="bean.applyer" class="easyui-textbox" readonly style="width:150px;height:30px" />
 				</td>
-				<td  nowrap><label   for="bean.repairType">报修类别<span style="color:red">*</span></label></td>
-				<td>
+		   	</tr >
+		    <tr>
+		    	<td  nowrap><label   for="bean.repairType">报修类别<span style="color:red">*</span></label></td>
+		    	<td>
 					<select name="bean.repairType"  id="bean.repairType" class="easyui-combobox" data-options="editable:false,disabled:true" style="width:150px;height:30px">   
                 		<ts:forEach name='repairTypeList' insertEmpty='0' />
 					</select>
 				</td>
-		   	</tr >
-		    <tr>
 	      		<td  nowrap><label   for="bean.repairerId">维修人员<span style="color:red">*</span></label></td>
 				<td>
 					<input name="bean.repairerName" id="bean.repairerName" class="easyui-textbox" readonly style="width:150px;height:30px" />
 					<input name="bean.repairerId" id="bean.repairerId" type="hidden"  />
 				</td>
-	      		<td nowrap><label   for="bean.repairDate">报修日期<span style="color:red">*</span></label></td>
-			   	<td  ><input name="bean.repairDate" id="bean.repairDate" readonly class="easyui-textbox" style="width:126px;height:28px"></td>
+	      		
 	      		<td  nowrap><label   for="bean.number">报修单号<span style="color:red">*</span></label></td>
 				<td>
 					<input name="bean.number" id="bean.number" class="easyui-textbox" readonly style="width:150px;height:30px" />
