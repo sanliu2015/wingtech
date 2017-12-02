@@ -72,7 +72,7 @@ public class RoomFeeServiceImpl implements IAppService {
 	
 	public String exportExcel(RequestContext requestContext,IBaseServiceManger service) throws Exception {
 		String yearMonth = requestContext.getRequest().getParameter("yearMonth");
-		String buildingId = requestContext.getRequest().getParameter("buildId");
+		String buildingId = requestContext.getRequest().getParameter("buildingId");
 		Map<String, Object> dataMap = new HashMap<String, Object> ();	
 		String exportSql = "" + requestContext.getMessageResource().get("exportSql");
 		String orderBySql = "" + requestContext.getMessageResource().get("orderBySql");
