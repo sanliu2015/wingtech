@@ -34,7 +34,13 @@
 						<entry key="dialogOpts">height:200,width:400</entry> 
 				    </property>
 				</object>
-				<object class="ReportToolbar" className="easyui-linkbutton" name="导出报表" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/allFeeService/exportExcelInit.do?appUrl=exportExcelInit" limitChooseRows="0"> 
+				<object class="ReportToolbar" className="easyui-linkbutton" name="导出所有" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/allFeeService/exportExcelInit.do?appUrl=exportExcelAll" limitChooseRows="0"> 
+				    <property name="customProperty" type="map">
+						<entry key="limitChooseRows">0</entry>
+						<entry key="dialogOpts">height:300,width:600</entry> 
+				    </property>
+				</object> 
+				<object class="ReportToolbar" className="easyui-linkbutton" name="导出合计" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/allFeeService/exportExcelInit.do?appUrl=exportExcelInit" limitChooseRows="0"> 
 				    <property name="customProperty" type="map">
 						<entry key="limitChooseRows">0</entry>
 						<entry key="dialogOpts">height:300,width:600</entry> 

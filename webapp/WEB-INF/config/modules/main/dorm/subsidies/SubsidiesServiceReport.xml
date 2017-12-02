@@ -50,13 +50,13 @@
 				         </property>
 				        <property name="recParamTemplate">{id:#{id}}</property>
 					</object>
-					<object class="ReportToolbar" className="easyui-linkbutton" name="生效" dataOptions="plain:true,iconCls:'icon-redo'"  url="/main/subsidiesService/json/doEffective.do" targetName="ajax">
+					<!-- <object class="ReportToolbar" className="easyui-linkbutton" name="生效" dataOptions="plain:true,iconCls:'icon-redo'"  url="/main/subsidiesService/json/doEffective.do" targetName="ajax">
 					    <property name="customProperty" type="map"> 
 						    <entry key="title">生效</entry>
 							<entry key="limitChooseRows">2</entry> 
 				         </property>
 				        <property name="recParamTemplate">{id:#{id}}</property>
-					</object>
+					</object> -->
 					<object class="ReportToolbar" className="easyui-linkbutton" name="导入" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/importExcelService/init.do?appUrl=InitImportExcel&amp;planNumber=subsidies&amp;headNo=2" limitChooseRows="0"  >
 						 <property name="customProperty" type="map">  
 							<entry key="dialogOpts">maximized:true,cache:true</entry>
