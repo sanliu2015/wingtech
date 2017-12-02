@@ -86,7 +86,7 @@
  			 <a href="javascript:void(0)" class="easyui-linkbutton" id="submitBtn" iconCls="icon-save"  onClick=" return userScript.submitForm(this);">确定</a>  
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"  onClick="$.ts.EasyUI.closeDialog(this,'0');">关闭</a>     
      </div> 
-<script type="text/javascript" src="<ts:base ref='path'/>/User.js?version=1.1"></script> 
+<script type="text/javascript" src="<ts:base ref='path'/>/User.js?version=1.2"></script> 
 <script type="text/javascript">
     var userScript=new UserScript();  
 	$(function() { 

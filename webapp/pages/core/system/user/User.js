@@ -131,10 +131,10 @@ UserScript.prototype={
 				return false;
 			}
 		 } else {
-			 if($.trim($("#bean\\.custName").textbox('getValue'))=="" ){
-				$.messager.alert('提示',"客户名称不能为空！"); 
-				return false;
-			}
+//			 if($.trim($("#bean\\.custName").textbox('getValue'))=="" ){
+//				$.messager.alert('提示',"客户名称不能为空！"); 
+//				return false;
+//			}
 		 }
 		if($.trim($("#bean\\.userLevel").textbox('getValue'))=="-1" ){
 			if($.trim($("#bean\\.positionRoleIds").combotree('getValues'))=="" ){
@@ -174,12 +174,12 @@ UserScript.prototype={
 				return false;
 			}
 		 } else {
-			 try{
-				 if($.trim($("#bean\\.custName").textbox('getValue'))=="" ){
-					$.messager.alert('提示',"客户名称不能为空！"); 
-					return false;
-				}
-			 } catch(e){}
+//			 try{
+//				 if($.trim($("#bean\\.custName").textbox('getValue'))=="" ){
+//					$.messager.alert('提示',"客户名称不能为空！"); 
+//					return false;
+//				}
+//			 } catch(e){}
 		 }
 	     var bodyId="#"+this.opts.appKey+"Body";
 		 var formId= this.opts.appKey+"Form";
