@@ -17,7 +17,7 @@ a.wtpwgsFee,a.sharedFee,a.paidRoomFee,a.damageFee,a.rewardFee,a.punishFee,isnull
 where a.yearMonth=? 
 order by d.id,h.id,a.id ",
 	"exportSqlAll":"select b.roomName,b.typeName roomType,b.buildingName,b.buildingType, 
-	c.name empName,c.number empNumber,d.name deptName,e.name parentDeptName,f.name posName,g.name copName,
+	c.name empName,c.number empNumber,d.name deptName,e.name parentDeptName,f.name posName,g.name copName,a.outReason,
 	h.sendCompanyName,a.inDate,a.outDate,a.beginDate,a.endedDate,a.inDays,a.rentFee,isnull(a.corpFee,0)+isnull(a.subsidies,0) corpFee,
 	a.wtpwgsFee,a.sharedFee,a.paidRoomFee,a.rewardFee,a.punishFee,
 	isnull(a.paidRoomFee,0)+isnull(a.damageFee,0)-isnull(a.rewardFee,0) totalFee,

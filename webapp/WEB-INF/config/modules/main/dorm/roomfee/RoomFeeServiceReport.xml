@@ -14,6 +14,7 @@
         		inner join HR_Employee b on a.employeeId=b.id 
         		left join HR_Department c on b.deptId=c.id 
         		left join HR_Department d on c.parentId=d.id 
+        		left join vw_check_date f on a.employeeId=f.employeeId 
           ]]></property> 
 		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
 			<object name="datagrid" type="object"  class="ReportDatagrid"     singleSelect="true"  fitColumns="false"   pageSize="20"  toolbar="#roomFeeServiceToolbar"> 
@@ -66,6 +67,8 @@
 			</object>
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="beginDate" displayLable="当月住宿&lt;br / &gt;起始日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" />
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="endedDate" displayLable="当月住宿&lt;br / &gt;截止日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" />
+    	    <object class="SourceFieldRuleBean" tableAliasName="f" fieldName="inDate" displayLable="第一次&lt;br / &gt;入住日期" dataType="string" colWidth="70"/>
+    	    <object class="SourceFieldRuleBean" tableAliasName="f" fieldName="CASE WHEN f.outDate='2199-12-31' THEN '' ELSE f.outDate END" fieldAliasName="outDate" isCalculateField="1" displayLable="最后&lt;br / &gt;退住日期" dataType="string" colWidth="70"/>
     	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rentStandard" displayLable="房租标准" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
     	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rentFee" displayLable="分摊房租" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
     	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="corpFee" displayLable="公司补贴" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 

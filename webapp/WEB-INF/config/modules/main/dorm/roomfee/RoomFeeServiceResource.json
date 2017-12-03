@@ -7,8 +7,8 @@
 		"generateRoomFeeSp": "roomFee_generateRoomFee(?)",
 		"deleteRoomFeeSp": "roomFee_deleteRoomFee(?)",
 		"exportSql":"select b.roomName,b.typeName roomType,b.buildingName,b.buildingType, 
-	c.name empName,c.number empNumber,d.name deptName,e.name parentDeptName,f.name posName,g.name copName,
-	h.sendCompanyName,a.inDate,a.outDate,a.beginDate,a.endedDate,a.inDays,a.rentFee,a.corpFee,a.wtpwgsFee,a.sharedFee,
+	c.name empName,c.number empNumber,d.name deptName,e.name parentDeptName,f.name posName,g.name copName,a.outReason,
+	h.sendCompanyName,a.inDate,a.outDate,a.beginDate,a.endedDate,a.inDays,a.rentFee,a.corpFee,a.wtpwgsFee,a.sharedFee,a.paidRoomFee,
 	a.firstRowFlag,a.totalSum,a.rentStandard,x.lastGasNum,x.thisGasNum,x.gasPrice,x.gasFee,x.lastPowerNum,x.thisPowerNum,
 	x.powerPrice,x.powerFee,x.lastWaterNum,x.thisWaterNum,x.waterPrice,x.waterFee,x.wtpwgsFee wtpwgsSum
     from Dorm_RoomFee a 

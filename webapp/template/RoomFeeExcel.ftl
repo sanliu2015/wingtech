@@ -291,7 +291,7 @@
   </Style>
  </Styles>
  <Worksheet ss:Name="Sheet1">
-  <Table ss:ExpandedColumnCount="33" ss:ExpandedRowCount="${totalRow+2}" x:FullColumns="1"
+  <Table ss:ExpandedColumnCount="36" ss:ExpandedRowCount="${totalRow+2}" x:FullColumns="1"
    x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
    <Row ss:AutoFitHeight="0" ss:Height="22.5">
     <Cell ss:StyleID="s62"><Data ss:Type="String">房号</Data></Cell>
@@ -305,13 +305,15 @@
     <Cell ss:StyleID="s63"><Data ss:Type="String">工号</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">入住日期</Data></Cell>
     <Cell ss:StyleID="s64"><Data ss:Type="String">退宿日期</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="String">备注</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">退宿原因</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">劳务公司</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">起</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">止</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">入住天数</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">房间租金</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">房租房费</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">公司补贴</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">个人房租扣款</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">上月电抄数</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">本月电抄数</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">电费价格</Data></Cell>
@@ -327,6 +329,7 @@
     <Cell ss:StyleID="s62"><Data ss:Type="String">水电合计</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">人均水电费</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="String">共摊水电费</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">合计</Data></Cell>
    </Row>
  <#if (dataList?size>0)>
  <#list dataList as dtl>
@@ -343,6 +346,7 @@
     <Cell ss:StyleID="s73"><Data ss:Type="String">${dtl.empNumber!''}</Data></Cell>
     <Cell ss:StyleID="s73"><Data ss:Type="String">${dtl.inDate!''}</Data></Cell>
     <Cell ss:StyleID="s74"><Data ss:Type="String">${dtl.outDate!''}</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">${dtl.outReason!''}</Data></Cell>
     <Cell ss:StyleID="s74"><Data ss:Type="String">${dtl.sendCompanyName!''}</Data></Cell>
     <Cell ss:StyleID="s73"><Data ss:Type="String">${dtl.beginDate!''}</Data></Cell>
     <Cell ss:StyleID="s75"><Data ss:Type="String">${dtl.endedDate!''}</Data></Cell>
@@ -350,6 +354,7 @@
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.rentStandard!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.rentFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.corpFee!''}</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.trueRentFee!''}</Data></Cell>
     <Cell ss:MergeDown="${dtl.totalSum-1}" ss:StyleID="m83218940"><Data ss:Type="Number">${dtl.lastPowerNum!''}</Data></Cell>
     <Cell ss:MergeDown="${dtl.totalSum-1}" ss:StyleID="m83218960"><Data ss:Type="Number">${dtl.thisPowerNum!''}</Data></Cell>
     <Cell ss:MergeDown="${dtl.totalSum-1}" ss:StyleID="m83218980"><Data ss:Type="Number">${dtl.powerPrice!''}</Data></Cell>
@@ -365,6 +370,7 @@
     <Cell ss:MergeDown="${dtl.totalSum-1}" ss:StyleID="m83219388"><Data ss:Type="Number">${dtl.wtpwgsSum!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.wtpwgsFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.sharedFee!''}</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.paidRoomFee!''}</Data></Cell>
    </Row>
    <#else>
    <Row ss:AutoFitHeight="0" ss:Height="22.5">
@@ -376,6 +382,7 @@
     <Cell ss:StyleID="s73"><Data ss:Type="String">${dtl.empNumber!''}</Data></Cell>
     <Cell ss:StyleID="s73"><Data ss:Type="String">${dtl.inDate!''}</Data></Cell>
     <Cell ss:StyleID="s74"><Data ss:Type="String">${dtl.outDate!''}</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">${dtl.outReason!''}</Data></Cell>
     <Cell ss:StyleID="s74"><Data ss:Type="String">${dtl.sendCompanyName!''}</Data></Cell>
     <Cell ss:StyleID="s73"><Data ss:Type="String">${dtl.beginDate!''}</Data></Cell>
     <Cell ss:StyleID="s75"><Data ss:Type="String">${dtl.endedDate!''}</Data></Cell>
@@ -383,8 +390,10 @@
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.rentStandard!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.rentFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.corpFee!''}</Data></Cell>
-    <Cell ss:Index="32" ss:StyleID="s65"><Data ss:Type="Number">${dtl.wtpwgsFee!''}</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.trueRentFee!''}</Data></Cell>
+    <Cell ss:Index="34" ss:StyleID="s65"><Data ss:Type="Number">${dtl.wtpwgsFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.sharedFee!''}</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.paidRoomFee!''}</Data></Cell>
    </Row>
    </#if>
  </#list> 
