@@ -81,7 +81,7 @@
 		  <object class="SourceFieldRuleBean" tableName="b" fieldName="name" fieldAliasName="deptName" displayLable="科室" dataType="string" displayColumn="1"/>
 		   <object class="SourceFieldRuleBean" tableName="a" fieldName="icNo" displayLable="考勤卡号" isQueryCondition="1" />  
 		   <object class="SourceFieldRuleBean" tableName="a" fieldName="idCard" displayLable="身份证号" dataType="string"  /> 
-		   <object class="SourceFieldRuleBean" tableName="a" fieldName="subsidies" displayLable="住房补贴" dataType="decimal" displayColumn="1" />
+		   <!-- <object class="SourceFieldRuleBean" tableName="a" fieldName="subsidies" displayLable="住房补贴" dataType="decimal" displayColumn="1" /> -->
 		   <!-- <object class="SourceFieldRuleBean" tableName="a" fieldName="addr"    displayLable="工作地点" dataType="string" displayColumn="1"/> 
 		   <object class="SourceFieldRuleBean" tableName="a" fieldName="inDate" displayLable="入司日期"    />
  			-->
