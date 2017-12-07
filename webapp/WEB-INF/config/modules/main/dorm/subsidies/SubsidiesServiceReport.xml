@@ -66,9 +66,9 @@
 			</object>
 		</object> 
         <property name="sourceFields" type="list"> 
-        	<object class="SourceFieldRuleBean" tableName="a" fieldName="effective" displayLable="生效" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
+        	<!-- <object class="SourceFieldRuleBean" tableName="a" fieldName="effective" displayLable="生效" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
 				<property name="dataSourceSql">select code,name from TS_SysCode where codeKind=4</property>
-			</object>
+			</object> -->
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="subsidies"  displayLable="补贴金额" dataType="double" colWidth="60" isQueryCondition="0" queryControlKind="2"/>  
             <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="name" fieldAliasName="posName" displayLable="职务" dataType="string" isQueryCondition="1" colWidth="150" /> 
             <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="interimId" displayLable="劳务派遣" colWidth="100" dataType="int"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"  >  

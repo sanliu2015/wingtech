@@ -58,15 +58,15 @@
 		  	<object class="SourceFieldRuleBean" tableAliasName="c" fieldName="name" fieldAliasName="deptName" displayLable="科室" dataType="string" colWidth="90" />
 	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="name" fieldAliasName="empName"  displayLable="姓名" dataType="string" isQueryCondition="1" colWidth="60" />  
 	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="number"  displayLable="工号" dataType="string" isQueryCondition="1" colWidth="70" />  
-    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rewardFee" displayLable="奖励合计" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
-    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="punishFee" displayLable="惩罚合计" dataType="bigDecimal"  colWidth="60"/>
-			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="damageFee" displayLable="遗失损坏&lt;br / &gt;合计" dataType="bigDecimal"  colWidth="60"/> 
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rentFee" displayLable="房租费用" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="corpFee" displayLable="公司补贴" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="trueRentFee" displayLable="个人房租&lt;br / &gt;扣款" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
     	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="wtpwgsFee" displayLable="水电气费" dataType="bigDecimal"  colWidth="60"/>
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="sharedFee" displayLable="公摊费" dataType="bigDecimal"  colWidth="60"/>  		     		    
-		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rentFee" displayLable="房租费用" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
-		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="corpFee" displayLable="公司补贴" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
-		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="subsidies" displayLable="职位&lt;br / &gt;住房补贴" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
-		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="paidRoomFee" displayLable="实际&lt;br / &gt;承担房费" dataType="bigDecimal"  displayColumn="1"  colWidth="60" />
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rewardFee" displayLable="奖励合计" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="punishFee" displayLable="惩罚合计" dataType="bigDecimal"  colWidth="60"/>
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="damageFee" displayLable="遗失损坏&lt;br / &gt;合计" dataType="bigDecimal"  colWidth="60"/> 
+		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="paidRoomFee" displayLable="合计" dataType="bigDecimal"  colWidth="60"/>  	
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0"/>
         </property> 
       </object>

@@ -71,10 +71,11 @@
     	    <object class="SourceFieldRuleBean" tableAliasName="f" fieldName="CASE WHEN f.outDate='2199-12-31' THEN '' ELSE f.outDate END" fieldAliasName="outDate" isCalculateField="1" displayLable="最后&lt;br / &gt;退住日期" dataType="string" colWidth="70"/>
     	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rentStandard" displayLable="房租标准" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
     	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="rentFee" displayLable="分摊房租" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
-    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="corpFee" displayLable="公司补贴" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="isnull(a.corpFee,0)+isnull(a.subsidies,0)"  fieldAliasName="corpFee" isCalculateField="1" displayLable="公司补贴" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
+    	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="trueRentFee" displayLable="个人房租扣款" dataType="bigDecimal"  displayColumn="1"  colWidth="60" /> 
     	    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="wtpwgsFee" displayLable="水电气费" dataType="bigDecimal"  colWidth="60"/>
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="sharedFee" displayLable="公摊费" dataType="bigDecimal"  colWidth="60"/>  		    
-			<!-- <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="cleanFee" displayLable="卫生&lt;br / &gt;清洗费" dataType="bigDecimal"  colWidth="50"/>   -->
+			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="paidRoomFee" displayLable="合计" dataType="bigDecimal"  colWidth="60"/>  	
     	    <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="buildingName"  displayLable="楼栋" dataType="string" displayColumn="1" isQueryCondition="1" colWidth="60"/>
 		    <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="unitName"  displayLable="单元" dataType="string" displayColumn="1" isQueryCondition="1" colWidth="60"/>
 		    <!-- <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="floorName"  displayLable="楼层" dataType="string" displayColumn="1" isQueryCondition="1" colWidth="60"/> -->
