@@ -20,10 +20,10 @@
 		</table>
 	</div> 
 	<div id="pagePanel" class="easyui-panel dialog-button" width="100%" style="text-align:center;padding:5px;">
- 		<a href="javascript:void(0)" class="easyui-linkbutton" id="submitBtn" iconCls="icon-save"  onClick=" return allFeeScript.submitFormOnExportExcel(this);">确定</a>  
+ 		<a href="javascript:void(0)" class="easyui-linkbutton" id="submitBtn" iconCls="icon-save"  onClick=" return allFeeScript.submitFormOnExportExcelInit(this);">确定</a>  
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"  onClick="$.ts.EasyUI.closeDialog(this,'0');">关闭</a>     
     </div> 
-<script type="text/javascript" src="<ts:base ref='path'/>/AllFee.js"></script>
+<script type="text/javascript" src="<ts:base ref='path'/>/AllFee.js?v1712072100"></script>
 <script type="text/javascript" src="${contextPath}/scripts/easyui/locale/easyui-lang-zh_CN.js"></script> 
 <script type="text/javascript">
     var allFeeScript = new AllFeeScript();  

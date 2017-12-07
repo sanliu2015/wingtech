@@ -31,7 +31,6 @@ public class TaskUtils {
                 clazz = Class.forName(scheduleJob.getBeanClass());
                 object = clazz.newInstance();
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
  
@@ -47,22 +46,14 @@ public class TaskUtils {
         } catch (NoSuchMethodException e) {
             log.error("任务名称 = [" + scheduleJob.getJobName() + "]---------------未启动成功，方法名设置错误！！！");
         } catch (SecurityException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         if (method != null) {
             try {
                 method.invoke(object, scheduleJob.getId());	
-            } catch (IllegalAccessException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IllegalArgumentException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } 
+            } catch (Exception e) {
+                e.printStackTrace();	// 捕捉所有异常
+            }  
         }
          
     }
