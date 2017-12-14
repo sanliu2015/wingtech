@@ -15,7 +15,6 @@
 <audio id="errorAudio" src="${contextPath}/pages/main/dorm/empenter/error.mp3">  
          你的浏览器不支持video标签。
 </audio> 
-<input type="hidden" id="door" value="${door}"> 
   <div class="panel-body">
     <form class="form-inline">
 	  <div class="form-group">
@@ -23,7 +22,8 @@
 	    <input type="text" class="form-control" id="icNo" placeholder="请刷工卡"   >
 	    <span id="errorMsg" style="color:red;"></span>
 	    <label for="name">厂门</label>
-	    	<select name="bean.door"  id="bean.door" class="form-control">
+	    	<select name="door" id="door" class="form-control">
+	    	<option value="">请选择</option>
 	    		<c:forEach items="${doorList}" var="dtl">   
 	    		<option value="${dtl.code}">${dtl.name}</option>
 	    		</c:forEach>
@@ -71,6 +71,12 @@
 				if ($("#icNo").val() == "") {
 					alert("工卡不能为空!");
 				} else {
+					debugger;
+					if ($("#door").val() == "") {
+						alert("门号不能为空!");
+						return false;
+					}
+					
 					$.ajax({
 						type:"post",
 						url: tsContextPath + "/main/empEnterService/json/doCheck.do?timestamp=" + new Date().getTime(),

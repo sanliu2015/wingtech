@@ -16,26 +16,26 @@
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
         <property name="url"
-            value="jdbc:jtds:sqlserver://122.225.19.74:38382/wingtech_pro" />
+            value="jdbc:jtds:sqlserver://localhost:1433/wingtech_dev" />
         <property name="username" value="sa" />
-        <property name="password" value="163.com" />
+        <property name="password" value="plq1210" />
     </bean>
 
 
     <!-- 数据源 -->
     <bean id="adminDataSource" parent="parentDataSource">
         <property name="url"
-            value="jdbc:jtds:sqlserver://122.225.19.74:38382/wingtech_pro" />
+            value="jdbc:jtds:sqlserver://localhost:1433/wingtech_dev" />
         <property name="username" value="sa" />
-        <property name="password" value="163.com" />
+        <property name="password" value="plq1210" />
     </bean>
 
     <!-- 数据源 -->
     <bean id="userDataSource" parent="parentDataSource">
         <property name="url"
-            value="jdbc:jtds:sqlserver://122.225.19.74:38382/wingtech_pro" />
+            value="jdbc:jtds:sqlserver://localhost:1433/wingtech_dev" />
         <property name="username" value="sa" />
-        <property name="password" value="163.com" />
+        <property name="password" value="plq1210" />
     </bean>
     <!-- 编写spring 配置文件的配置多数源映射关系 -->
     <bean id="dataSource" class="test.spring.DynamicDataSource">

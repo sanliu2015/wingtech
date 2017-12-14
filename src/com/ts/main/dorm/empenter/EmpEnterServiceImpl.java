@@ -44,6 +44,7 @@ public class EmpEnterServiceImpl implements IAppService {
 					EmpEnter bean = new EmpEnter();
 					bean = JSON.parseObject(JSON.toJSONString(resultMap), EmpEnter.class);
 					bean.setIcNo(icNo);
+					bean.setDoor(door);
 					service.getDb().saveObject(bean);
 				}
 			} else {
