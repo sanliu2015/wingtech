@@ -372,7 +372,7 @@
     <Cell ss:MergeDown="${dtl.totalSum-1}" ss:StyleID="m83219388"><Data ss:Type="Number">${dtl.wtpwgsSum!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.wtpwgsFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.sharedFee!''}</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.paidRoomFee!''}</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.trueRentFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.damageFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.rewardFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.punishFee!''}</Data></Cell>
@@ -398,7 +398,7 @@
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.corpFee!''}</Data></Cell>
     <Cell ss:Index="33" ss:StyleID="s65"><Data ss:Type="Number">${dtl.wtpwgsFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.sharedFee!''}</Data></Cell>
-    <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.paidRoomFee!''}</Data></Cell>
+    <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.trueRentFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.damageFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.rewardFee!''}</Data></Cell>
     <Cell ss:StyleID="s65"><Data ss:Type="Number">${dtl.punishFee!''}</Data></Cell>
