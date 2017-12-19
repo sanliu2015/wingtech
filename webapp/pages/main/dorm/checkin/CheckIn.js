@@ -1,4 +1,7 @@
 var dataOpt = {table: "dtlListGrid"};
+$.ajaxSetup({
+	  async: false
+});
 function queryRoom() {
 	var build = $("#build").combobox("getValue");
 	var unit = $("#unit").combobox("getValue");
@@ -586,6 +589,7 @@ CheckInScript.prototype={
 		if (dataList.length == 0) {
 			$.messager.alert("警告", "没有要调整的记录!");
 		} else {
+			$("#submitBtn").attr("disabled", true);
 			$.ajax({
 				type : "post",
 				dataType: "json",
@@ -602,6 +606,124 @@ CheckInScript.prototype={
 							bottom:''
 						}
 					});
+					$("#submitBtn").removeAttr("disabled");
+					
+					$.ajax({
+						dataType:'json',
+						cache:false,
+						url:tsContextPath + '/main/checkInService/json/queryRoomEmp.do?timeStamp=' + new Date().getTime() + "&roomId=" + $("#beforeRoomId").val(),
+						beforeSend:function(XMLHttpRequest){
+							$("#beforePanel").html("<center><p><img src='" + tsContextPath + "/resource/image/icon/ajax_loading.gif' alt='' border='0' /></p></center>");
+						},
+						success:function(data, textStatus){
+							var dtlList = data;
+							var htmlStr = '';
+							for (var i=0,len=dtlList.length; i<len; i++) {
+								var title = "";
+								title += "姓名：<strong>" + dtlList[i].name + "</strong><br/>" + "工号：<strong>" + dtlList[i].number + "</strong><br/>" + "科室：<strong>" + dtlList[i].deptName + "</strong><br/>";
+								htmlStr += '<div id="emp' + dtlList[i].id + '" data-orgRoom=' + dtlList[i].orgRoom + ' class="emp" title="' + title + '" >';
+								if (dtlList[i].gender == '1') {		// 男
+									htmlStr += '<img src="' + tsContextPath + '/resource/image/icon/male.png" alt="男" border="0" />';
+								} else if (dtlList[i].gender == '0') {	// 女
+									htmlStr += '<img src="' + tsContextPath + '/resource/image/icon/female.png" alt="女" border="0" />';
+								}
+								htmlStr += dtlList[i].name + "|入住日期" + dtlList[i].inDate + '</div>';
+							}
+							$("#beforePanel").html(htmlStr);
+							$('.emp').draggable({
+								proxy:'clone',
+								accept:'.emp',
+								revert:true,
+								cursor:'auto',
+								onStartDrag:function(){
+									$(this).draggable('options').cursor='not-allowed';
+									$(this).draggable('proxy').addClass('dp');
+								},
+								onStopDrag:function(){
+									$(this).draggable('options').cursor='auto';
+								}
+							}).tooltip({
+								position:'top',
+								trackMouse:true,
+								content:this.title,
+								onShow:function(){
+									$(this).tooltip('tip').css({
+										backgroundColor: '#f7f5d1',
+										border:'1px solid #333',
+									});
+								}
+							});
+						},
+						error:function(XmlHttpRequest, textStatus, errorThrown){   
+							$("#beforePanel").html('');
+							var str = XmlHttpRequest.responseText; 
+							if($.ts.Utils.isEmpty(str)){
+								str=XmlHttpRequest.responseXML;
+							}
+							str=str+"<hr/>"+textStatus;
+							$.ts.EasyUI.showContentDialog(str); 
+						} 
+					});
+					
+					// 重载
+					$.ajax({
+						dataType:'json',
+						cache:false,
+						url:tsContextPath + '/main/checkInService/json/queryRoomEmp.do?timeStamp=' + new Date().getTime() + "&roomId=" + $("#afterRoomId").val(),
+						beforeSend:function(XMLHttpRequest){
+							$("#afterPanel").html("<center><p><img src='" + tsContextPath + "/resource/image/icon/ajax_loading.gif' alt='' border='0' /></p></center>");
+						},
+						success:function(data, textStatus){
+							var dtlList = data;
+							var htmlStr = '';
+							for (var i=0,len=dtlList.length; i<len; i++) {
+								var title = "";
+								title += "姓名：<strong>" + dtlList[i].name + "</strong><br/>" + "工号：<strong>" + dtlList[i].number + "</strong><br/>" + "科室：<strong>" + dtlList[i].deptName + "</strong><br/>";
+								htmlStr += '<div id="emp' + dtlList[i].id + '" data-orgRoom=' + dtlList[i].orgRoom + ' class="emp" title="' + title + '" >';
+								if (dtlList[i].gender == '1') {		// 男
+									htmlStr += '<img src="' + tsContextPath + '/resource/image/icon/male.png" alt="男" border="0" />';
+								} else if (dtlList[i].gender == '0') {	// 女
+									htmlStr += '<img src="' + tsContextPath + '/resource/image/icon/female.png" alt="女" border="0" />';
+								}
+								htmlStr += dtlList[i].name + "|入住日期" + dtlList[i].inDate + '</div>';
+							}
+							$("#afterPanel").html(htmlStr);
+							$('.emp').draggable({
+								proxy:'clone',
+								revert:true,
+								cursor:'auto',
+								onStartDrag:function(){
+									$(this).draggable('options').cursor='not-allowed';
+									$(this).draggable('proxy').addClass('dp');
+								},
+								onStopDrag:function(){
+									$(this).draggable('options').cursor='auto';
+								}
+							}).tooltip({
+								position:'top',
+								trackMouse:true,
+								content:this.title,
+								onShow:function(){
+									$(this).tooltip('tip').css({
+										backgroundColor: '#f7f5d1',
+										border:'1px solid #333',
+									});
+								}
+							});
+						},
+						error:function(XmlHttpRequest, textStatus, errorThrown){   
+							$("#afterPanel").html('');
+							var str = XmlHttpRequest.responseText; 
+							if($.ts.Utils.isEmpty(str)){
+								str=XmlHttpRequest.responseXML;
+							}
+							str=str+"<hr/>"+textStatus;
+							$.ts.EasyUI.showContentDialog(str); 
+						} 
+					});
+					
+					
+					
 				},
 				error : function(XmlHttpRequest, textStatus, errorThrown){   
 					var str = XmlHttpRequest.responseText; 

@@ -91,7 +91,7 @@ vertical-align:middle;
 	</div>
 </div>
 	<div id="pagePanel" class="easyui-panel dialog-button" width="100%" style="text-align:center;padding:5px;">
- 		<a href="javascript:void(0)" class="easyui-linkbutton" id="submitBtn" iconCls="icon-save"  onClick=" return checkInScript.submitFormOnAdjust(this);">保存</a>  
+ 		<a href="javascript:void(0)" class="easyui-linkbutton" id="submitBtn" iconCls="icon-save" onClick=" return checkInScript.submitFormOnAdjust(this);">保存</a>  
         <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"  onClick="$.ts.EasyUI.closeDialog(this,'0');">关闭</a>      -->
     </div> 	
 	<script type="text/javascript" src="${contextPath}/scripts/jquery/jquery-1.10.2.min.js"></script>
@@ -100,7 +100,7 @@ vertical-align:middle;
 	<script type="text/javascript" src="${contextPath}/scripts/ts/TSCore.js"></script>
 	<script type="text/javascript" src="${contextPath}/scripts/ztree/js/jquery.ztree.core-3.5.min.js"></script>
 	<script type="text/javascript" src="${contextPath}/scripts/jquery/json2.js"></script>
-	<script type="text/javascript" src="<ts:base ref='path'/>/CheckIn.js"></script>
+	<script type="text/javascript" src="<ts:base ref='path'/>/CheckIn.js?v1712192100"></script>
 	<script>
 	    var tsContextPath = "${contextPath}";
 	    var checkInScript = new CheckInScript(); 
