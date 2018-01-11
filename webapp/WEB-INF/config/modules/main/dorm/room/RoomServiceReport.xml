@@ -13,9 +13,14 @@
         left join Dorm_building c on a.floorId=c.id 
           ]]></property> 
 		<object name="uiContainer" type="object"  class="ReportUIContainer"  > 
-			<object name="datagrid" type="object"  class="ReportDatagrid"     singleSelect="true"  fitColumns="false"   pageSize="20"  toolbar="#roomServiceToolbar"> 
+			<object name="datagrid" type="object"  class="ReportDatagrid" pageSize="50" canCheckbox="1" singleSelect="false" toolbar="#roomServiceToolbar"> 
 					<property name="customProperty" type="map">  
 						<entry key="striped" dataType="boolean">true</entry> 
+						<entry key="autoRowHeight" dataType="boolean">false</entry>
+						<entry key="remoteSort" dataType="boolean">false</entry>
+						<entry key="multiSort" dataType="boolean">true</entry>
+						<entry key="ctrlSelect" dataType="boolean">true</entry>
+						<entry key="pageList" dataType="array">50,100,300,500</entry> 
 			         </property>
 			</object> 
 			<object name="toolbarContainer" type="object"  class="ToolbarContainer"  id="roomServiceToolbar"> 
@@ -40,13 +45,13 @@
 						<entry key="promptStatement" >您确认要删除该记录吗？</entry> 
 			         </property>
 				</object>
-				<!-- <object class="ReportToolbar" className="easyui-linkbutton" name="启用|停用" dataOptions="plain:true,iconCls:'icon-redo'"    url="/main/roomService/openClose.do?appUrl=OpenCloseRoom"> 
+				<object class="ReportToolbar" className="easyui-linkbutton" name="启用|停用" dataOptions="plain:true,iconCls:'icon-redo'"    url="/main/roomService/openClose.do?appUrl=OpenCloseRoom"> 
 					 <property name="recParamTemplate">id=#{id}</property>
 						<property name="customProperty" type="map"> 
 							<entry key="limitChooseRows">1</entry>
 							<entry key="dialogOpts">maximized:true</entry> 
 					 </property>
-				</object> -->
+				</object>
 				<object class="ReportToolbar" className="easyui-linkbutton" name="导入" dataOptions="plain:true,iconCls:'icon-excel'"  url="/main/importExcelService/init.do?appUrl=InitImportExcel&amp;planNumber=room&amp;headNo=2" limitChooseRows="0"  >
 						 <property name="customProperty" type="map">  
 							<entry key="dialogOpts">maximized:true,cache:true</entry>
@@ -73,9 +78,9 @@
 		    <object class="SourceFieldRuleBean" tableAliasName="c" fieldName="number" fieldAliasName="floorNumber"  displayLable="楼层编码" dataType="string" displayColumn="1" isQueryCondition="1" colWidth="60"/>
 		    <!-- <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="principalName" displayLable="楼层负责人" dataType="string"  colWidth="70"/>  
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="phone" displayLable="联系电话" dataType="string" displayColumn="1" colWidth="100"/> -->
-            <!-- <object class="SourceFieldRuleBean" tableName="a" fieldName="disabled" displayLable="状态" dataType="string" colWidth="50" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
+            <object class="SourceFieldRuleBean" tableName="a" fieldName="disabled" displayLable="状态" dataType="string" colWidth="50" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
 				<property name="dataSourceSql">select code,name from TS_SysCode where codeKind=305</property>
-			</object> -->
+			</object>
 			<object class="SourceFieldRuleBean" tableName="a" fieldName="corpBear" displayLable="是否公司&lt;br / &gt;承担费用" dataType="string" colWidth="50" dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3" isQueryCondition="1"> 
 				<property name="dataSourceSql">select code,name from TS_SysCode where codeKind=4</property>
 			</object>
