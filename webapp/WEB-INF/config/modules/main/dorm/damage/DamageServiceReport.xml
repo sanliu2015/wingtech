@@ -79,7 +79,7 @@
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="description" displayLable="备注" dataType="string" colWidth="100" />  
 			<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createDate" displayLable="创建日期" colWidth="70" dataType="date" displayColumn="1" queryControlKind="1" defaultCondtionValue="yesterday" />
           	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createTime" displayLable="创建时间" dataType="string" colWidth="70"/>
-          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy"  displayLable="创建人"  dataType="string" colWidth="60" /> 
+          	<object class="SourceFieldRuleBean" tableAliasName="a" fieldName="createdBy"  displayLable="创建人"  dataType="string" colWidth="60" isQueryCondition="1" /> 
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="id" displayLable="id" dataType="int" displayColumn="0" />  
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="lockFlag" displayLable="lockFlag" dataType="int" displayColumn="0" />  
         </property> 

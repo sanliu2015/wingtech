@@ -65,6 +65,7 @@
 	        <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="buildingName"  displayLable="楼栋" dataType="string" queryCondtiOrder="2" displayColumn="1" isQueryCondition="1" colWidth="60"/>
 		    <!-- <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="unitName"  displayLable="单元" dataType="string" queryCondtiOrder="3" displayColumn="1" isQueryCondition="1" colWidth="60"/> -->
 		    <!-- <object class="SourceFieldRuleBean" tableAliasName="e" fieldName="floorName"  displayLable="楼层" dataType="string" queryCondtiOrder="4" displayColumn="1" isQueryCondition="1" colWidth="60"/> -->
+	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="inDate" fieldAliasName="inCorpDate" displayLable="入职日期" colWidth="70" dataType="date"  queryCondtiOrder="3" isQueryCondition="1"  displayColumn="1" queryControlKind="1"  />
 	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="name" fieldAliasName="empName"  displayLable="姓名" dataType="string" queryCondtiOrder="5" isQueryCondition="1" colWidth="60" />  
 	        <object class="SourceFieldRuleBean" tableAliasName="b" fieldName="number"  displayLable="工号" dataType="string" queryCondtiOrder="6" isQueryCondition="1" colWidth="70" />  
 	        <object class="SourceFieldRuleBean" tableName="b" fieldName="gender"   displayLable="性别" dataType="string"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"    >
@@ -72,6 +73,9 @@
             </object>
 		  	<object class="SourceFieldRuleBean" tableAliasName="c" fieldName="name" fieldAliasName="deptName" displayLable="科室" dataType="string" colWidth="90" />
 		    <object class="SourceFieldRuleBean" tableAliasName="d" fieldName="name" fieldAliasName="parentDeptName" displayLable="部门" dataType="string" colWidth="90" />
+		    <object class="SourceFieldRuleBean" tableName="b" fieldName="interimId"   displayLable="劳务公司" dataType="int"  dataSourceKind="1" valueIsFromDataSource="1" queryControlKind="3"   isQueryCondition="1"  >
+            	<property name="dataSourceSql">select id,sendCompanyName from HR_Interim  </property>
+            </object> 
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="keyStatus" displayLable="进门户钥匙" dataType="string" colWidth="70" />  
 		    <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="remoterKeep" displayLable="空调遥控器" dataType="string" colWidth="70" />  
 	        <object class="SourceFieldRuleBean" tableAliasName="a" fieldName="outReason" displayLable="退宿原因" dataType="string" colWidth="100" />  
