@@ -6,7 +6,7 @@
 <html lang="zh-cn">
 <ts:base />
 <head> 
-<title>${appReqeustContext.appName}</title> 
+<title>修改退住信息s</title> 
 </head>
 <body id="${appReqeustContext.appKey}Body">  
 <form action="${contextPath}/main/${appReqeustContext.appService}/json/update.do" id="${appReqeustContext.appKey}Form" name="${appReqeustContext.appKey}Form" method="post">  
@@ -43,12 +43,12 @@
 	      		<td><input name="bean.keyStatus" id="bean.keyStatus" class="easyui-textbox"  style="width:150px;height:30px" /></td>
 				<td  nowrap><label   for="bean.empName">空调遥控器</label></td>
 				<td>
-					<input name="remoterKeep" id="remoterKeep" class="easyui-textbox" style="width:150px;height:30px" />
+					<input name="bean.remoterKeep" id="bean.remoterKeep" class="easyui-textbox" style="width:150px;height:30px" />
 				</td>
 	      	</tr>
 			<tr>
 	      		<td nowrap><label   for="bean.outReason">退宿原因</label></td>
-			    <td colspan="5" ><input class="easyui-textbox" name="bean.outReason" id="bean.outReason" style="height:30px;width:400px" readonly></td>
+			    <td colspan="5" ><input class="easyui-textbox" name="bean.outReason" id="bean.outReason" style="height:30px;width:400px"></td>
 	      	</tr>  
 		</table>
 	</div> 
