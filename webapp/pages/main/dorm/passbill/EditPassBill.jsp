@@ -54,7 +54,7 @@
 				</td>
 	      		<td nowrap><label   for="bean.keyStatus">钥匙</label></td>
 			   	<td>
-			   		<input name="bean.telStatus" id="bean.telStatus" class="easyui-textbox" style="width:150px;height:30px" />
+			   		<input name="bean.keyStatus" id="bean.keyStatus" class="easyui-textbox" style="width:150px;height:30px" />
 			   		<%-- <select name="bean.keyStatus"  id="bean.keyStatus" class="easyui-combobox" data-options="editable:false" style="width:150px;height:30px">   
                 		<ts:forEach name='statusList' insertEmpty='0' value="" />
 					</select> --%>
