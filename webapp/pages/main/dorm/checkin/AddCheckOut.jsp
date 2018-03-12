@@ -33,7 +33,7 @@
 	      		<td><input name="bean.keyStatus" id="bean.keyStatus" class="easyui-textbox"  style="width:150px;height:30px" /></td>
 				<td  nowrap><label   for="bean.empName">空调遥控器</label></td>
 				<td>
-					<input name="remoterKeep" id="remoterKeep" class="easyui-textbox" style="width:150px;height:30px" />
+					<input name="bean.remoterKeep" id="bean.remoterKeep" class="easyui-textbox" style="width:150px;height:30px" />
 				</td>
 	      	</tr>
 			<tr>
