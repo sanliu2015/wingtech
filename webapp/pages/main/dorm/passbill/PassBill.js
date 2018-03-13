@@ -18,12 +18,12 @@ PassBillScript.prototype = {
 			  } , function(json){ 
 					  try{  
 						 if(json!=null){ 
-							  $("#bean\\.empName").textbox('setText',json.empName);  
-							  $("#bean\\.buildName").textbox('setText',json.buildingName);  
-							  $("#bean\\.roomName").textbox('setText',json.roomName);  
-							  $("#bean\\.empNumber").textbox('setText',json.number);  
-							  $("#bean\\.keyStatus").textbox('setText',json.keyStatus);  
-							  $("#bean\\.telStatus").textbox('setText',json.remoterKeep);  
+							  $("#bean\\.empName").textbox('setValue',json.empName);  
+							  $("#bean\\.buildName").textbox('setValue',json.buildingName);  
+							  $("#bean\\.roomName").textbox('setValue',json.roomName);  
+							  $("#bean\\.empNumber").textbox('setValue',json.number);  
+							  $("#bean\\.keyStatus").textbox('setValue',json.keyStatus);  
+							  $("#bean\\.telStatus").textbox('setValue',json.remoterKeep);  
 							  $("#bean\\.empId").val(json.employeeId);   
 							  $("#bean\\.roomId").val(json.roomId);   
 							  $("#bean\\.buildId").val(json.buildingId); 
@@ -45,12 +45,12 @@ PassBillScript.prototype = {
 			  } , function(json){ 
 					  try{  
 						 if(json!=null){ 
-							  $("#bean\\.empName").textbox('setText',json.empName);  
-							  $("#bean\\.buildName").textbox('setText',json.buildingName);  
-							  $("#bean\\.roomName").textbox('setText',json.roomName);  
-							  $("#bean\\.empNumber").textbox('setText',json.number); 
-							  $("#bean\\.keyStatus").textbox('setText',json.keyStatus);  
-							  $("#bean\\.telStatus").textbox('setText',json.remoterKeep); 
+							  $("#bean\\.empName").textbox('setValue',json.empName);  
+							  $("#bean\\.buildName").textbox('setValue',json.buildingName);  
+							  $("#bean\\.roomName").textbox('setValue',json.roomName);  
+							  $("#bean\\.empNumber").textbox('setValue',json.number); 
+							  $("#bean\\.keyStatus").textbox('setValue',json.keyStatus);  
+							  $("#bean\\.telStatus").textbox('setValue',json.remoterKeep); 
 							  $("#bean\\.empId").val(json.employeeId);   
 							  $("#bean\\.roomId").val(json.roomId);   
 							  $("#bean\\.buildId").val(json.buildingId);   
